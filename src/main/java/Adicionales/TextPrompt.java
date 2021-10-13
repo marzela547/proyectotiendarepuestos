@@ -36,7 +36,7 @@ public class TextPrompt extends JLabel implements FocusListener, DocumentListene
 	public enum Show {
 		ALWAYS, FOCUS_GAINED, FOCUS_LOST;
 	}
-
+//pruebagit
 	private JTextComponent component;
 	private Document document;
 
