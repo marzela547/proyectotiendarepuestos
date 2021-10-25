@@ -5,6 +5,7 @@
  */
 package com.mycompany.proyectorepuestos.Clientes;
 
+import Clientes.VAgregarCli;
 import Adicionales.TextPrompt;
 
 /**
