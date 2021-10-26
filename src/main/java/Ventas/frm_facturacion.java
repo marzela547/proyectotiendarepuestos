@@ -5,18 +5,28 @@
  */
 package Ventas;
 
+import Adicionales.TextPrompt;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Kevin Espinal
  */
 public class frm_facturacion extends javax.swing.JFrame {
-
+ 
+       Adicionales.Conection con;
     /**
      * Creates new form frm_facturacion
      */
-    public frm_facturacion() {
+    
+    public frm_facturacion(){
         initComponents();
+        TextPrompt nombreCliente = new TextPrompt("Nombre del cliente",txtNombreCliente);
+        TextPrompt rtn = new TextPrompt("RTN",txtRTN);
+        TextPrompt nombreVendedor = new TextPrompt("Nombre del Vendedor",txtNomVendedor);
     }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,7 +50,8 @@ public class frm_facturacion extends javax.swing.JFrame {
         cmbTipoPago = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_productos = new javax.swing.JTable();
-        jTextField5 = new javax.swing.JTextField();
+        txtNombreCliente = new javax.swing.JTextField();
+        btnConectar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,10 +102,6 @@ public class frm_facturacion extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        txtNomVendedor.setText("jTextField1");
-
-        txtRTN.setText("RTN");
-
         cmbTipoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,7 +117,12 @@ public class frm_facturacion extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tbl_productos);
 
-        jTextField5.setText("Nombre del cliente");
+        btnConectar.setText("Conectar");
+        btnConectar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConectarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,7 +137,7 @@ public class frm_facturacion extends javax.swing.JFrame {
                         .addGap(284, 284, 284)
                         .addComponent(txtNomVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jTextField5)
+                        .addComponent(txtNombreCliente)
                         .addGap(18, 18, 18)
                         .addComponent(btn_SeleccionarCliente)
                         .addGap(412, 412, 412))
@@ -145,6 +157,10 @@ public class frm_facturacion extends javax.swing.JFrame {
                                 .addComponent(cmbTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(41, 41, 41))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(387, 387, 387)
+                .addComponent(btnConectar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +173,7 @@ public class frm_facturacion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_SeleccionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
@@ -172,11 +188,28 @@ public class frm_facturacion extends javax.swing.JFrame {
                     .addComponent(cmbTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addGap(116, 116, 116)
+                .addComponent(btnConectar)
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
+        // TODO add your handling code here:
+        
+        try{
+            Connection con = null;
+            JOptionPane.showMessageDialog(null, Adicionales.Conection.getConexion());
+        }catch(Exception e){
+            System.out.println(e);
+        }
+       
+        
+   
+        
+    }//GEN-LAST:event_btnConectarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,6 +247,7 @@ public class frm_facturacion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConectar;
     private javax.swing.JButton btn_SeleccinarProducto;
     private javax.swing.JButton btn_SeleccionarCliente;
     private javax.swing.JComboBox<String> cmbTipoPago;
@@ -224,9 +258,9 @@ public class frm_facturacion extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTable tbl_productos;
     private javax.swing.JTextField txtNomVendedor;
+    private javax.swing.JTextField txtNombreCliente;
     private javax.swing.JTextField txtRTN;
     // End of variables declaration//GEN-END:variables
 }

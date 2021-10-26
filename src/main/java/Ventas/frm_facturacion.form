@@ -56,7 +56,7 @@
                       <Component id="txtNomVendedor" min="-2" pref="289" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jTextField5" max="32767" attributes="0"/>
+                      <Component id="txtNombreCliente" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btn_SeleccionarCliente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="412" max="-2" attributes="0"/>
@@ -85,6 +85,11 @@
               </Group>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
           </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="387" max="-2" attributes="0"/>
+              <Component id="btnConectar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -99,7 +104,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btn_SeleccionarCliente" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="jTextField5" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="txtNombreCliente" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -119,7 +124,9 @@
               </Group>
               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="93" max="-2" attributes="0"/>
-              <EmptySpace pref="313" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+              <Component id="btnConectar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="172" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -196,14 +203,8 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="txtNomVendedor">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtRTN">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="RTN"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbTipoPago">
       <Properties>
@@ -241,10 +242,15 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="jTextField5">
+    <Component class="javax.swing.JTextField" name="txtNombreCliente">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnConectar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nombre del cliente"/>
+        <Property name="text" type="java.lang.String" value="Conectar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConectarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
