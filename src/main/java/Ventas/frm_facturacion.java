@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
  */
 public class frm_facturacion extends javax.swing.JFrame {
  
-       Adicionales.Conection con;
     /**
      * Creates new form frm_facturacion
      */
@@ -198,14 +197,6 @@ public class frm_facturacion extends javax.swing.JFrame {
 
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
         // TODO add your handling code here:
-        
-        try{
-            Connection con = null;
-            JOptionPane.showMessageDialog(null, Adicionales.Conection.getConexion());
-        }catch(Exception e){
-            System.out.println(e);
-        }
-       
         
    
         
