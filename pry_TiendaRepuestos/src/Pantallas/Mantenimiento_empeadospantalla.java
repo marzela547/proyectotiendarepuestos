@@ -6,6 +6,7 @@
 package Pantallas;
 
 import Controladores.EmpleadoControlador;
+import Modelos.EmpleadosModelo;
 import com.toedter.calendar.JDateChooser;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -20,14 +21,41 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
     /**
      * Creates new form Mantenimiento_empeadospantalla
      */
-    
+   
+    static Integer IdEmp=0;
     static String puesto_nombre ="";
+    Integer mt;
+
+    
+    
     public Mantenimiento_empeadospantalla() {
         initComponents();
-        
+        EmpleadoControlador empleadocontrol = new EmpleadoControlador();
+        mt = empleadocontrol.getOperacion();
+        if(mt == 1){ LlenarDatos(); }
         EmpleadoControlador.Llenarcmbpuestos(this.cmbpuestos_empelados);
     }
+        private void Proceso(Integer op)
+    {
+        mt = op;       
+    }
     
+    private void LlenarDatos()
+    {
+        this.IdEmp = EmpleadoControlador.SetdatosromCache(this.txtidentidad_empleado,
+                this.txtnombre_empleado, this.txttelefono_empleado, this.jdfechanacimiento_empleado,
+                this.txtdireccion_empleado ,this.jdfechaingreso_empleado ,this.jdfechasalida_empleado,
+                this.txtcorre_empleado,this.cmbestado_empleado);
+                
+        if(IdEmp != null)
+        {
+            
+            this.btnagregar_empleado.setEnabled(false);
+            this.btnmodificar_empleado.setEnabled(true);
+            this.btn_eliminar_empleado.setEnabled(true);
+            jdfechasalida_empleado.setEnabled(true);
+        }
+    }    
     private void LimpiarTable(){
         DefaultTableModel model =(DefaultTableModel) tabla_puesto.getModel();
         int fila= model.getRowCount();
@@ -47,7 +75,9 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
         this.jdfechanacimiento_empleado.setCalendar(null);
         this.jdfechaingreso_empleado.setCalendar(null);
         this.jdfechasalida_empleado.setCalendar(null);       
-    }     
+    }    
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,11 +121,6 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtidentidad_empleado.setText("0801-1824-18960");
-
-        txtnombre_empleado.setText("Pedro Moz");
-
-        txttelefono_empleado.setText("22252624");
         txttelefono_empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txttelefono_empleadoActionPerformed(evt);
@@ -107,7 +132,6 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
 
         txtdireccion_empleado.setColumns(20);
         txtdireccion_empleado.setRows(5);
-        txtdireccion_empleado.setText("1999-10-10");
         jScrollPane1.setViewportView(txtdireccion_empleado);
 
         jdfechaingreso_empleado.setToolTipText("2021-10-10");
@@ -116,7 +140,6 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
         jdfechasalida_empleado.setDateFormatString("yyyy-MM-dd");
         jdfechasalida_empleado.setEnabled(false);
 
-        txtcorre_empleado.setText("pwe@gmail.com");
         txtcorre_empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcorre_empleadoActionPerformed(evt);
@@ -199,8 +222,15 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
         });
 
         btnmodificar_empleado.setText("Modificar");
+        btnmodificar_empleado.setEnabled(false);
+        btnmodificar_empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodificar_empleadoActionPerformed(evt);
+            }
+        });
 
         btn_eliminar_empleado.setText("Eliminar");
+        btn_eliminar_empleado.setEnabled(false);
 
         cmbestado_empleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACT", "INA" }));
 
@@ -240,7 +270,7 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbestado_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cmbestado_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -248,7 +278,11 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbestado_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -281,14 +315,9 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(errfechain, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(cmbestado_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jdfechasalida_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(errfechasa, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(jdfechasalida_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(errfechasa, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(errdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
@@ -319,9 +348,11 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
             this.txtcorre_empleado.getText(), this.txtdireccion_empleado.getText(),Date = formatter.format(jdfechaingreso_empleado.getDate()),"0000-00-00","ACT",
             this.erridentidad, this.errnombre, this.errtelefono, this.errfechana, this.errcorreo,
             this.errdireccion, this.errfechain,this.errfechain ))
-        {
-            
+        {           
             this.LimpiarInputs();
+            EmpleadosPantalla empleadopantalla = new EmpleadosPantalla();
+            empleadopantalla.setVisible(true); 
+            dispose();
         }    
     }//GEN-LAST:event_btnagregar_empleadoActionPerformed
 
@@ -337,6 +368,23 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
         int seleccion = this.tabla_puesto.rowAtPoint(evt.getPoint());    
         puesto_nombre =String.valueOf(this.tabla_puesto.getModel().getValueAt(seleccion, 0));    
     }//GEN-LAST:event_tabla_puestoMouseClicked
+
+    private void btnmodificar_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificar_empleadoActionPerformed
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+    String Date;
+        if(!EmpleadoControlador.Mantenimientoempelado("editar", this.IdEmp,
+            this.txtidentidad_empleado.getText(),this.txtnombre_empleado.getText(), this.txttelefono_empleado.getText(), Date = formatter.format(jdfechanacimiento_empleado.getDate()),
+            this.txtcorre_empleado.getText(), this.txtdireccion_empleado.getText(),Date = formatter.format(jdfechaingreso_empleado.getDate()),"0000-00-00",cmbestado_empleado.getSelectedItem().toString(),
+            this.erridentidad, this.errnombre, this.errtelefono, this.errfechana, this.errcorreo,
+            this.errdireccion, this.errfechain,this.errfechain ))
+        {
+            this.LimpiarInputs();
+            EmpleadosPantalla empleadopantalla = new EmpleadosPantalla();
+            empleadopantalla.setVisible(true); 
+            dispose();
+            
+        }            
+    }//GEN-LAST:event_btnmodificar_empleadoActionPerformed
 
     /**
      * @param args the command line arguments

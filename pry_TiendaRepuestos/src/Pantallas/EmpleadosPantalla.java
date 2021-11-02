@@ -5,6 +5,11 @@
  */
 package Pantallas;
 
+import Controladores.ControladorGeneral;
+import Controladores.EmpleadoControlador;
+import Modelos.CacheEmpleado;
+import Modelos.EmpleadosModelo;
+
 /**
  *
  * @author fgodo
@@ -16,6 +21,8 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
      */
     public EmpleadosPantalla() {
         initComponents();
+        EmpleadoControlador.Llenartablaempleado(tabla_empleados, "Todos"); 
+        ControladorGeneral.Filtrotabla(tabla_empleados, txtbuscar_empleado);
     }
 
     /**
@@ -46,50 +53,92 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
 
         tabla_empleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Codigo", "Identidad", "Nombre", "Telefono", "Fecha Nacimiento", "Direccion", "Fecha Ingreso", "Fecha Salida", "Correo", "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabla_empleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_empleadosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla_empleados);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtbuscar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnagregar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(85, 85, 85))
+                        .addComponent(btnagregar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(202, 202, 202)))
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnagregar_empleado)
                     .addComponent(txtbuscar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnagregar_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregar_empleadoActionPerformed
+        EmpleadoControlador empco = new EmpleadoControlador();
+        empco.setOperacion(0);
         Mantenimiento_empeadospantalla mantenimientoempleado = new Mantenimiento_empeadospantalla();
         mantenimientoempleado.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnagregar_empleadoActionPerformed
+
+    private void tabla_empleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_empleadosMouseClicked
+        int seleccion = this.tabla_empleados.rowAtPoint(evt.getPoint()); 
+        EmpleadosModelo empleadomodelo = new EmpleadosModelo();
+        EmpleadoControlador empco = new EmpleadoControlador();
+        empleadomodelo.setEmpcodigo(Integer.parseInt(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 0)))); 
+        empleadomodelo.setEmpidentidad(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 1)));
+        empleadomodelo.setEmpnombre(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 2)));
+        empleadomodelo.setEmptelefono(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 3)));
+        empleadomodelo.setEmpfechanacimiento(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 4)));
+        empleadomodelo.setEmpdireccion(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 5)));
+        empleadomodelo.setEmpfechaingreso(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion,6))); 
+        empleadomodelo.setEmpfechasalidad(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion,7))); 
+        empleadomodelo.setEmpcorreo(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion,8))); 
+        empleadomodelo.setEmpestado(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion,9)));
+        CacheEmpleado empleadocache = new CacheEmpleado();     
+        empleadocache.Setdatoscompartidos(true);
+        empleadocache.setEmpleado(empleadomodelo);
+        empco.setOperacion(1);
+        dispose();
+        Mantenimiento_empeadospantalla mantenimientoempleado = new Mantenimiento_empeadospantalla();
+        
+        mantenimientoempleado.setVisible(true);
+    }//GEN-LAST:event_tabla_empleadosMouseClicked
 
     /**
      * @param args the command line arguments

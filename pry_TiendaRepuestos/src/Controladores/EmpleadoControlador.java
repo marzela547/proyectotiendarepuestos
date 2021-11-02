@@ -6,23 +6,36 @@
 package Controladores;
 
 import Conexiones.EmpleadosConexion;
+import static Controladores.ControladorGeneral.FormatoTabla;
+import Modelos.CacheEmpleado;
 import Modelos.EmpleadosModelo;
 import Modelos.PuestoModelo;
 import Utils.Validators.Validaciones;
+import com.toedter.calendar.JDateChooser;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author fgodo
  */
 public class EmpleadoControlador {
+    static Integer op = 0;
     
     public static Boolean Mantenimientoempelado(String accion, Integer id,
             String identidad, String nombre, String telefono , String fechanacimiento, 
@@ -30,9 +43,6 @@ public class EmpleadoControlador {
             JLabel erridentidad, JLabel errnombre, JLabel errtelefono, JLabel errfechanacimiento,
             JLabel errcorreo,JLabel errdireccion, JLabel errfechaingreso,JLabel errfechasalida)
     { 
-        
-        
-        System.out.println("llego mante");
         EmpleadoControlador.Erroresnull(erridentidad,errnombre, errtelefono, errfechanacimiento, errcorreo,
                                             errdireccion,errfechaingreso,errfechasalida);
         String trimmedidentidad = identidad.trim();
@@ -56,17 +66,17 @@ public class EmpleadoControlador {
             switch(accion)
             {
                 case "insertar":
-                    System.out.println("llego switch");
+                
                     mnterror = EmpleadoControlador.Insertarempleado(trimmedidentidad, trimmednombre,
                             trimmedtelefono, trimmedfechanacimiento,trimmedcorreo,trimmeddireccion,
                             trimmedfechaningreso,trimmedfechasalida, estado);
                 break;
                 
-                /*case "editar":   
-                    mntError = CatalogoProductoController.editarProducto(id, 
-                            trimmedNombre, trimmedDescripcion, trimmedStockMaximo, 
-                            trimmedStockMinimo, id_categoria, estado);              
-                break;*/
+                case "editar":   
+                    mnterror = EmpleadoControlador.Modificarempleo(id,trimmedidentidad, trimmednombre,
+                            trimmedtelefono, trimmedfechanacimiento,trimmedcorreo,trimmeddireccion,
+                            trimmedfechaningreso,trimmedfechasalida, estado);             
+                break;
             }
         //}
         
@@ -84,7 +94,6 @@ public class EmpleadoControlador {
         errdireccion.setText(null);
         errfechaingreso.setText(null);
         errfechasalida.setText(null);
-        System.out.println("llego error null");
     }   
     private static boolean validacionesGenerales(String trimmedidentidad,String trimmednombre,
         String trimmedtelefono, String trimmedfechanacimiento, String trimmedcorreo, String trimmeddireccion,
@@ -146,7 +155,6 @@ public class EmpleadoControlador {
            errdireccion.setText("Es un campo obligatorio");
            error = true;
         }    
-        System.out.println("llego valida");
         return error;
     }   
     private static boolean Insertarempleado(String trimmedidentidad,String trimmednombre,String trimmedtelefono,
@@ -197,6 +205,54 @@ public class EmpleadoControlador {
         }
         return error;
     }
+    private static boolean Modificarempleo(Integer id,String trimmedidentidad,String trimmednombre,String trimmedtelefono,
+            String trimmedfechanacimiento, String trimmedcorreo,  String trimmeddireccion, String trimmedfechaningreso,
+            String trimmedfechasalida,String estado )
+    {
+        boolean error = false;
+        System.out.println("llegue");
+        EmpleadosModelo empleadomodelo = new EmpleadosModelo();
+        //DefaultTableModel model =(DefaultTableModel) tableProveedores.getModel();
+        //CatalogoProductoCache cache = new CatalogoProductoCache();
+        //DetalleCatalogoProductosModel detalleproducto = new DetalleCatalogoProductosModel();
+        empleadomodelo = EmpleadoControlador.Setempleadomodelo(id, trimmedidentidad,
+                trimmednombre, trimmedtelefono,trimmedfechanacimiento,trimmedcorreo,
+                trimmeddireccion,trimmedfechaningreso,trimmedfechasalida, estado);
+        String resultado = EmpleadosConexion.Mantenimientoempleados("editar", empleadomodelo);    
+         System.out.println("llegue");
+          System.out.println(empleadomodelo);
+        System.out.println(resultado);
+        switch (resultado) 
+        {
+            case "OK": 
+                    System.out.println("llego insertar 5");
+                   JOptionPane.showMessageDialog(null, "Producto ingresado con éxito.");              
+            break;
+            
+            case "errNombre":
+                System.out.println("llego insertar 6");
+                JOptionPane.showMessageDialog(null, "El Nombre ya se encuentra registrado.");
+                error = true;
+            break;
+             case "errIdentidad":
+                 System.out.println("llego insertar 7");
+                JOptionPane.showMessageDialog(null, "Numero de Identidad ya se encuentra registrado.");
+                error = true;
+            break;
+            case "errTelefono":
+                System.out.println("llego insertar 8");
+                JOptionPane.showMessageDialog(null, "El telefono ya se encuentra registrado.");
+                error = true;
+            break;
+            default:
+                System.out.println("llego insertar 9");
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error al ejecutar la operación.");
+                error = true;
+            break;
+        }
+        return error;
+    }    
+ 
     private static EmpleadosModelo Setempleadomodelo(Integer id, String trimmedidentidad,
             String trimmednombre, String trimmedtelefono, String trimmedfechanacimiento,String trimmedcorreo,
             String trimmeddireccion, String trimmedfechaningreso, String trimmedfechasalida,String estado)
@@ -212,7 +268,6 @@ public class EmpleadoControlador {
         empleadomodelo.setEmpfechaingreso(trimmedfechaningreso);
         empleadomodelo.setEmpfechasalidad(trimmedfechasalida);
         empleadomodelo.setEmpestado(estado);
-        System.out.println("llego set");
         return empleadomodelo;
     }
            
@@ -262,4 +317,81 @@ public class EmpleadoControlador {
             CmbPuesto.addItem(puestos.get(i).getPuedescripcion());
         }
     }
+    public static void Llenartablaempleado(JTable tablaempleado, String accion) 
+    {  
+        
+        DefaultTableModel modelo = (DefaultTableModel) tablaempleado.getModel(); 
+        modelo.setRowCount(0);
+        //Estados estados = new Estados();
+        ArrayList<EmpleadosModelo> empleados = new ArrayList<>();
+        empleados = EmpleadosConexion.Listadoempleado(accion);
+        for (int i = 0; i <empleados.size(); i++) 
+        {
+            modelo.addRow
+            (new Object[]
+                {
+                    empleados.get(i).getEmpcodigo(), 
+                    empleados.get(i).getEmpidentidad(),
+                    empleados.get(i).getEmpnombre(),
+                    empleados.get(i).getEmptelefono(), 
+                    empleados.get(i).getEmpfechanacimiento(),
+                    empleados.get(i).getEmpdireccion(),
+                    empleados.get(i).getEmpfechaingreso(), 
+                    empleados.get(i).getEmpfechasalidad(),
+                    empleados.get(i).getEmpcorreo(),
+                    empleados.get(i).getEmpestado()
+                    
+                }
+            );
+        } 
+        FormatoTabla(tablaempleado, modelo.getColumnCount());
+    }
+
+    public static Integer SetdatosromCache(JTextField txtidentidad,JTextField txtnombre,JTextField txttelefono,
+                JDateChooser txtnacimiento,JTextArea txtdireccion ,JDateChooser txtingreso,
+                JDateChooser txtsalida, JTextField txtcorreo, JComboBox cmbestado)
+    {
+        Integer EmpId = null;
+        CacheEmpleado empcache = new CacheEmpleado();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+        String Date;
+        Date nac=null;
+        Date ing=null;
+        Date sal = null;
+        try{
+            nac = formatter.parse(empcache.getEmpleado().getEmpfechanacimiento());
+            ing= formatter.parse(empcache.getEmpleado().getEmpfechaingreso());
+            sal =formatter.parse(empcache.getEmpleado().getEmpfechasalidad());
+        }catch(ParseException ex)
+        {
+            System.out.println(ex);
+        }
+  
+        
+        if(empcache.isDatosCompartidos())
+        {
+            EmpId = empcache.getEmpleado().getEmpcodigo();
+            txtidentidad.setText(empcache.getEmpleado().getEmpidentidad());
+            txtnombre.setText(empcache.getEmpleado().getEmpnombre());
+            txttelefono.setText(empcache.getEmpleado().getEmptelefono());
+            txtnacimiento.setDate(nac);
+            txtdireccion.setText(empcache.getEmpleado().getEmpdireccion());
+            txtingreso.setDate(ing);
+            txtsalida.setDate(sal);
+            txtcorreo.setText(empcache.getEmpleado().getEmpcorreo());
+            cmbestado.setSelectedItem(empcache.getEmpleado().getEmpestado());
+           // KitController.LlenarTableDetalleKit(KitId);
+            
+        }
+        return EmpId;
+    }    
+    public void setOperacion(Integer ope)
+    {
+        this.op = ope;
+    }
+    public static Integer getOperacion()
+    {
+        Integer opv = op;
+        return opv;
+    }    
 }

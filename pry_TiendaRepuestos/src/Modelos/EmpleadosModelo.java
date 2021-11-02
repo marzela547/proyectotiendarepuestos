@@ -10,6 +10,7 @@ package Modelos;
  * @author fgodo
  */
 public class EmpleadosModelo {
+    private Integer op;
     private Integer Empcodigo;
     private String Empidentidad;
     private String Empnombre;
@@ -21,6 +22,14 @@ public class EmpleadosModelo {
     private String Empfechasalidad;
     private String Empestado;
 
+    public Integer getOp() {
+        return op;
+    }
+
+    public void setOp(Integer op) {
+        this.op = op;
+    }
+    
     public String getEmpestado() {
         return Empestado;
     }

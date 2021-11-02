@@ -7,6 +7,7 @@ package Conexiones;
 
 import Modelos.EmpleadosModelo;
 import Modelos.PuestoModelo;
+import Models.Models.KitModel;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -22,6 +23,123 @@ import javax.swing.JOptionPane;
  */
 public class EmpleadosConexion {
 
+      public static ArrayList<EmpleadosModelo> Listadoempleado(String accion) 
+    {
+        Connection con = null;
+        Statement stm;
+        ResultSet rss;
+        
+        ArrayList<EmpleadosModelo> empleados = new ArrayList<>();
+        
+        switch(accion)
+        {
+            case "Activos":
+                try
+                {
+                    con = Conexion.getConexion(con);
+                    stm = con.createStatement();
+                    
+                    String query = "SELECT * From empleados "
+                     + "WHERE Empestado = 'ACT' " 
+                     + "ORDER BY Empcodigo ASC";
+
+                    rss = stm.executeQuery(query);
+
+                    while (rss.next()) 
+                    {
+                        EmpleadosModelo empleado = new EmpleadosModelo();
+                        empleado.setEmpcodigo(rss.getInt("Empcodigo"));
+                        empleado.setEmpidentidad(rss.getString("Empidentidad"));
+                        empleado.setEmpnombre(rss.getString("Empnombre"));;
+                        empleado.setEmptelefono(rss.getString("Emptelefono"));     
+                        empleado.setEmpfechanacimiento(rss.getString("Empfechanacimiento"));;
+                        empleado.setEmpdireccion(rss.getString("Empdireccion"));   
+                        empleado.setEmpfechaingreso(rss.getString("Empfechaingreso"));;
+                        empleado.setEmpfechasalidad(rss.getString("Empfechasalida"));
+                        empleado.setEmpcorreo(rss.getString("Empcorreo"));
+                        empleado.setEmpestado(rss.getString("Empestado"));
+                        empleados.add(empleado);
+                    } 
+                    
+                    con.close();
+                } 
+                catch (SQLException e)
+                {
+                    JOptionPane.showMessageDialog(null,e);
+                } 
+            break;
+                
+            case "Inactivos":
+                try
+                {
+                    con = Conexion.getConexion(con);
+                    stm = con.createStatement();
+                    String query = "SELECT * From empleados "
+                     + "WHERE Empestado = 'INA' " 
+                     + "ORDER BY Empcodigo ASC";
+
+
+                    rss = stm.executeQuery(query);
+
+                    while (rss.next()) 
+                    {
+                        EmpleadosModelo empleado = new EmpleadosModelo();
+                        empleado.setEmpcodigo(rss.getInt("Empcodigo"));
+                        empleado.setEmpidentidad(rss.getString("Empidentidad"));
+                        empleado.setEmpnombre(rss.getString("Empnombre"));;
+                        empleado.setEmptelefono(rss.getString("Emptelefono"));     
+                        empleado.setEmpfechanacimiento(rss.getString("Empfechanacimiento"));;
+                        empleado.setEmpdireccion(rss.getString("Empdireccion"));   
+                        empleado.setEmpfechaingreso(rss.getString("Empfechaingreso"));;
+                        empleado.setEmpfechasalidad(rss.getString("Empfechasalida"));
+                        empleado.setEmpcorreo(rss.getString("Empcorreo"));
+                        empleado.setEmpestado(rss.getString("Empestado"));
+                        empleados.add(empleado);
+                    } 
+                    
+                    con.close();
+                } 
+                catch (SQLException e)
+                {
+                    JOptionPane.showMessageDialog(null,e);
+                } 
+            break; 
+                
+            case "Todos":
+                try
+                {
+                    con =Conexion.getConexion(con);
+                    stm = con.createStatement();
+                    String query = "SELECT * From empleados ";
+                    rss = stm.executeQuery(query);
+                    while (rss.next()) 
+                    {
+                        EmpleadosModelo empleado = new EmpleadosModelo();
+                        empleado.setEmpcodigo(rss.getInt("Empcodigo"));
+                        empleado.setEmpidentidad(rss.getString("Empidentidad"));
+                        empleado.setEmpnombre(rss.getString("Empnombre"));;
+                        empleado.setEmptelefono(rss.getString("Emptelefono"));     
+                        empleado.setEmpfechanacimiento(rss.getString("Empfechanacimiento"));;
+                        empleado.setEmpdireccion(rss.getString("Empdireccion"));   
+                        empleado.setEmpfechaingreso(rss.getString("Empfechaingreso"));;
+                        empleado.setEmpfechasalidad(rss.getString("Empfechasalida"));
+                        empleado.setEmpcorreo(rss.getString("Empcorreo"));
+                        empleado.setEmpestado(rss.getString("Empestado"));
+                        empleados.add(empleado);
+                    }
+                    con.close();
+                } 
+                catch (SQLException e)
+                {
+                    JOptionPane.showMessageDialog(null,e);
+                } 
+            break;                
+        }
+
+        return empleados;
+    }      
+    
+    
     public static ArrayList<PuestoModelo> Listadopuestos() 
     {
         Connection con = null;
@@ -60,6 +178,7 @@ public class EmpleadosConexion {
     { 
         String estado = "";
         Connection con = null;
+        
         try
         {
             String query;
@@ -67,19 +186,20 @@ public class EmpleadosConexion {
            
             query = "{CALL MantenimientoEmpleados(?,?,?,?,?,?,?,?,?,?,?,?)}";
             CallableStatement cs = con.prepareCall(query);
-            cs.setString            (1, accion);       
-            cs.setInt               (2, EmpleadosModelo.getEmpcodigo());  
+            cs.setString            (1, accion);     
+            System.out.println(accion);
+            cs.setInt               (2, EmpleadosModelo.getEmpcodigo()); 
             cs.setString            (3, EmpleadosModelo.getEmpidentidad());
             cs.setString            (4, EmpleadosModelo.getEmpnombre());
             cs.setString            (5, EmpleadosModelo.getEmptelefono());
-            cs.setString            (6, EmpleadosModelo.getEmpfechanacimiento());     
-            cs.setString            (7,EmpleadosModelo.getEmpcorreo());
-            cs.setString            (8, EmpleadosModelo.getEmpdireccion());
-            cs.setString            (9, EmpleadosModelo.getEmpfechaingreso());
-            cs.setString            (10, EmpleadosModelo.getEmpfechasalidad());
+            cs.setString            (6, EmpleadosModelo.getEmpfechanacimiento()); 
+            cs.setString            (7, EmpleadosModelo.getEmpdireccion());
+            cs.setString            (8, EmpleadosModelo.getEmpfechaingreso());
+            cs.setString            (9, EmpleadosModelo.getEmpfechasalidad());
+            cs.setString            (10,EmpleadosModelo.getEmpcorreo());
             cs.setString            (11, EmpleadosModelo.getEmpestado());
             cs.registerOutParameter (12, Types.VARCHAR);
-            System.out.println("conexion 1");
+            
             cs.executeUpdate();
             estado = cs.getString(12);
             System.out.println(estado);
