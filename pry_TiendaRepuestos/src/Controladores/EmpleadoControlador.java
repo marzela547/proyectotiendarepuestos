@@ -217,30 +217,25 @@ public class EmpleadoControlador {
         //DetalleCatalogoProductosModel detalleproducto = new DetalleCatalogoProductosModel();
         empleadomodelo = EmpleadoControlador.Setempleadomodelo(id, trimmedidentidad,
                 trimmednombre, trimmedtelefono,trimmedfechanacimiento,trimmedcorreo,
-                trimmeddireccion,trimmedfechaningreso,trimmedfechasalida, estado);
+                trimmeddireccion,trimmedfechaningreso,"0000-00-00", estado);
         String resultado = EmpleadosConexion.Mantenimientoempleados("editar", empleadomodelo);    
-         System.out.println("llegue");
           System.out.println(empleadomodelo);
         System.out.println(resultado);
         switch (resultado) 
         {
             case "OK": 
-                    System.out.println("llego insertar 5");
                    JOptionPane.showMessageDialog(null, "Producto ingresado con éxito.");              
             break;
             
             case "errNombre":
-                System.out.println("llego insertar 6");
                 JOptionPane.showMessageDialog(null, "El Nombre ya se encuentra registrado.");
                 error = true;
             break;
              case "errIdentidad":
-                 System.out.println("llego insertar 7");
                 JOptionPane.showMessageDialog(null, "Numero de Identidad ya se encuentra registrado.");
                 error = true;
             break;
             case "errTelefono":
-                System.out.println("llego insertar 8");
                 JOptionPane.showMessageDialog(null, "El telefono ya se encuentra registrado.");
                 error = true;
             break;
@@ -249,6 +244,27 @@ public class EmpleadoControlador {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error al ejecutar la operación.");
                 error = true;
             break;
+        }
+        return error;
+    }    
+ 
+    public static boolean Eliminarempleo(Integer id)
+    {
+        boolean error = false;
+        System.out.println("llegue");
+        EmpleadosModelo empleadomodelo = new EmpleadosModelo();
+        //DefaultTableModel model =(DefaultTableModel) tableProveedores.getModel();
+        //CatalogoProductoCache cache = new CatalogoProductoCache();
+        //DetalleCatalogoProductosModel detalleproducto = new DetalleCatalogoProductosModel();
+        empleadomodelo = EmpleadoControlador.Setempleadomodelo(id, "","", "","","","","","","");
+        String resultado = EmpleadosConexion.Mantenimientoempleados("eliminar", empleadomodelo);    
+        switch (resultado) 
+        {
+            case "OK": 
+                   JOptionPane.showMessageDialog(null, "Producto ingresado con éxito.");    
+                   error=true;
+            break;
+            
         }
         return error;
     }    

@@ -231,6 +231,11 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
 
         btn_eliminar_empleado.setText("Eliminar");
         btn_eliminar_empleado.setEnabled(false);
+        btn_eliminar_empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminar_empleadoActionPerformed(evt);
+            }
+        });
 
         cmbestado_empleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACT", "INA" }));
 
@@ -385,6 +390,18 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
             
         }            
     }//GEN-LAST:event_btnmodificar_empleadoActionPerformed
+
+    private void btn_eliminar_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar_empleadoActionPerformed
+
+        if(EmpleadoControlador.Eliminarempleo(this.IdEmp))
+        {
+            this.LimpiarInputs();
+            EmpleadosPantalla empleadopantalla = new EmpleadosPantalla();
+            empleadopantalla.setVisible(true); 
+            dispose();
+            
+        }         
+    }//GEN-LAST:event_btn_eliminar_empleadoActionPerformed
 
     /**
      * @param args the command line arguments
