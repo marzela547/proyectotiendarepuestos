@@ -18,7 +18,7 @@ public class Conexion {
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String user = "root";
     private static final String pass = "pintura123";
-    private static final String url = "jdbc:mysql://localhost:3306/bdrepuestos";
+    private static final String url = "jdbc:mysql://localhost:3306/bdrepuestos?characterEncoding=utf8";
 
     public static Connection getConexion(Connection con)
     {

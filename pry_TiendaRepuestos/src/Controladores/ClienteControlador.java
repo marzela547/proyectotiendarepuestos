@@ -34,7 +34,7 @@ public class ClienteControlador {
         PlaceHolder placeholderTel = new PlaceHolder(" Ingrese el teléfono del cliente", txtTelefono);
     }
     public static Boolean Mantenimientocliente(String accion, Integer id,
-            String RTN, String nombre, String telefono , String estado,
+             String nombre, String RTN, String telefono , String estado,
             JLabel errRTN, JLabel errnombre, JLabel errtelefono)
     { 
         ClienteControlador.Erroresnull(errRTN,errnombre, errtelefono);
@@ -85,7 +85,7 @@ public class ClienteControlador {
         }
         if(!Validaciones.validarIdentidad(trimmedRTN))
         {
-           errRTN.setText("Formato incorrecto [####-####-#####]");
+           errRTN.setText("Formato incorrecto [####-####-######]");
            error = true;
         }
         
@@ -114,8 +114,7 @@ public class ClienteControlador {
         System.out.println("llego insertar");
         boolean error = false;
         ClientesModelo clientemodelo = new ClientesModelo();
-        clientemodelo = ClienteControlador.Setclientemodelo(0, trimmedRTN,
-                trimmednombre, trimmedtelefono, "ACT");
+        clientemodelo = ClienteControlador.Setclientemodelo(0, trimmedRTN, trimmednombre, trimmedtelefono, "ACT");
         String resultado = ClientesConexion.Mantenimientoclientes("insertar", clientemodelo);    
         System.out.println(resultado);
         switch (resultado) 
