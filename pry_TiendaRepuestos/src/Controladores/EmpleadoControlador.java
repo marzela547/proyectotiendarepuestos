@@ -10,7 +10,7 @@ import static Controladores.ControladorGeneral.FormatoTabla;
 import Modelos.CacheEmpleado;
 import Modelos.EmpleadosModelo;
 import Modelos.PuestoModelo;
-import Utils.Validators.Validaciones;
+import Especiales.Validaciones;
 import com.toedter.calendar.JDateChooser;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

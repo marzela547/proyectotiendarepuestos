@@ -7,7 +7,6 @@ package Conexiones;
 
 import Modelos.EmpleadosModelo;
 import Modelos.PuestoModelo;
-import Models.Models.KitModel;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
