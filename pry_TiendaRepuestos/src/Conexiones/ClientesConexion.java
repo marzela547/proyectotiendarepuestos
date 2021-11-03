@@ -6,7 +6,6 @@
 package Conexiones;
 
 import Modelos.ClientesModelo;
-import Modelos.EmpleadosModelo;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -131,16 +130,16 @@ public class ClientesConexion {
             String query;
             con = Conexion.getConexion(con);
            
-            query = "{CALL MantenimientoEmpleados(?,?,?,?,?,?,?,?,?,?,?,?)}";
+            query = "{CALL MantenimientoClientes(?,?,?,?,?,?,?)}";
             CallableStatement cs = con.prepareCall(query);
             cs.setString            (1, accion);     
             System.out.println(accion);
             cs.setInt               (2, ClientesModelo.getClicodigo()); 
-            cs.setString            (3,  ClientesModelo.getRTN());
-            cs.setString            (4,  ClientesModelo.getClinombre());
-            cs.setString            (5,  ClientesModelo.getClitelefono());
-            cs.setString            (11,  ClientesModelo.getCliestado());
-            cs.registerOutParameter (12, Types.VARCHAR);
+            cs.setString            (3,  ClientesModelo.getClinombre());
+            cs.setString            (4,  ClientesModelo.getClitelefono());
+            cs.setString            (5,  ClientesModelo.getRTN());
+            cs.setString            (6,  ClientesModelo.getCliestado());
+            cs.registerOutParameter (7, Types.VARCHAR);
             
             cs.executeUpdate();
             estado = cs.getString(12);

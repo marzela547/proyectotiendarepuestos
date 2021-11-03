@@ -6,8 +6,6 @@
 package Pantallas;
 
 import Controladores.ClienteControlador;
-import Controladores.EmpleadoControlador;
-import static Pantallas.Mantenimiento_empeadospantalla.IdEmp;
 import javax.swing.table.DefaultTableModel;
 
 /**
