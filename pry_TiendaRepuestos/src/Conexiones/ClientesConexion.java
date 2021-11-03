@@ -135,14 +135,18 @@ public class ClientesConexion {
             cs.setString            (1, accion);     
             System.out.println(accion);
             cs.setInt               (2, ClientesModelo.getClicodigo()); 
+            System.out.println(ClientesModelo.getClicodigo()+"<------Codigo");
             cs.setString            (3,  ClientesModelo.getClinombre());
-            cs.setString            (4,  ClientesModelo.getClitelefono());
-            cs.setString            (5,  ClientesModelo.getRTN());
+            System.out.println(ClientesModelo.getClinombre()+"<------Nombre");
+            cs.setString            (4,  ClientesModelo.getRTN());
+            System.out.println(ClientesModelo.getRTN()+"<------RTN");
+            cs.setString            (5,  ClientesModelo.getClitelefono());
+            System.out.println(ClientesModelo.getClitelefono()+"<------Telefono");
             cs.setString            (6,  ClientesModelo.getCliestado());
             cs.registerOutParameter (7, Types.VARCHAR);
             
             cs.executeUpdate();
-            estado = cs.getString(12);
+            estado = cs.getString(7);
             System.out.println(estado);
             con.close();
         }
