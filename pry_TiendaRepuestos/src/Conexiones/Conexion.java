@@ -20,11 +20,9 @@ public class Conexion {
         {
             try 
             {
-                //con = DriverManager.getConnection("jdbc:mysql://192.168.0.120/inventariohospital","root","daniel100"  );
+               
 		con = DriverManager.getConnection(url, user, pass);
-                if(con!=null){
-                    System.out.println("exito");
-                }
+      
             }
             catch (SQLException ex) 
             {
