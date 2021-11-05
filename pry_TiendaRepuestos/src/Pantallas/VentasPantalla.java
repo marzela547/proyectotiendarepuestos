@@ -3,9 +3,25 @@ package Pantallas;
 
 import Controladores.VentaControlador;
 import Especiales.TextPrompt;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.lowagie.text.pdf.PdfTable;
+import java.awt.Desktop;
 import java.awt.TextField;
 import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
@@ -13,12 +29,20 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import javax.swing.JTable;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author Kevin Espinal
@@ -27,6 +51,8 @@ public class VentasPantalla extends javax.swing.JFrame {
  
         DefaultTableModel m = new DefaultTableModel();
         Connection con = null;
+        int cliente=0;
+        String fechaNow;
         
         
        
@@ -41,9 +67,10 @@ public class VentasPantalla extends javax.swing.JFrame {
         String anio = Integer.toString(fecha.get(Calendar.YEAR));
         String mes = Integer.toString(fecha.get(Calendar.MONTH));
         String dia = Integer.toString(fecha.get(Calendar.DATE));
-        
-        String fechaNow = dia + "/" + mes + "/" + anio;
+        int mesInt = Integer.parseInt(mes)+1;
+        fechaNow = anio + "/" + mesInt  + "/" + dia ;
         txtFechaActual.setText(fechaNow);
+        LimpiarFactura();
         
 
     }
@@ -87,7 +114,7 @@ public class VentasPantalla extends javax.swing.JFrame {
         buscar2 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        txtNfactura = new javax.swing.JLabel();
         btn_SeleccinarProducto = new javax.swing.JButton();
         btn_SeleccionarCliente = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -499,7 +526,7 @@ public class VentasPantalla extends javax.swing.JFrame {
 
         jLabel2.setText("Factuta Nº");
 
-        jLabel3.setText("xxxxxxxxxx");
+        txtNfactura.setText("xxxxxxxxxx");
 
         btn_SeleccinarProducto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_SeleccinarProducto.setText("Seleccionar producto");
@@ -546,6 +573,8 @@ public class VentasPantalla extends javax.swing.JFrame {
 
         cmbTipoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un Tipo de pago", "Débito", "Crédito" }));
 
+        txtNombreCliente.setEditable(false);
+
         btnConectar.setText("Conectar");
         btnConectar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -581,6 +610,8 @@ public class VentasPantalla extends javax.swing.JFrame {
         jLabel5.setText("Sub total");
 
         jLabel11.setText("Total");
+
+        txtRTN.setEditable(false);
 
         txtSubtotal.setEditable(false);
         txtSubtotal.setText("0.00");
@@ -627,7 +658,7 @@ public class VentasPantalla extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtNfactura, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtNombreCliente)
@@ -653,7 +684,7 @@ public class VentasPantalla extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(txtNfactura))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_SeleccionarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -693,16 +724,52 @@ public class VentasPantalla extends javax.swing.JFrame {
 
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
             int opcion = cmbTipoPago.getSelectedIndex();
+              con = Conexiones.Conexion.getConexion(con);
+            if(TablaDetalle.getRowCount()!=0){
+                if(cliente!=0){
+                        
+                  if (opcion != 0)
+                    {
+                        insertVtn(txtFechaActual.getText(),1,cliente,cmbTipoPago.getSelectedItem().toString(),0,1,1);
+                         for(int i = 0; i<TablaDetalle.getRowCount();i++){
+                         int idPro = Integer.parseInt(TablaDetalle.getValueAt(i, 0).toString());
+                         int cant = Integer.parseInt(TablaDetalle.getValueAt(i, 0).toString());
+                         int idVenta = getMaxidVenta();
+                         insertDtsVtn(cant, idVenta  ,idPro);
+                         }
+                         
+                        try{
+                       
+                        JOptionPane.showMessageDialog(null, "Factura registrada con exito");
+                        pdf();
+                        try {
+                            File path = new File ("src/pdf/factura"+getMaxidVenta()+".pdf");
+                            Desktop.getDesktop().open(path);
+                       }catch (IOException ex) {
+                            ex.printStackTrace();
+                       }
+                      
+                        LimpiarFactura();
+                      
+                        }catch(Exception e){
+                            
+                        }
+                        
+                    }  
+                   else
+                    {
+                         JOptionPane.showMessageDialog(null, "Seleccione un tipo de pago");
+                    }
             
-            if (opcion != 0)
-            {
-                JOptionPane.showMessageDialog(null, opcion);
-            }
-            else
-            {
-                 JOptionPane.showMessageDialog(null, "Seleccione un tipo de pago");
+                 }else{
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar un cliente");
+                }
+                 
+            }else{
+                  JOptionPane.showMessageDialog(null, "Debe de agregar un producto a la factura.");
             }
             
+        
     }//GEN-LAST:event_btnConectarActionPerformed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
@@ -727,7 +794,7 @@ public class VentasPantalla extends javax.swing.JFrame {
         int fila = TablaProductos.getSelectedRow();
         int codigo=-1,existencia;
         boolean existe;
-         String producto,precio, cantidad;
+        String producto,precio, cantidad;
         try{
         
             float subtotal;
@@ -889,6 +956,7 @@ public class VentasPantalla extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,"Debe Seleccionar un Cliente","Advertencia",JOptionPane.WARNING_MESSAGE);
             }else{
                 DefaultTableModel p = (DefaultTableModel)TablaClientes.getModel();
+                cliente = Integer.parseInt(String.valueOf(p.getValueAt(TablaClientes.getSelectedRow(),0)));
                 String Nombre = String.valueOf(p.getValueAt(TablaClientes.getSelectedRow(),1));
                 String RTN = String.valueOf(p.getValueAt(TablaClientes.getSelectedRow(),2));
                 txtNombreCliente.setText(Nombre);
@@ -1130,6 +1198,187 @@ public class VentasPantalla extends javax.swing.JFrame {
           }
           return Existe;
       }
+      
+      public void insertVtn(String Venfecha, int Empcodigo,int Clicodigo,String Tippacodigo,float Vendescuento, int Estcodigo ,int id_sar){
+          con = Conexiones.Conexion.getConexion(con);
+              try
+              {
+                  String query = "call bdrepuestos.insert_vts(?,?,?,?,?,?,?);";
+                  PreparedStatement preparedStmt = con.prepareStatement(query);
+                  preparedStmt.setString   (1, Venfecha);
+                  preparedStmt.setInt   (2, Empcodigo);
+                  preparedStmt.setInt   (3, Clicodigo);
+                  preparedStmt.setString   (4, Tippacodigo);
+                  preparedStmt.setFloat   (5, Vendescuento);
+                  preparedStmt.setInt   (6, Estcodigo);
+                  preparedStmt.setInt   (7, id_sar);
+                  preparedStmt.executeUpdate();
+              }
+              catch(Exception e)
+              {
+                  System.err.println(e.getMessage());
+              }
+      }
+    
+      
+      public void insertDtsVtn(int Detvencantidad , int Ventcodigo , int  Prodcodigo){
+             con = Conexiones.Conexion.getConexion(con);
+              try
+              {
+                  String query = "call bdrepuestos.insert_DtlVts(?, ?, ?);";
+                  PreparedStatement preparedStmt = con.prepareStatement(query);
+                  preparedStmt.setInt   (1, Detvencantidad);
+                  preparedStmt.setInt   (2, Ventcodigo);
+                  preparedStmt.setInt   (3, Prodcodigo);
+                
+                  preparedStmt.executeUpdate();
+              }
+              catch(Exception e)
+              {
+                  System.err.println(e.getMessage());
+              }
+      }
+      
+      public int getMaxidVenta(){
+               int id=0;
+            try{
+               
+               PreparedStatement ps = null;
+               ResultSet rs = null;
+               con = Conexiones.Conexion.getConexion(con);
+
+              // String sql= "call bdrepuestos.getStockProductos(?);";
+              String sql= "call bdrepuestos.getMaxIdVentas();";
+               ps= con.prepareStatement(sql);
+               rs=ps.executeQuery();
+               if(rs.next())
+               {
+                 id = Integer.parseInt(rs.getString(1));
+               }
+
+           }catch(SQLException ex){
+               System.err.println(ex.toString());
+           }
+         return id;
+          
+      }
+      public void LimpiarFactura(){
+            DefaultTableModel dtm = (DefaultTableModel) TablaDetalle.getModel();
+            dtm.setRowCount(0); 
+            cliente = 0;
+            txtNombreCliente.setText("");
+            txtRTN.setText("");
+            txtSubtotal.setText("0.00");
+            txtImpuesto.setText("0.00");
+            txtTotal.setText("0.00");
+            txtNfactura.setText(String.valueOf(getMaxidVenta() + 1));
+                        
+      }
+     private void pdf(){
+         try{
+             FileOutputStream archivo;
+             File file = new File("src/pdf/factura"+getMaxidVenta()+".pdf");
+             archivo = new FileOutputStream(file);
+             Document doc = new Document();
+             PdfWriter.getInstance(doc, archivo);
+             doc.open();
+             
+             Image img = Image.getInstance("src/img/logoMotoRepuestos.jpeg");
+             
+             Paragraph fecha = new Paragraph();
+             Font negrita = new Font(Font.FontFamily.TIMES_ROMAN,12,Font.BOLD,BaseColor.BLUE);
+             fecha.add(Chunk.NEWLINE);
+             Date date = new Date();
+             fecha.add("Factura: "+getMaxidVenta()+"\n"+"Fecha: " + fechaNow);//new SimpleDateFormat("dd-mm-yyy").format(date)+"\n\n");
+             PdfPTable Encabezado = new PdfPTable(4);
+             Encabezado.setWidthPercentage(100);
+             Encabezado.getDefaultCell().setBorder(0);
+             float [] ColumnaEncabezado = new float[]{20f,30f,70f,40f};
+             Encabezado.setWidths(ColumnaEncabezado);
+             Encabezado.setHorizontalAlignment(Element.ALIGN_LEFT);
+             
+             Encabezado.addCell(img);
+             String NomEmpresa = "MOTo-CAr";
+             
+             String tel = "94946591";
+             String dir = "--------------------";
+          
+             
+             Encabezado.addCell("");
+             Encabezado.addCell(NomEmpresa+"\nTel: "+tel+"\nDireccion: "+dir);
+             Encabezado.addCell(fecha);
+             doc.add(Encabezado);
+             
+             /***************************************************/
+               PdfPTable cli = new PdfPTable(2);
+               cli.setWidthPercentage(100);
+               cli.getDefaultCell().setBorder(0);
+               float[] columnaCli = new float[]{20f,50f};
+               cli.setWidths(columnaCli);
+               cli.setHorizontalAlignment(Element.ALIGN_LEFT);
+               PdfPCell cl1 = new PdfPCell(new Phrase("RNT"));
+               PdfPCell cl2 = new PdfPCell(new Phrase("Nombre Cliente"));
+               
+               cl1.setBorder(0);
+               cl2.setBorder(0);
+               cli.addCell(cl1);
+               cli.addCell(cl2);
+               cli.addCell(txtRTN.getText());
+               cli.addCell(txtNombreCliente.getText()+ "\n\n\n\n");
+               doc.add(cli);
+               
+               /*****************PRODUCTO**********/
+                  PdfPTable tablaProducto = new PdfPTable(4);
+               tablaProducto.setWidthPercentage(100);
+               tablaProducto.getDefaultCell().setBorder(0);
+               float[] columnaProducto = new float[]{20f,50f,30f,40f};
+               tablaProducto.setWidths(columnaProducto);
+               tablaProducto.setHorizontalAlignment(Element.ALIGN_LEFT);
+               PdfPCell prdcol1 = new PdfPCell(new Phrase("Descripcion",negrita));
+               PdfPCell prdcol2 = new PdfPCell(new Phrase("Precio U",negrita));
+               PdfPCell prdcol3 = new PdfPCell(new Phrase("Cantidad",negrita));
+               PdfPCell prdcol4 = new PdfPCell(new Phrase("Sub total",negrita));
+               prdcol1.setBorder(0);
+               prdcol2.setBorder(0);
+               prdcol3.setBorder(0);
+               prdcol4.setBorder(0);
+               prdcol1.setBackgroundColor(BaseColor.DARK_GRAY);
+               prdcol2.setBackgroundColor(BaseColor.DARK_GRAY);
+               prdcol3.setBackgroundColor(BaseColor.DARK_GRAY);
+               prdcol4.setBackgroundColor(BaseColor.DARK_GRAY);
+               
+               tablaProducto.addCell(prdcol1);
+               tablaProducto.addCell(prdcol2);
+               tablaProducto.addCell(prdcol3);
+               tablaProducto.addCell(prdcol4);
+               
+               for(int i=0; i< TablaDetalle.getRowCount(); i++){
+                   String producto = TablaDetalle.getValueAt(i, 1).toString();
+                   String precio = TablaDetalle.getValueAt(i, 2).toString();
+                   String cantidad = TablaDetalle.getValueAt(i, 3).toString();
+                   String Subtotal = TablaDetalle.getValueAt(i, 4).toString();
+                   tablaProducto.addCell(producto);
+                   tablaProducto.addCell(precio);
+                   tablaProducto.addCell(cantidad);
+                   tablaProducto.addCell(Subtotal);
+               }
+               
+               doc.add(tablaProducto);
+             
+               Paragraph totales = new Paragraph();
+               totales.add(Chunk.NEWLINE);
+               totales.add("\n\n\nSub total: L. " + txtSubtotal.getText());
+               totales.add("\nImpuesto: L. " + txtImpuesto.getText());
+               totales.add("\nTotal a pagar: L. " + txtTotal.getText());
+               totales.setAlignment(Element.ALIGN_RIGHT);
+               doc.add(totales);
+             
+             doc.close();
+         }catch(Exception e){
+             System.out.println(e);
+             
+         }
+     }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Clientes;
@@ -1151,7 +1400,6 @@ public class VentasPantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1176,6 +1424,7 @@ public class VentasPantalla extends javax.swing.JFrame {
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JLabel txtFechaActual;
     private javax.swing.JTextField txtImpuesto;
+    private javax.swing.JLabel txtNfactura;
     private javax.swing.JTextField txtNomVendedor;
     public static javax.swing.JTextField txtNombreCliente;
     private javax.swing.JTextField txtPrecio;
