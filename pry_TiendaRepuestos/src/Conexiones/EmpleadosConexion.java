@@ -50,11 +50,12 @@ public class EmpleadosConexion {
                         EmpleadosModelo empleado = new EmpleadosModelo();
                         empleado.setEmpcodigo(rss.getInt("Empcodigo"));
                         empleado.setEmpidentidad(rss.getString("Empidentidad"));
-                        empleado.setEmpnombre(rss.getString("Empnombre"));;
+                        empleado.setEmpusuario(rss.getString("Empusuario"));
+                        empleado.setEmpnombre(rss.getString("Empnombre"));
                         empleado.setEmptelefono(rss.getString("Emptelefono"));     
-                        empleado.setEmpfechanacimiento(rss.getString("Empfechanacimiento"));;
+                        empleado.setEmpfechanacimiento(rss.getString("Empfechanacimiento"));
                         empleado.setEmpdireccion(rss.getString("Empdireccion"));   
-                        empleado.setEmpfechaingreso(rss.getString("Empfechaingreso"));;
+                        empleado.setEmpfechaingreso(rss.getString("Empfechaingreso"));
                         empleado.setEmpfechasalidad(rss.getString("Empfechasalida"));
                         empleado.setEmpcorreo(rss.getString("Empcorreo"));
                         empleado.setEmpestado(rss.getString("Empestado"));
@@ -86,11 +87,12 @@ public class EmpleadosConexion {
                         EmpleadosModelo empleado = new EmpleadosModelo();
                         empleado.setEmpcodigo(rss.getInt("Empcodigo"));
                         empleado.setEmpidentidad(rss.getString("Empidentidad"));
-                        empleado.setEmpnombre(rss.getString("Empnombre"));;
+                        empleado.setEmpusuario(rss.getString("Empusuario"));
+                        empleado.setEmpnombre(rss.getString("Empnombre"));
                         empleado.setEmptelefono(rss.getString("Emptelefono"));     
-                        empleado.setEmpfechanacimiento(rss.getString("Empfechanacimiento"));;
+                        empleado.setEmpfechanacimiento(rss.getString("Empfechanacimiento"));
                         empleado.setEmpdireccion(rss.getString("Empdireccion"));   
-                        empleado.setEmpfechaingreso(rss.getString("Empfechaingreso"));;
+                        empleado.setEmpfechaingreso(rss.getString("Empfechaingreso"));
                         empleado.setEmpfechasalidad(rss.getString("Empfechasalida"));
                         empleado.setEmpcorreo(rss.getString("Empcorreo"));
                         empleado.setEmpestado(rss.getString("Empestado"));
@@ -117,11 +119,12 @@ public class EmpleadosConexion {
                         EmpleadosModelo empleado = new EmpleadosModelo();
                         empleado.setEmpcodigo(rss.getInt("Empcodigo"));
                         empleado.setEmpidentidad(rss.getString("Empidentidad"));
-                        empleado.setEmpnombre(rss.getString("Empnombre"));;
+                        empleado.setEmpusuario(rss.getString("Empusuario"));
+                        empleado.setEmpnombre(rss.getString("Empnombre"));
                         empleado.setEmptelefono(rss.getString("Emptelefono"));     
-                        empleado.setEmpfechanacimiento(rss.getString("Empfechanacimiento"));;
+                        empleado.setEmpfechanacimiento(rss.getString("Empfechanacimiento"));
                         empleado.setEmpdireccion(rss.getString("Empdireccion"));   
-                        empleado.setEmpfechaingreso(rss.getString("Empfechaingreso"));;
+                        empleado.setEmpfechaingreso(rss.getString("Empfechaingreso"));
                         empleado.setEmpfechasalidad(rss.getString("Empfechasalida"));
                         empleado.setEmpcorreo(rss.getString("Empcorreo"));
                         empleado.setEmpestado(rss.getString("Empestado"));
@@ -177,17 +180,15 @@ public class EmpleadosConexion {
     public static String Mantenimientoempleados(String accion, EmpleadosModelo EmpleadosModelo)
     { 
         String estado = "";
-        Connection con = null;
-        
+        Connection con = null;     
         try
         {
             String query;
             con = Conexion.getConexion(con);
            
-            query = "{CALL MantenimientoEmpleados(?,?,?,?,?,?,?,?,?,?,?,?)}";
+            query = "{CALL MantenimientoEmpleados(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
             CallableStatement cs = con.prepareCall(query);
             cs.setString            (1, accion);     
-            System.out.println(accion);
             cs.setInt               (2, EmpleadosModelo.getEmpcodigo()); 
             cs.setString            (3, EmpleadosModelo.getEmpidentidad());
             cs.setString            (4, EmpleadosModelo.getEmpnombre());
@@ -198,10 +199,11 @@ public class EmpleadosConexion {
             cs.setString            (9, EmpleadosModelo.getEmpfechasalidad());
             cs.setString            (10,EmpleadosModelo.getEmpcorreo());
             cs.setString            (11, EmpleadosModelo.getEmpestado());
-            cs.registerOutParameter (12, Types.VARCHAR);
-            
+            cs.setString            (12, EmpleadosModelo.getEmpusuario());
+            cs.setString            (13, EmpleadosModelo.getEmpcontrasena());
+            cs.registerOutParameter (14, Types.VARCHAR);           
             cs.executeUpdate();
-            estado = cs.getString(12);
+            estado = cs.getString(14);
             System.out.println(estado);
             con.close();
         }
@@ -211,6 +213,32 @@ public class EmpleadosConexion {
         } 
         return estado;
     }
-   
+     public static String MantenimientoContrasena(String accion, EmpleadosModelo EmpleadosModelo)
+    { 
+        String estado = "";
+        Connection con = null;     
+        try
+        {
+            String query;
+            con = Conexion.getConexion(con);
+           
+            query = "{CALL MantenimientoContrasena(?,?,?,?,?)}";
+            CallableStatement cs = con.prepareCall(query);
+            cs.setString            (1, accion);     
+            cs.setInt               (2, EmpleadosModelo.getEmpcodigo()); ;
+            cs.setString            (3, EmpleadosModelo.getEmpusuario());
+            cs.setString            (4, EmpleadosModelo.getEmpcontrasena());
+            cs.registerOutParameter (5, Types.VARCHAR);           
+            cs.executeUpdate();
+            estado = cs.getString(5);
+            System.out.println(estado);
+            con.close();
+        }
+        catch (Exception e)
+        {
+            estado = e.toString();
+        } 
+        return estado;
+    }  
     
 }

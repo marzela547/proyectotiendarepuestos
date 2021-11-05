@@ -51,19 +51,25 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
             }
         });
 
+        txtbuscar_empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtbuscar_empleadoActionPerformed(evt);
+            }
+        });
+
         tabla_empleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Identidad", "Nombre", "Telefono", "Fecha Nacimiento", "Direccion", "Fecha Ingreso", "Fecha Salida", "Correo", "Estado"
+                "Codigo", "Identidad", "Usuario", "Nombre", "Telefono", "Fecha Nacimiento", "Direccion", "Fecha Ingreso", "Fecha Salida", "Correo", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -82,16 +88,15 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtbuscar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnagregar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(202, 202, 202)))
-                .addGap(29, 29, 29))
+                .addContainerGap(266, Short.MAX_VALUE)
+                .addComponent(txtbuscar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnagregar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(231, 231, 231))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1016, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,23 +127,28 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
         EmpleadoControlador empco = new EmpleadoControlador();
         empleadomodelo.setEmpcodigo(Integer.parseInt(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 0)))); 
         empleadomodelo.setEmpidentidad(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 1)));
-        empleadomodelo.setEmpnombre(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 2)));
-        empleadomodelo.setEmptelefono(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 3)));
-        empleadomodelo.setEmpfechanacimiento(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 4)));
-        empleadomodelo.setEmpdireccion(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 5)));
-        empleadomodelo.setEmpfechaingreso(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion,6))); 
-        empleadomodelo.setEmpfechasalidad(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion,7))); 
-        empleadomodelo.setEmpcorreo(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion,8))); 
-        empleadomodelo.setEmpestado(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion,9)));
+        empleadomodelo.setEmpusuario(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 2)));
+        empleadomodelo.setEmpnombre(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 3)));
+        empleadomodelo.setEmptelefono(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 4)));
+        empleadomodelo.setEmpfechanacimiento(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 5)));
+        empleadomodelo.setEmpdireccion(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion, 6)));
+        empleadomodelo.setEmpfechaingreso(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion,7))); 
+        //empleadomodelo.setEmpfechasalidad(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion,8))); 
+        empleadomodelo.setEmpfechasalidad(String.valueOf(""));
+        empleadomodelo.setEmpcorreo(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion,9))); 
+        empleadomodelo.setEmpestado(String.valueOf(this.tabla_empleados.getModel().getValueAt(seleccion,10)));
         CacheEmpleado empleadocache = new CacheEmpleado();     
         empleadocache.Setdatoscompartidos(true);
         empleadocache.setEmpleado(empleadomodelo);
         empco.setOperacion(1);
         dispose();
         Mantenimiento_empeadospantalla mantenimientoempleado = new Mantenimiento_empeadospantalla();
-        
         mantenimientoempleado.setVisible(true);
     }//GEN-LAST:event_tabla_empleadosMouseClicked
+
+    private void txtbuscar_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbuscar_empleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtbuscar_empleadoActionPerformed
 
     /**
      * @param args the command line arguments

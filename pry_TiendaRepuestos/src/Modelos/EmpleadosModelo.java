@@ -5,6 +5,8 @@
  */
 package Modelos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author fgodo
@@ -21,7 +23,62 @@ public class EmpleadosModelo {
     private String Empfechaingreso;
     private String Empfechasalidad;
     private String Empestado;
+    private String Empusuario;
+    private String Empcontrasena;
+    private Integer Puecodigo;
+    private Integer Pueempcodigo;
+    private String Puedecripcion;
 
+    public String getPuedecripcion() {
+        return Puedecripcion;
+    }
+
+    public void setPuedecripcion(String Puedecripcion) {
+        this.Puedecripcion = Puedecripcion;
+    }
+    
+    
+    private static ArrayList<Integer> allPuempcodigos = new ArrayList<>();
+    public Integer getPuecodigo() {
+        return Puecodigo;
+    }
+
+    public  ArrayList<Integer> getAllPuempcodigos() {
+        return allPuempcodigos;
+    }
+
+    public  void setAllPuempcodigos(Integer id) {
+        this.allPuempcodigos.add(id);
+    }
+
+    public void setPuecodigo(Integer Puecodigo) {
+        this.Puecodigo = Puecodigo;
+    }
+
+    public Integer getPueempcodigo() {
+        return Pueempcodigo;
+    }
+
+    public void setPueempcodigo(Integer Pueempcodigo) {
+        this.Pueempcodigo = Pueempcodigo;
+    }
+
+    public String getEmpusuario() {
+        return Empusuario;
+    }
+
+    public void setEmpusuario(String Empusuario) {
+        this.Empusuario = Empusuario;
+    }
+
+    public String getEmpcontrasena() {
+        return Empcontrasena;
+    }
+
+    public void setEmpcontrasena(String Empcontrasena) {
+        this.Empcontrasena = Empcontrasena;
+    }
+    
     public Integer getOp() {
         return op;
     }

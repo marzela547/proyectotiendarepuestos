@@ -5,7 +5,10 @@
  */
 package Especiales;
 
+import com.toedter.calendar.JDateChooser;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JTable;
 
@@ -98,6 +101,17 @@ public class Validaciones {
         }
     }
     
+    public static String Fechavacia(Date fecha)
+    {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+        String Date ="";
+        if (fecha != null)
+        {
+            Date=formatter.format(fecha);
+        }
+        return Date; 
+    }
+    
     /**
     * 
     * @param fecha String
@@ -147,5 +161,35 @@ public class Validaciones {
     public static Boolean validarNomenclatura(String letras) 
     {
         return letras.matches("[a-zA-Z]{3}");
-    }    
+    }   
+    
+    public static Integer validarMayorEdad(String facimiento)
+    {
+        String hoy= String.valueOf(LocalDate.now());
+        Date Datehoy = null;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+        Integer anio =0;
+        JDateChooser today = new JDateChooser();
+        JDateChooser nacimiento = new JDateChooser();
+        try
+        {
+            Datehoy = formatter.parse(hoy);  
+            today.setDate(Datehoy);  
+            Datehoy = formatter.parse(facimiento);
+            nacimiento.setDate(Datehoy);
+              anio = today.getCalendar().get(Calendar.YEAR)-nacimiento.getCalendar().get(Calendar.YEAR);
+              Integer mes = today.getCalendar().get(Calendar.MONTH)-nacimiento.getCalendar().get(Calendar.MONTH);
+              Integer dia = today.getCalendar().get(Calendar.DATE)-nacimiento.getCalendar().get(Calendar.DATE);
+              if(mes<0 ||(mes==0 && dia<0)){
+                anio =anio-1;
+                } 
+             return anio; 
+        }catch(Exception e)
+        {
+            System.out.println("error");
+        
+        }
+        
+        return 0;
+    }
 }
