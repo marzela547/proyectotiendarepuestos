@@ -11,6 +11,7 @@ import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
@@ -26,9 +27,12 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileSystemView;
@@ -42,13 +46,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class HistorialCompras extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HistorialCompras
-     */
+    String fechaNow;
+    
     public HistorialCompras() {
         initComponents();
         setLocationRelativeTo(null);
-      
+       Calendar fecha = new GregorianCalendar();
+        String anio = Integer.toString(fecha.get(Calendar.YEAR));
+        String mes = Integer.toString(fecha.get(Calendar.MONTH));
+        String dia = Integer.toString(fecha.get(Calendar.DATE));
+        int mesInt = Integer.parseInt(mes)+1;
+        fechaNow = dia + "/" + mesInt  + "/" + anio;
     }
 
     /**
@@ -60,12 +68,107 @@ public class HistorialCompras extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        DetalleFactura = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        TablaDetalleFactura = new javax.swing.JTable();
+        btnPDF = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         TableFactura = new javax.swing.JTable();
-        btnPdfVentas = new javax.swing.JButton();
         txtIdVenta = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
+
+        DetalleFactura.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                DetalleFacturaComponentShown(evt);
+            }
+        });
+
+        jPanel2.setBackground(new java.awt.Color(201, 194, 185));
+        jPanel2.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel2ComponentShown(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("Detalle Factura");
+
+        TableFactura = new javax.swing.JTable(){
+            public boolean isCellEditable(int row, int cells){
+                return false;
+            }
+        };
+        TablaDetalleFactura.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        TablaDetalleFactura.getTableHeader().setReorderingAllowed(false);
+        TablaDetalleFactura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaDetalleFacturaMouseClicked(evt);
+            }
+        });
+        TablaDetalleFactura.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                TablaDetalleFacturaComponentShown(evt);
+            }
+        });
+        jScrollPane6.setViewportView(TablaDetalleFactura);
+
+        btnPDF.setText("PDF");
+        btnPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDFActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnPDF)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
+
+        javax.swing.GroupLayout DetalleFacturaLayout = new javax.swing.GroupLayout(DetalleFactura.getContentPane());
+        DetalleFactura.getContentPane().setLayout(DetalleFacturaLayout);
+        DetalleFacturaLayout.setHorizontalGroup(
+            DetalleFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        DetalleFacturaLayout.setVerticalGroup(
+            DetalleFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DetalleFacturaLayout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 184, 38));
@@ -76,6 +179,11 @@ public class HistorialCompras extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(201, 194, 185));
+        jPanel1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel1ComponentShown(evt);
+            }
+        });
 
         TableFactura = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int cells){
@@ -87,11 +195,11 @@ public class HistorialCompras extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Factura", "Pedido", "Recibido", "Precio", "Total"
+                "Factura", "Fecha Recibida", "Tipo de Pago"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -112,18 +220,14 @@ public class HistorialCompras extends javax.swing.JFrame {
         jScrollPane5.setViewportView(TableFactura);
         if (TableFactura.getColumnModel().getColumnCount() > 0) {
             TableFactura.getColumnModel().getColumn(0).setResizable(false);
+            TableFactura.getColumnModel().getColumn(0).setHeaderValue("Factura");
             TableFactura.getColumnModel().getColumn(1).setResizable(false);
+            TableFactura.getColumnModel().getColumn(1).setHeaderValue("Fecha Recibida");
             TableFactura.getColumnModel().getColumn(2).setResizable(false);
-            TableFactura.getColumnModel().getColumn(3).setResizable(false);
-            TableFactura.getColumnModel().getColumn(4).setResizable(false);
+            TableFactura.getColumnModel().getColumn(2).setHeaderValue("Tipo de Pago");
         }
 
-        btnPdfVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pdf.png"))); // NOI18N
-        btnPdfVentas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPdfVentasActionPerformed(evt);
-            }
-        });
+        txtIdVenta.setEditable(false);
 
         jLabel16.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -137,10 +241,8 @@ public class HistorialCompras extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnPdfVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
                         .addComponent(txtIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(134, 134, 134)
+                        .addGap(214, 214, 214)
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
@@ -148,14 +250,10 @@ public class HistorialCompras extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPdfVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16))))
+                .addGap(55, 55, 55)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(txtIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(52, Short.MAX_VALUE))
@@ -178,21 +276,16 @@ public class HistorialCompras extends javax.swing.JFrame {
      public void cargarDetalle(){
             try{
             DefaultTableModel compra = new DefaultTableModel();
+            TableFactura.setDefaultRenderer(Object.class, new render());
+            JButton btn1 = new JButton("Detalle");
+            TableFactura.setRowHeight(30);
             TableFactura.setModel(compra);
             PreparedStatement ps = null;
             ResultSet rs = null;
             Conexion_1 conn = new Conexion_1();
             Connection con= conn.getConenection();
             
-            String sql= "select \n" +
-            "d.Comcodigo as Factura,\n" +
-            "Detcompracantidadped as Pedida,\n" +
-            "Detcompracantidadrec as Recibida,\n" +
-            "Detcompraprecioprod as Precio,\n" +
-            "(Detcompraprecioprod*Detcompracantidadrec) as Total\n" +
-            "from compras as c\n" +
-            "inner join detallecompra as d\n" +
-            "on c.Comcodigo = d.Comcodigo";
+            String sql= "select Comcodigo as Factura, Comfechaent as FechaRecibida, TipoPago from compras";
             ps= con.prepareStatement(sql);
             rs=ps.executeQuery();
 
@@ -200,10 +293,152 @@ public class HistorialCompras extends javax.swing.JFrame {
             int cantidadColumnas = rsMd.getColumnCount();
             
             compra.addColumn("Factura");
-            compra.addColumn("Pedido"); 
-            compra.addColumn("Recibido");
-            compra.addColumn("Precio");
-            compra.addColumn("Total");
+            compra.addColumn("Fecha Recibida");
+            compra.addColumn("Tipo Pago");
+            compra.addColumn("Detalle");
+ 
+            while(rs.next())
+            {
+                Object[] filas = new Object[cantidadColumnas+1];
+                for(int i=0; i<cantidadColumnas; i++)
+                {
+                    filas[i]=rs.getObject(i+1);
+                    filas[3] = btn1;
+                }
+                compra.addRow(filas);
+            }
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+}  
+/******************************************************************/
+     public void pdf(){
+         try{
+             FileOutputStream archivo;
+             File file = new File("src/pdf/Detallefactura"+txtIdVenta.getText()+".pdf");
+             archivo = new FileOutputStream(file);
+             Document doc = new Document();
+             PdfWriter.getInstance(doc, archivo);
+             doc.open();
+             
+             Image img = Image.getInstance("src/img/logoMotoRepuestos_1.jpeg");
+             
+             Paragraph fecha = new Paragraph();
+             Font negrita = new Font(Font.FontFamily.TIMES_ROMAN,12,Font.BOLD,BaseColor.BLACK);
+             fecha.add(Chunk.NEWLINE);
+             Date date = new Date();
+             fecha.add("Fecha: " + fechaNow);//new SimpleDateFormat("dd-mm-yyy").format(date)+"\n\n");
+             PdfPTable Encabezado = new PdfPTable(4);
+             Encabezado.setWidthPercentage(100);
+             Encabezado.getDefaultCell().setBorder(0);
+             float [] ColumnaEncabezado = new float[]{20f,30f,70f,40f};
+             Encabezado.setWidths(ColumnaEncabezado);
+             Encabezado.setHorizontalAlignment(Element.ALIGN_LEFT);
+             
+             Encabezado.addCell(img);
+             String NomEmpresa = "MOTOCAR";
+             
+             String tel = "94946591";
+             String dir = "--------------------";
+          
+             
+             Encabezado.addCell("\n\n\n\n\n\n\n\n\n");
+             Encabezado.addCell(NomEmpresa+"\n\nTel: "+tel+"\n\nDireccion: "+dir);
+             Encabezado.addCell(fecha);
+             doc.add(Encabezado);
+             
+               /*****************PRODUCTO**********/
+               PdfPTable tablaProducto = new PdfPTable(5);
+               tablaProducto.setWidthPercentage(100);
+               tablaProducto.getDefaultCell().setBorder(0);
+               float[] columnaProducto = new float[]{20f,50f,30f,40f,40f};
+               tablaProducto.setWidths(columnaProducto);
+               tablaProducto.setHorizontalAlignment(Element.ALIGN_LEFT);
+               PdfPCell prdcol1 = new PdfPCell(new Phrase("Factura",negrita));
+               PdfPCell prdcol2 = new PdfPCell(new Phrase("Cantidad Recibida",negrita));
+               PdfPCell prdcol3 = new PdfPCell(new Phrase("Cantidad Pedida",negrita));
+               PdfPCell prdcol4 = new PdfPCell(new Phrase("Producto",negrita));
+               PdfPCell prdcol5 = new PdfPCell(new Phrase("Subtotal",negrita));
+               prdcol1.setBorder(0);
+               prdcol2.setBorder(0);
+               prdcol3.setBorder(0);
+               prdcol4.setBorder(0);
+               prdcol5.setBorder(0);
+               prdcol1.setBackgroundColor(BaseColor.LIGHT_GRAY);
+               prdcol2.setBackgroundColor(BaseColor.LIGHT_GRAY);
+               prdcol3.setBackgroundColor(BaseColor.LIGHT_GRAY);
+               prdcol4.setBackgroundColor(BaseColor.LIGHT_GRAY);
+               prdcol5.setBackgroundColor(BaseColor.LIGHT_GRAY);
+               
+               tablaProducto.addCell(prdcol1);
+               tablaProducto.addCell(prdcol2);
+               tablaProducto.addCell(prdcol3);
+               tablaProducto.addCell(prdcol4);
+               tablaProducto.addCell(prdcol5);
+               
+                double TotalBruto=0,ISV,TotalNeto; 
+               for(int i=0; i< TablaDetalleFactura.getRowCount(); i++){
+                   String Factura     = TablaDetalleFactura.getValueAt(i, 0).toString();
+                   String CantidadRec = TablaDetalleFactura.getValueAt(i, 1).toString();
+                   String CantidadPed = TablaDetalleFactura.getValueAt(i, 2).toString();
+                   String Producto    = TablaDetalleFactura.getValueAt(i, 3).toString();
+                   String Subtotal    = TablaDetalleFactura.getValueAt(i, 4).toString();
+                   tablaProducto.addCell(Factura);
+                   tablaProducto.addCell(CantidadRec);
+                   tablaProducto.addCell(CantidadPed);
+                   tablaProducto.addCell(Producto);
+                   tablaProducto.addCell(Subtotal);
+                   TotalBruto+=Double.parseDouble(Subtotal);
+               }
+               
+               doc.add(tablaProducto);
+               //Calculos
+               ISV=TotalBruto*0.15;
+               TotalNeto=TotalBruto+ISV;
+               
+               Paragraph totales = new Paragraph();
+               totales.add(Chunk.NEWLINE);
+               totales.add("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSub total: L. "+ String.valueOf(TotalBruto));
+               totales.add("\nImpuesto: L. " + String.valueOf(ISV));
+               totales.add("\nTotal a pagar: L. " + String.valueOf(TotalNeto));
+               totales.setAlignment(Element.ALIGN_RIGHT);
+               doc.add(totales);
+               JOptionPane.showMessageDialog(this,"pdf !creado Exitosamente!");
+             doc.close();
+         }catch(Exception e){}
+} 
+/******************************************************************/
+     public void cargarFactura(){
+            try{
+            DefaultTableModel compra = new DefaultTableModel();
+            TablaDetalleFactura.setModel(compra);
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion_1 conn = new Conexion_1();
+            Connection con= conn.getConenection();
+            
+            ps = con.prepareStatement("select c.Comcodigo as Factura,\n" +
+            "Detcompracantidadrec as CantidadRecibida,\n" +
+            "Detcompracantidadped as CantidadPedida,\n" +
+            "p.Proddescripcion as Producto,\n" +
+            "(d.Detcompracantidadrec*d.Detcompraprecioprod) as Subtotal\n" +
+            "from compras as c inner join detallecompra as d\n" +
+            "on c.Comcodigo = d.Comcodigo\n" +
+            "inner join productos as p\n" +
+            "on d.Prodcodigo = p.Prodcodigo\n" +
+            "WHERE d.Comcodigo = ?");
+            ps.setString(1, txtIdVenta.getText());
+            rs = ps.executeQuery();
+
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            
+            compra.addColumn("Factura");
+            compra.addColumn("Cantidad Recibida");
+            compra.addColumn("Cantidad Pedida");
+            compra.addColumn("Producto");
+            compra.addColumn("Subtotal");
  
             while(rs.next())
             {
@@ -214,87 +449,33 @@ public class HistorialCompras extends javax.swing.JFrame {
                 }
                 compra.addRow(filas);
             }
-            
+           
         }catch(SQLException ex){
             System.err.println(ex.toString());
         }
-}  
+}
 /******************************************************************/
-     private void pdf(){
-         try{
-             int fila = TableFactura.getSelectedRow();
-             FileOutputStream archivo;
-             File file = new File("src/pdf/factura"+(TableFactura.getValueAt(fila, 0))+".pdf");
-             archivo = new FileOutputStream(file);
-             Document doc = new Document();
-             PdfWriter.getInstance(doc, archivo);
-             doc.open();
-             
-            // Image img = Image.getInstance("src/img/logoMotoRepuestos.jpeg");
-             
-             Paragraph fecha = new Paragraph();
-            Font negrita = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLUE);
-            fecha.add(Chunk.NEWLINE);
-            fecha.add("Factura: " + txtIdVenta.getText());
-            PdfPTable Encabezado = new PdfPTable(4);
-            Encabezado.setWidthPercentage(100);
-            Encabezado.getDefaultCell().setBorder(0);
-            float[] columnWidthsEncabezado = new float[]{20f, 30f, 70f, 40f};
-            Encabezado.setWidths(columnWidthsEncabezado);
-            Encabezado.setHorizontalAlignment(Element.ALIGN_LEFT);
-            
-            Encabezado.addCell("");
-            //info empresa
-             
-           
-             String NomEmpresa = "MOTO-Car";
-             
-             String tel = "94946591";
-             String dir = "--------------------";
-          
-             
-            Encabezado.addCell(fecha);
-            doc.add(Encabezado);
-            //cliente
-            Paragraph cli = new Paragraph();
-            cli.add(Chunk.NEWLINE);
-            cli.add("DATOS DEL CLIENTE" + "\n\n");
-            doc.add(cli);
-
-            PdfPTable proveedor = new PdfPTable(3);
-            proveedor.setWidthPercentage(100);
-            proveedor.getDefaultCell().setBorder(0);
-            float[] columnWidthsCliente = new float[]{50f, 25f, 25f};
-            proveedor.setWidths(columnWidthsCliente);
-            proveedor.setHorizontalAlignment(Element.ALIGN_LEFT);
-            PdfPCell cliNom = new PdfPCell(new Phrase("Nombre", negrita));
-            PdfPCell cliTel = new PdfPCell(new Phrase("Télefono", negrita));
-            PdfPCell cliDir = new PdfPCell(new Phrase("Dirección", negrita));
-            cliNom.setBorder(Rectangle.NO_BORDER);
-            cliTel.setBorder(Rectangle.NO_BORDER);
-            cliDir.setBorder(Rectangle.NO_BORDER);
-            proveedor.addCell(cliNom);
-            proveedor.addCell(cliTel);
-            proveedor.addCell(cliDir);
-            doc.add(proveedor);
-               
-               doc.close();
-         }catch(Exception e){}
-}                 
     private void TableFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableFacturaMouseClicked
         int fila = TableFactura.getSelectedRow();
         String id = TableFactura.getValueAt(fila, 0).toString();
         txtIdVenta.setText(id);
+        /************************************************/
+        
+       int column = TableFactura.getColumnModel().getColumnIndexAtX(evt.getX());
+       int row = evt.getY()/TableFactura.getRowHeight();
+       
+       if(row < TableFactura.getRowCount() && row>= 0&& column < TableFactura.getColumnCount() && column >=0){
+           Object value = TableFactura.getValueAt(row, column);
+           if(value instanceof JButton){
+               
+               ((JButton)value).doClick();
+               JButton boton = (JButton) value;
+                   DetalleFactura.setSize(840,400);
+                   DetalleFactura.setLocationRelativeTo(this);
+                   DetalleFactura.setVisible(true);      
+           }
+       }
     }//GEN-LAST:event_TableFacturaMouseClicked
-
-    private void btnPdfVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdfVentasActionPerformed
-    int fila = TableFactura.getSelectedRow();
-    if(fila == -1){
-        JOptionPane.showMessageDialog(this, "Debe Seleccionar una Factura");
-    }else{
-        pdf();
-    }
-    }//GEN-LAST:event_btnPdfVentasActionPerformed
 
     private void TableFacturaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_TableFacturaComponentShown
        
@@ -303,6 +484,30 @@ public class HistorialCompras extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         cargarDetalle();
     }//GEN-LAST:event_formComponentShown
+
+    private void TablaDetalleFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDetalleFacturaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaDetalleFacturaMouseClicked
+
+    private void TablaDetalleFacturaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_TablaDetalleFacturaComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaDetalleFacturaComponentShown
+
+    private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
+       
+    }//GEN-LAST:event_jPanel2ComponentShown
+
+    private void jPanel1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentShown
+        
+    }//GEN-LAST:event_jPanel1ComponentShown
+
+    private void DetalleFacturaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_DetalleFacturaComponentShown
+       cargarFactura();
+    }//GEN-LAST:event_DetalleFacturaComponentShown
+
+    private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
+        pdf();
+    }//GEN-LAST:event_btnPDFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,11 +534,16 @@ public class HistorialCompras extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog DetalleFactura;
+    private javax.swing.JTable TablaDetalleFactura;
     private javax.swing.JTable TableFactura;
-    private javax.swing.JButton btnPdfVentas;
+    private javax.swing.JButton btnPDF;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTextField txtIdVenta;
     // End of variables declaration//GEN-END:variables
 }

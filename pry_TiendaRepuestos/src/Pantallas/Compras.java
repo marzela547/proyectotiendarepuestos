@@ -384,6 +384,7 @@ public class Compras extends javax.swing.JFrame {
             }
         });
 
+        cmbTipoPago.setBackground(new java.awt.Color(255, 184, 38));
         cmbTipoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Credito" }));
         cmbTipoPago.setToolTipText("Tipo de Pago");
 
