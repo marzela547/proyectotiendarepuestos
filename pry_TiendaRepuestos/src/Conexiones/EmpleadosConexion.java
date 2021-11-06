@@ -213,7 +213,7 @@ public class EmpleadosConexion {
         } 
         return estado;
     }
-     public static String MantenimientoContrasena(String accion, EmpleadosModelo EmpleadosModelo)
+    public static String MantenimientoContrasena(String accion, EmpleadosModelo EmpleadosModelo)
     { 
         String estado = "";
         Connection con = null;     

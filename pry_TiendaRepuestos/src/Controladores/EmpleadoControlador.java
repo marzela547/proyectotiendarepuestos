@@ -182,7 +182,7 @@ public class EmpleadoControlador {
         }
         if(Validaciones.validarMayorEdad(trimmedfechaningreso)<18)
         {
-           errfechaingreso.setText("No puede ingresar un menor de Edad");
+           errfechaingreso.setText("No permitido menor Edad");
            error = true;
         }
         
@@ -214,7 +214,7 @@ public class EmpleadoControlador {
         }
         if(Validaciones.validarContraseniaCoincide(trimmedcontrasena,trimmedcotrasenac))
         {
-           errcontrasena.setText("No coinciden las contraseña con confirmar contraseña");
+           errcontrasena.setText("No coinciden contraseñas");
            error = true;
         }
         if(Validaciones.validarTabla(Mantenimiento_empeadospantalla.tabla_puesto)==true)

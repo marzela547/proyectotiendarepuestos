@@ -6,10 +6,13 @@
 package Conexiones;
 
 import Modelos.EmpleadosModelo;
+import Modelos.RecuperarModelo;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import javax.swing.JOptionPane;
 
 /**
@@ -55,5 +58,35 @@ public class UsuarioConexion {
         }
         
         return empleadoModelo;
-    }    
+    }
+
+    public static String MantenimientoEditarContra(String accion, RecuperarModelo RecuperarModelo)
+    { 
+        String estado = "";
+        Connection con = null;     
+        try
+        {
+            String query;
+            con = Conexion.getConexion(con);
+           
+            query = "{CALL MantenimientoRecuperarContrasena(?,?,?)}";
+            CallableStatement cs = con.prepareCall(query);
+            cs.setString            (1, RecuperarModelo.getEmpUsuario());     
+            cs.setString            (2, RecuperarModelo.getContrasena());
+            cs.registerOutParameter (3, Types.VARCHAR);           
+            cs.executeUpdate();
+            estado = cs.getString(3);
+            System.out.println(estado);
+            con.close();
+        }
+        catch (Exception e)
+        {
+            estado = e.toString();
+        } 
+        return estado;
+    } 
+
+
+
+    
 }

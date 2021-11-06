@@ -13,7 +13,16 @@ public class RecuperarModelo {
     Integer EmpCodigo;
     String EmpUsuario;
     String Contrasena;
+    String Codigo;
 
+    public String getCodigo() {
+        return Codigo;
+    }
+
+    public void setCodigo(String Codigo) {
+        this.Codigo = Codigo;
+    }
+    
     public Integer getEmpCodigo() {
         return EmpCodigo;
     }

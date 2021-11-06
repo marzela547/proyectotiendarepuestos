@@ -6,6 +6,7 @@
 package Pantallas;
 
 import Controladores.RecuperarControlador;
+import Modelos.RecuperarModelo;
 
 /**
  *
@@ -18,6 +19,7 @@ public class RecuperarPantalla extends javax.swing.JFrame {
      */
     public RecuperarPantalla() {
         initComponents();
+        RecuperarControlador.setPlaceHoldersCodigo(this.txtcorreo,this.txtcodigo); 
     }
 
     /**
@@ -29,24 +31,24 @@ public class RecuperarPantalla extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnconfir = new javax.swing.JButton();
         txtcorreo = new javax.swing.JTextField();
         txtcodigo = new javax.swing.JTextField();
-        btnconfirmar = new javax.swing.JButton();
         btnenviar = new javax.swing.JButton();
         errcorreo = new javax.swing.JLabel();
         errCodigo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtcodigo.setEditable(false);
-
-        btnconfirmar.setText("Confirmar");
-        btnconfirmar.setEnabled(false);
-        btnconfirmar.addActionListener(new java.awt.event.ActionListener() {
+        btnconfir.setText("Aceptar");
+        btnconfir.setEnabled(false);
+        btnconfir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnconfirmarActionPerformed(evt);
+                btnconfirActionPerformed(evt);
             }
         });
+
+        txtcodigo.setEditable(false);
 
         btnenviar.setText("Enviar");
         btnenviar.addActionListener(new java.awt.event.ActionListener() {
@@ -55,47 +57,46 @@ public class RecuperarPantalla extends javax.swing.JFrame {
             }
         });
 
-        errcorreo.setText(" ");
+        errcorreo.setForeground(new java.awt.Color(255, 51, 51));
 
+        errCodigo.setForeground(new java.awt.Color(255, 51, 51));
         errCodigo.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(99, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtcodigo)
+                        .addComponent(errCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtcorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                        .addComponent(errcorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtcorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                            .addComponent(txtcodigo)
-                            .addComponent(errcorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(errCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(btnconfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(btnenviar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                        .addGap(46, 46, 46)
+                        .addComponent(btnconfir, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnenviar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(79, 79, 79))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(txtcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(93, Short.MAX_VALUE)
+                .addComponent(txtcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnenviar)
-                .addGap(18, 18, 18)
-                .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(errcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(errCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(errCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnconfirmar)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnconfir, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnenviar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81))
         );
 
         pack();
@@ -104,18 +105,35 @@ public class RecuperarPantalla extends javax.swing.JFrame {
     private void btnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnenviarActionPerformed
         if(!RecuperarControlador.RecuperarContrasena(txtcorreo.getText(),this.errcorreo))
         {
-            System.out.println("llego");
+            System.out.println("llegue vali");
+            txtcodigo.setEditable(true);
+            btnconfir.setEnabled(true);
+
+           
         }else
         {
             System.out.println("Error");
-          }
-        
+        }
+        System.out.println("salio");
         
     }//GEN-LAST:event_btnenviarActionPerformed
 
-    private void btnconfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconfirmarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnconfirmarActionPerformed
+    private void btnconfirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconfirActionPerformed
+
+        System.out.println("");
+       
+        
+        if(!RecuperarControlador.IngresarCodigo(txtcodigo.getText(),errCodigo))
+        {
+           Mantenimiento_Recuperar mrecuperar = new Mantenimiento_Recuperar();
+           mrecuperar.setVisible(true);          
+           dispose();
+        }else
+        {
+            System.out.println("Error Ingresar"); 
+        }           
+               
+    }//GEN-LAST:event_btnconfirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,7 +171,7 @@ public class RecuperarPantalla extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnconfirmar;
+    private javax.swing.JButton btnconfir;
     private javax.swing.JButton btnenviar;
     private javax.swing.JLabel errCodigo;
     private javax.swing.JLabel errcorreo;

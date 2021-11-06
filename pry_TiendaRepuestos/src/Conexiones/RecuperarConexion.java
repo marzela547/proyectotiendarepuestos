@@ -2,6 +2,7 @@ package Conexiones;
 
 
 import Conexiones.Conexion;
+import Controladores.RecuperarControlador;
 import Modelos.RecuperarModelo;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -40,8 +41,9 @@ public class RecuperarConexion {
             while (rss.next()) 
             {
                 valor=rss.getInt("contador");
-                recuperarModelo.setEmpUsuario("Empusuario");              
+                recuperarModelo.setEmpUsuario(rss.getString("Empusuario"));              
             }
+            RecuperarControlador.setusuario(recuperarModelo.getEmpUsuario());
             con.close();
         } 
         catch (SQLException e) 
