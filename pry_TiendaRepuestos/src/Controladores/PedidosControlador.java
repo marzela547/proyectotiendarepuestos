@@ -56,6 +56,74 @@ public class PedidosControlador {
         }
         
     }
+    public static Boolean Mantenimientopedidos(String accion, Integer id ,Integer Procodigo,
+             String Pedfecha, Integer Empcodigo, String Estado)
+    { 
+        
+        
+        Boolean mnterror = false;
+        
+            switch(accion)
+            {
+                case "insertar":
+                
+                    mnterror = PedidosControlador.Insertarpedido(Procodigo, Pedfecha, Empcodigo);
+                break;
+                
+                case "editar":   
+                    mnterror = PedidosControlador.Modificarpedido(id,Procodigo, Pedfecha, Empcodigo,  Estado);            
+                break;
+            }
+        return !(mnterror == false);
+    }
+    
+    private static boolean Insertarpedido(Integer Procodigo, String Pedfecha, Integer Empcodigo)
+    {
+        System.out.println("llego insertar");
+        boolean error = false;
+        PedidosModelo pedidomodelo = new PedidosModelo();
+        pedidomodelo = PedidosControlador.Setpedidosmodelo(0, Procodigo, Pedfecha, Empcodigo, "ACT",0);
+        String resultado = PedidosConexion.Mantenimientopedidos("insertar", pedidomodelo);    
+        System.out.println(resultado);
+        switch (resultado) 
+        {
+            case "OK": 
+                    System.out.println("llego insertar 5");
+                   JOptionPane.showMessageDialog(null, "Pedido ingresado con éxito.");              
+            break;
+            default:
+                System.out.println("llego insertar 9");
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error al ejecutar la operación.");
+                error = true;
+            break;
+        }
+        return error;
+    }
+    
+    private static boolean Modificarpedido(Integer id,Integer Procodigo, String Pedfecha, Integer Empcodigo,  String Estado )
+    {
+        boolean error = false;
+        System.out.println("llegue");
+        PedidosModelo pedidomodelo = new PedidosModelo();
+        pedidomodelo = PedidosControlador.Setpedidosmodelo(id, Procodigo, Pedfecha, Empcodigo,  Estado, 0);
+        String resultado = PedidosConexion.Mantenimientopedidos("editar", pedidomodelo);    
+          System.out.println(pedidomodelo);
+        System.out.println(resultado);
+        switch (resultado) 
+        {
+            case "OK": 
+                   JOptionPane.showMessageDialog(null, "Pedido editado con éxito.");              
+            break;
+            
+            default:
+                System.out.println("llego insertar 9");
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error al ejecutar la operación.");
+                error = true;
+            break;
+        }
+        return error;
+    }
+    
     public static void Llenartablapedidostemp(JTable tablatemp) 
     {  
         
@@ -177,6 +245,20 @@ public class PedidosControlador {
         pedidomodelo.setDetpedcant(cantidad);
         return pedidomodelo;
     }
+    
+    private static PedidosModelo Setpedidosmodelo( Integer id, Integer Procodigo, String Pedfecha, Integer Empcodigo,  String Estado, Integer canti)
+    {
+        PedidosModelo pedidomodelo = new PedidosModelo();     
+        pedidomodelo.setPedcodigo(id);
+        pedidomodelo.setProcodigo(Procodigo);
+        pedidomodelo.setPedfecha(Pedfecha);
+        pedidomodelo.setEmpcodigo(Empcodigo);
+        pedidomodelo.setPedestado(Estado);
+        pedidomodelo.setDetpedcant(canti);
+        
+        return pedidomodelo;
+    }
+    
     public static void agregarFilaProducto(JTable tabla_productos, JTextField txtcodigo, JTextArea txtdescrip, JTextField txtprecio, JSpinner spinner){
         String productos [] = {txtcodigo.getText(), txtdescrip.getText(), txtprecio.getText(), String.valueOf(spinner.getValue())};
         
