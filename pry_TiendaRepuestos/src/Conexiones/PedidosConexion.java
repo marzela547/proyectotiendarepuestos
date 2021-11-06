@@ -127,23 +127,25 @@ public class PedidosConexion {
             String query;
             con = Conexion.getConexion(con);
            
-            query = "{CALL MantenimientoPedidos(?,?,?,?,?,?,?,?,?,?,?)}";
+            query = "{CALL MantenimientoPedidos(?,?,?,?,?,?,?,?)}";
             CallableStatement cs = con.prepareCall(query);
             cs.setString            (1, accion);     
-           // System.out.println(accion);
+           System.out.println(accion);
             cs.setInt               (2, PedidosModelo.getPedcodigo()); 
-            cs.setInt               (3, PedidosModelo.getProcodigo()); 
+            System.out.println(PedidosModelo.getPedcodigo()+"<------------");
+            cs.setInt               (3, PedidosModelo.getProcodigo());
+            System.out.println(PedidosModelo.getProcodigo()+"<------------");
             cs.setString            (4, PedidosModelo.getPedfecha()); 
+            System.out.println(PedidosModelo.getPedfecha()+"<------------");
             cs.setInt               (5, PedidosModelo.getEmpcodigo());
-            cs.setString               (6, PedidosModelo.getPedestado()); 
-            cs.setInt               (7, PedidosModelo.getDetpedcodigo()); 
-            cs.setInt               (8, PedidosModelo.getProdcodigo()); 
-            cs.setInt               (9, PedidosModelo.getDetpedcant());
-            cs.setFloat               (10, PedidosModelo.getDetpedprodprecio()); 
-            cs.registerOutParameter (11, Types.VARCHAR);
+            System.out.println(PedidosModelo.getEmpcodigo()+"<------------");
+            cs.setString               (6, PedidosModelo.getPedestado());
+            System.out.println(PedidosModelo.getPedestado()+"<------------");
+            cs.setInt               (7, PedidosModelo.getDetpedcant()); 
+            cs.registerOutParameter (8, Types.VARCHAR);
             
             cs.executeUpdate();
-            estado = cs.getString(11);
+            estado = cs.getString(8);
             System.out.println(estado);
             con.close();
         }

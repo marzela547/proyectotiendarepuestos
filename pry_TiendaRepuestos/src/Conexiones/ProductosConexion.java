@@ -18,12 +18,12 @@ import javax.swing.JOptionPane;
  * @author marce
  */
 public class ProductosConexion {
-     public static ArrayList<ProductosModelo> Listadoproducto(String accion) 
+     public static ArrayList<ProductosModelo> Listadoproducto(String accion, int cod) 
     {
         Connection con = null;
         Statement stm;
         ResultSet rss;
-        
+       // cod = 2;
         ArrayList<ProductosModelo> productos = new ArrayList<>();
         
         switch(accion)
@@ -96,8 +96,9 @@ public class ProductosConexion {
                     String query = "SELECT pp.Prodcodigo, Proddescripcion, Prodprecventa, Prodestado FROM productos p JOIN `productos-proveedores` pp "
                             + "ON p.Prodcodigo = pp.Prodcodigo JOIN proveedores pv "
                             + "ON pv.Procodigo = pp.Procodigo "
-                            + "WHERE pp.Procodigo = 1 " 
-                            + "ORDER BY pp.Prodcodigo ASC";
+                            + "WHERE pp.Procodigo = "+cod 
+                            + " ORDER BY pp.Prodcodigo ASC";
+                    
                     rss = stm.executeQuery(query);
                     while (rss.next()) 
                     {

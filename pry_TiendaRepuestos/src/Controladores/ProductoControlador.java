@@ -20,14 +20,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ProductoControlador {
     static Integer op = 0;
-    public static void Llenartablaproducto(JTable tablaproducto, String accion) 
+    public static void Llenartablaproducto(JTable tablaproducto, String accion, int cod) 
     {  
         
         DefaultTableModel modelo = (DefaultTableModel) tablaproducto.getModel(); 
         modelo.setRowCount(0);
         //Estados estados = new Estados();
         ArrayList<ProductosModelo> productos = new ArrayList<>();
-        productos = ProductosConexion.Listadoproducto(accion);
+        productos = ProductosConexion.Listadoproducto(accion,cod);
         for (int i = 0; i <productos.size(); i++) 
         {
             modelo.addRow

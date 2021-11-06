@@ -6,6 +6,7 @@
 package Pantallas;
 
 import Controladores.ProductoControlador;
+import Modelos.CachePedidos;
 
 /**
  *
@@ -19,7 +20,8 @@ public class ProductosPantalla extends javax.swing.JFrame {
     public ProductosPantalla() {
         initComponents();
         this.setLocationRelativeTo(null);
-        ProductoControlador.Llenartablaproducto(tabla_productos, "Todos");
+        CachePedidos cache = new CachePedidos();
+        ProductoControlador.Llenartablaproducto(tabla_productos, "Todos", cache.getProcodigo());
     }
 
     /**

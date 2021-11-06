@@ -7,6 +7,7 @@ package Pantallas;
 
 import Controladores.PedidosControlador;
 import Modelos.CachePedidos;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -36,6 +37,7 @@ public class PedidosPantalla extends javax.swing.JFrame {
         if(cache.isBandeProductos()){
             PedidosControlador.agregarProducto(txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
             PedidosControlador.Llenartablapedidostemp(tabla_pedidos);
+            btnagregarprod_pedidos.setEnabled(true);
         }
     }
 
@@ -62,7 +64,7 @@ public class PedidosPantalla extends javax.swing.JFrame {
         txtempleado_pedidos = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnagregarprod_pedidos = new javax.swing.JButton();
-        btnagregar_cliente3 = new javax.swing.JButton();
+        btnimprimir_pedidos = new javax.swing.JButton();
         btnagregar_cliente4 = new javax.swing.JButton();
         txtprecio_pedidos = new javax.swing.JTextField();
 
@@ -152,18 +154,19 @@ public class PedidosPantalla extends javax.swing.JFrame {
 
         btnagregarprod_pedidos.setBackground(new java.awt.Color(255, 184, 38));
         btnagregarprod_pedidos.setText("Agregar Producto");
+        btnagregarprod_pedidos.setEnabled(false);
         btnagregarprod_pedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnagregarprod_pedidosActionPerformed(evt);
             }
         });
 
-        btnagregar_cliente3.setBackground(new java.awt.Color(255, 184, 38));
-        btnagregar_cliente3.setText("Imprimir Pedido");
-        btnagregar_cliente3.setActionCommand("");
-        btnagregar_cliente3.addActionListener(new java.awt.event.ActionListener() {
+        btnimprimir_pedidos.setBackground(new java.awt.Color(255, 184, 38));
+        btnimprimir_pedidos.setText("Imprimir Pedido");
+        btnimprimir_pedidos.setActionCommand("");
+        btnimprimir_pedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnagregar_cliente3ActionPerformed(evt);
+                btnimprimir_pedidosActionPerformed(evt);
             }
         });
 
@@ -193,7 +196,7 @@ public class PedidosPantalla extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnagregar_cliente4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnagregar_cliente3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnimprimir_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtproveedor_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,7 +251,7 @@ public class PedidosPantalla extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnagregar_cliente4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnagregar_cliente3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnimprimir_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
         );
 
@@ -295,9 +298,16 @@ public class PedidosPantalla extends javax.swing.JFrame {
         //PedidosControlador.agregarFilaProducto(tabla_pedidos, txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
     }//GEN-LAST:event_btnagregarprod_pedidosActionPerformed
 
-    private void btnagregar_cliente3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregar_cliente3ActionPerformed
+    private void btnimprimir_pedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimprimir_pedidosActionPerformed
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+        String Date;
+        Date fecha = new Date();
+        Date = formatter.format(fecha);
+        CachePedidos cache = new CachePedidos();
+        //System.out.println(cache.getProcodigo()+"<------------ \n"+Date+"<------------- \n"+cache.getProdcodigo()+"<----------- \n"+Integer.parseInt(String.valueOf(spinnercanti_pedidos.getValue()))+"<------------------ \n"+Float.parseFloat( txtprecio_pedidos.getText())+"<--------------");
+        PedidosControlador.Mantenimientopedidos("insertar", 0, cache.getProcodigo(),Date, 1, "ACT");
         PedidosControlador.Mantenimientotemp("eliminar", txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
-    }//GEN-LAST:event_btnagregar_cliente3ActionPerformed
+    }//GEN-LAST:event_btnimprimir_pedidosActionPerformed
 
     private void btnagregar_cliente4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregar_cliente4ActionPerformed
         // TODO add your handling code here:
@@ -344,11 +354,11 @@ public class PedidosPantalla extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnagregar_cliente3;
     private javax.swing.JButton btnagregar_cliente4;
     private javax.swing.JButton btnagregarprod_pedidos;
     private javax.swing.JButton btnbuscarproducto;
     private javax.swing.JButton btnbuscarproveedor;
+    private javax.swing.JButton btnimprimir_pedidos;
     private com.toedter.calendar.JDateChooser fecha_pedidos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
