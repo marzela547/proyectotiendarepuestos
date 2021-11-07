@@ -6,11 +6,13 @@
 package Especiales;
 
 import Conexiones.TempConexion;
+import Modelos.CachePedidos;
 import Modelos.PedidosModelo;
 import Modelos.TempModelo;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
@@ -52,22 +54,33 @@ public class CrearPDF {
     
     public void crearPDF(){
         try{
-            BaseColor myColor = WebColors.getRGBColor("#9f926e");
+            BaseColor myColor = WebColors.getRGBColor("#7da6b5");
             archivo = new FileOutputStream("D:\\Documentos\\pruebapedidos.pdf");
             PdfWriter writer= PdfWriter.getInstance(documento, archivo);
             documento.open();
             titulo.setAlignment(2);
+            Image ima = null;
+            try{
+                ima = Image.getInstance("C:\\Users\\marce\\Documents\\NetBeansProjects\\ProyectoRepuestos\\pry_TiendaRepuestos\\src\\Imagenes\\Logoproto.png");
+                ima.scaleAbsolute(100, 100);
+                ima.setAbsolutePosition(35, 705);
+            }catch(Exception ex){
+                System.out.println("Error: "+ex);
+            }
+            documento.add(ima);
             documento.add(titulo);
             Paragraph fech = new Paragraph("Fecha: "+fechas);
             fech.setAlignment(2);
             //fech.setFont(TIMES_ROMAN);
             documento.add(fech);
-            documento.add(new Paragraph("Moto-Car Repuestos \n "
-            +"P. Sherman Calle Wallaby 42"+ Chunk.TAB + "abc \n"
+            documento.add(Chunk.NEWLINE);
+            documento.add(Chunk.NEWLINE);
+            documento.add(Chunk.NEWLINE);
+            documento.add(new Paragraph("\nMoto-Car Repuestos \n"
+            +"P. Sherman Calle Wallaby 42 \n"
             +"Sydney \n"
             +"11101 \n"
-            +"+504 9782-9173 \n"));
-            documento.add(Chunk.NEWLINE);
+            +"+504 9782-9173 \n\n"));
             PdfPTable titulos = new PdfPTable(2);
             titulos.setWidthPercentage(100);
             PdfPCell vendedor = new PdfPCell(new Phrase("Vendedor"));
@@ -87,15 +100,14 @@ public class CrearPDF {
             documento.add(Chunk.NEWLINE);
             documento.add(Chunk.NEWLINE);
             documento.add(Chunk.NEWLINE);
-            documento.add(Chunk.NEWLINE);
-            
-            String datos = "Variedades K&D \nDepto. Ventas \nBarrio La Ronda \n+504 2256-5789";
+            CachePedidos cache = new CachePedidos();
+            String datos = cache.getPronombre() +" \nDepto. Ventas \n"+cache.getProdireccion()+" \n+504 2256-5789";
             String datosTitu = "Vendedor";
-            Rectangle rect = new Rectangle(35, 10, 160, 645);
+            Rectangle rect = new Rectangle(35, 10, 160, 593);
             addColumn(writer, rect, false, datos,0);
             datos = "Moto-Car Repuestos \nDepto. Compras \nBarrio El Centro \n+504 2256-0000";
             datosTitu = "Comprador";
-            rect = new Rectangle(300, 10, 510, 635);
+            rect = new Rectangle(300, 10, 510, 585);
             addColumn(writer, rect, true, datos, 2);
             
             PdfPTable productos = new PdfPTable(4);
@@ -164,4 +176,6 @@ public class CrearPDF {
             
         }
     }
+    
+    
 }

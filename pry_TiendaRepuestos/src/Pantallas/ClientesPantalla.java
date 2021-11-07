@@ -50,7 +50,7 @@ public class ClientesPantalla extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(247, 247, 226));
+        jPanel1.setBackground(new java.awt.Color(43, 47, 61));
 
         txtbuscar_cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
