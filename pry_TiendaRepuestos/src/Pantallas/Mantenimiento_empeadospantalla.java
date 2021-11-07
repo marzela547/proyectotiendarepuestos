@@ -69,7 +69,7 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
             this.btnagregar_empleado.setEnabled(false);
             this.btnmodificar_empleado.setEnabled(true);
             this.btn_eliminar_empleado.setEnabled(true);
-            jdfechasalida_empleado.setEnabled(true);
+            
         }
     }    
 
