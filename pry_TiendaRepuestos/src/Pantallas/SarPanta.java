@@ -79,6 +79,7 @@ public class SarPanta extends javax.swing.JFrame {
         btnRegistar = new javax.swing.JButton();
         btnRegistar1 = new javax.swing.JButton();
         btnRegistar2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         VentanaManSar.setBackground(new java.awt.Color(87, 74, 74));
         VentanaManSar.setUndecorated(true);
@@ -89,12 +90,14 @@ public class SarPanta extends javax.swing.JFrame {
             }
         });
 
-        container.setBackground(new java.awt.Color(201, 194, 185));
-        container.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Matenimiento SAR"));
+        container.setBackground(new java.awt.Color(43, 47, 61));
+        container.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Matenimiento SAR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        container.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPanel4.setBackground(new java.awt.Color(201, 194, 185));
+        jPanel4.setBackground(new java.awt.Color(43, 47, 61));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED)));
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Codigo");
 
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -169,9 +172,10 @@ public class SarPanta extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(TablaSAR);
 
-        jPanel5.setBackground(new java.awt.Color(201, 194, 185));
+        jPanel5.setBackground(new java.awt.Color(43, 47, 61));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED)));
 
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Fecha limite");
 
         txtIni.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -190,6 +194,7 @@ public class SarPanta extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Rango Inicial");
 
         txtFin.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -201,6 +206,7 @@ public class SarPanta extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Rango final");
 
         txtCAI.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -212,6 +218,7 @@ public class SarPanta extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("CAI");
 
         txtCod.setEditable(false);
@@ -224,6 +231,7 @@ public class SarPanta extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Código");
 
         txtFech.setDateFormatString("yyyy-MM-dd");
@@ -288,7 +296,7 @@ public class SarPanta extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        btnModificar.setBackground(new java.awt.Color(255, 184, 38));
+        btnModificar.setBackground(new java.awt.Color(70, 104, 116));
         btnModificar.setText("Modificar");
         btnModificar.setEnabled(false);
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -297,7 +305,7 @@ public class SarPanta extends javax.swing.JFrame {
             }
         });
 
-        btnModificar1.setBackground(new java.awt.Color(255, 184, 38));
+        btnModificar1.setBackground(new java.awt.Color(70, 104, 116));
         btnModificar1.setText("Regresar");
         btnModificar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,11 +364,11 @@ public class SarPanta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(201, 194, 185));
+        jPanel1.setBackground(new java.awt.Color(43, 47, 61));
 
         txtFecha.setDateFormatString("yyyy-MM-dd");
 
-        btnRegistar.setBackground(new java.awt.Color(255, 184, 38));
+        btnRegistar.setBackground(new java.awt.Color(70, 104, 116));
         btnRegistar.setText("Registrar");
         btnRegistar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -368,7 +376,7 @@ public class SarPanta extends javax.swing.JFrame {
             }
         });
 
-        btnRegistar1.setBackground(new java.awt.Color(255, 184, 38));
+        btnRegistar1.setBackground(new java.awt.Color(70, 104, 116));
         btnRegistar1.setText("Buscar");
         btnRegistar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -376,13 +384,17 @@ public class SarPanta extends javax.swing.JFrame {
             }
         });
 
-        btnRegistar2.setBackground(new java.awt.Color(255, 184, 38));
+        btnRegistar2.setBackground(new java.awt.Color(70, 104, 116));
         btnRegistar2.setText("Regresar");
         btnRegistar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistar2ActionPerformed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Mantenimiento SAR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -398,17 +410,24 @@ public class SarPanta extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(42, Short.MAX_VALUE)
-                .addComponent(btnRegistar2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(btnRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(btnRegistar1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnRegistar2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(btnRegistar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnRegistar1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(158, 158, 158))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(txtRangoIncial, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -686,6 +705,7 @@ public class SarPanta extends javax.swing.JFrame {
     private javax.swing.JLabel buscar;
     private javax.swing.JLabel buscar1;
     private javax.swing.JPanel container;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel6;
