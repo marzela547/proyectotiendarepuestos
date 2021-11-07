@@ -496,9 +496,11 @@ public class SarPanta extends javax.swing.JFrame {
        
        try {
             String fecha = TablaSAR.getValueAt(fila, 1).toString();
-            fecha.getDate();
-            java.util.Date fechaParseada= new SimpleDateFormat("yyyy/MM/dd").parse(TablaSAR.getValueAt(fila, 1).toString());
-            txtFech.setDate(fechaParseada);
+            java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            txtFech.setDate(date);
        } catch (ParseException ex) {
            Logger.getLogger(SarPanta.class.getName()).log(Level.SEVERE, null, ex);
        }
@@ -546,7 +548,8 @@ public class SarPanta extends javax.swing.JFrame {
             int dia = txtFech.getCalendar().get(Calendar.DAY_OF_MONTH);
 
            String Fecha = anio + "-" + mes + "-" + dia;           
-           upd_sar( Integer.parseInt(txtCod.getText()) ,Fecha,txtIni.getText() ,txtFin.getText() ,txtCAI.getText());  
+           upd_sar( Integer.parseInt(txtCod.getText()) ,Fecha, txtIni.getText() ,txtFin.getText() ,txtCAI.getText());  
+            cargarSar();
             
         }catch(Exception e){
         }
