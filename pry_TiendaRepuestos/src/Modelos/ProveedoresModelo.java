@@ -13,6 +13,17 @@ public class ProveedoresModelo {
     private Integer Procodigo;
     private String Pronombre;
     private String Proestado;
+    private String Prodireccion;
+
+    public String getProdireccion() {
+        return Prodireccion;
+    }
+
+    public void setProdireccion(String Prodireccion) {
+        this.Prodireccion = Prodireccion;
+    }
+    
+    
 
     public String getProestado() {
         return Proestado;

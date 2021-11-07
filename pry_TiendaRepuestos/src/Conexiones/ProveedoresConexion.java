@@ -98,6 +98,7 @@ public class ProveedoresConexion {
                         ProveedoresModelo proveedor = new ProveedoresModelo();
                         proveedor.setProcodigo(rss.getInt("Procodigo"));
                         proveedor.setPronombre(rss.getString("Pronombre"));
+                        proveedor.setProdireccion(rss.getString("Prodireccion"));
                         proveedor.setProestado(rss.getString("Proestado"));;
                         proveedores.add(proveedor);
                     }

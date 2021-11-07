@@ -240,6 +240,16 @@ public class ProveedorControlador {
     {
         Integer opv = op;
         return opv;
+    
+    public static void transferirDatos(JTable tablaproveedor){
+        int fila;
+        //PedidosModelo proveedor = new PedidosModelo();
+        CachePedidos cache = new CachePedidos();
+        fila = tablaproveedor.getSelectedRow();
+        cache.setBandeProveedores(true);
+        cache.setProcodigo((Integer) tablaproveedor.getValueAt(fila, 0));
+        cache.setPronombre((String) tablaproveedor.getValueAt(fila, 1));
+        cache.setProdireccion((String) tablaproveedor.getValueAt(fila, 2));
     }
 }
 

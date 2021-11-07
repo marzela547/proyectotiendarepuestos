@@ -5,7 +5,10 @@
  */
 package Pantallas;
 
+import Conexiones.TempConexion;
 import Controladores.PedidosControlador;
+import Especiales.CreadorPDF;
+import Especiales.CrearPDF;
 import Modelos.CachePedidos;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -70,7 +73,7 @@ public class PedidosPantalla extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(201, 194, 185));
+        jPanel1.setBackground(new java.awt.Color(43, 47, 61));
 
         tabla_pedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,7 +107,8 @@ public class PedidosPantalla extends javax.swing.JFrame {
             }
         });
 
-        btnbuscarproveedor.setBackground(new java.awt.Color(255, 184, 38));
+        btnbuscarproveedor.setBackground(new java.awt.Color(70, 104, 116));
+        btnbuscarproveedor.setForeground(new java.awt.Color(255, 255, 255));
         btnbuscarproveedor.setText("Buscar Proveedor");
         btnbuscarproveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,9 +116,12 @@ public class PedidosPantalla extends javax.swing.JFrame {
             }
         });
 
+        fecha_pedidos.setBackground(new java.awt.Color(70, 104, 116));
         fecha_pedidos.setEnabled(false);
+        fecha_pedidos.setOpaque(false);
 
-        btnbuscarproducto.setBackground(new java.awt.Color(255, 184, 38));
+        btnbuscarproducto.setBackground(new java.awt.Color(70, 104, 116));
+        btnbuscarproducto.setForeground(new java.awt.Color(255, 255, 255));
         btnbuscarproducto.setText("Buscar Producto");
         btnbuscarproducto.setEnabled(false);
         btnbuscarproducto.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +159,8 @@ public class PedidosPantalla extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Cantidad:");
 
-        btnagregarprod_pedidos.setBackground(new java.awt.Color(255, 184, 38));
+        btnagregarprod_pedidos.setBackground(new java.awt.Color(70, 104, 116));
+        btnagregarprod_pedidos.setForeground(new java.awt.Color(255, 255, 255));
         btnagregarprod_pedidos.setText("Agregar Producto");
         btnagregarprod_pedidos.setEnabled(false);
         btnagregarprod_pedidos.addActionListener(new java.awt.event.ActionListener() {
@@ -161,7 +169,8 @@ public class PedidosPantalla extends javax.swing.JFrame {
             }
         });
 
-        btnimprimir_pedidos.setBackground(new java.awt.Color(255, 184, 38));
+        btnimprimir_pedidos.setBackground(new java.awt.Color(70, 104, 116));
+        btnimprimir_pedidos.setForeground(new java.awt.Color(255, 255, 255));
         btnimprimir_pedidos.setText("Imprimir Pedido");
         btnimprimir_pedidos.setActionCommand("");
         btnimprimir_pedidos.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +179,8 @@ public class PedidosPantalla extends javax.swing.JFrame {
             }
         });
 
-        btnagregar_cliente4.setBackground(new java.awt.Color(255, 184, 38));
+        btnagregar_cliente4.setBackground(new java.awt.Color(70, 104, 116));
+        btnagregar_cliente4.setForeground(new java.awt.Color(255, 255, 255));
         btnagregar_cliente4.setText("Regresar");
         btnagregar_cliente4.setActionCommand("");
         btnagregar_cliente4.addActionListener(new java.awt.event.ActionListener() {
@@ -299,14 +309,17 @@ public class PedidosPantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_btnagregarprod_pedidosActionPerformed
 
     private void btnimprimir_pedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimprimir_pedidosActionPerformed
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+       SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
         String Date;
         Date fecha = new Date();
         Date = formatter.format(fecha);
-        CachePedidos cache = new CachePedidos();
+        //CachePedidos cache = new CachePedidos();
         //System.out.println(cache.getProcodigo()+"<------------ \n"+Date+"<------------- \n"+cache.getProdcodigo()+"<----------- \n"+Integer.parseInt(String.valueOf(spinnercanti_pedidos.getValue()))+"<------------------ \n"+Float.parseFloat( txtprecio_pedidos.getText())+"<--------------");
-        PedidosControlador.Mantenimientopedidos("insertar", 0, cache.getProcodigo(),Date, 1, "ACT");
-        PedidosControlador.Mantenimientotemp("eliminar", txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
+        //PedidosControlador.Mantenimientopedidos("insertar", 0, cache.getProcodigo(),Date, 1, "ACT");
+        //PedidosControlador.Mantenimientotemp("eliminar", txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
+        CachePedidos cache=new CachePedidos();
+        CrearPDF pdf = new CrearPDF("Variedades K&D","Barrio La Ronda", Date);
+        pdf.crearPDF();
     }//GEN-LAST:event_btnimprimir_pedidosActionPerformed
 
     private void btnagregar_cliente4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregar_cliente4ActionPerformed
@@ -335,7 +348,7 @@ public class PedidosPantalla extends javax.swing.JFrame {
          */
         try {
            // UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
-           UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+           UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
         } catch (ClassNotFoundException ex) {
             //java.util.logging.Logger.getLogger(ClientesPantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {

@@ -86,6 +86,21 @@ public class ProveedoresPantalla extends javax.swing.JFrame {
         tabla_proveedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_proveedorMouseClicked(evt);
+        tabla_proveedores.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tabla_proveedores);
+        if (tabla_proveedores.getColumnModel().getColumnCount() > 0) {
+            tabla_proveedores.getColumnModel().getColumn(0).setResizable(false);
+            tabla_proveedores.getColumnModel().getColumn(1).setResizable(false);
+            tabla_proveedores.getColumnModel().getColumn(2).setResizable(false);
+            tabla_proveedores.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        jButton1.setBackground(new java.awt.Color(70, 104, 116));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Aceptar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
         jScrollPane1.setViewportView(tabla_proveedor);
