@@ -169,6 +169,40 @@ public class EmpleadoControlador {
            errcorreo.setText("Formato erroneo de correo");
            error = true;
         }
+
+        /*if(Validaciones.validarMayorEdad(trimmedfechaningreso)<18)
+        {
+           errfechaingreso.setText("No permitido menor Edad");
+           error = true;
+        }*/
+        if(Validaciones.validarlimitemaxingreso(trimmedfechaningreso))
+        {
+            System.out.println("lle");
+           errfechaingreso.setText("Fecha mayor que hoy");
+           error = true;
+        }
+        /*if(Validaciones.validarlimitemaxingreso(trimmedfechasalida))
+        {
+           errfechaingreso.setText("Fecha mayor que hoy");
+           error = true;
+        }*/ 
+        /*if(Validaciones.validarfechaingresosalida(trimmedfechasalida,trimmedfechaningreso))
+        {
+           errfechaingreso.setText("Fecha salida mayor de ingreso");
+           error = true;
+        } */
+
+        
+        if(Validaciones.validarMayorEdad(trimmedfechanacimiento)<18)
+        {
+           errfechanacimiento.setText("Debe ser mayor de Edad");
+           error = true;
+        }
+        if(Validaciones.validarlimitemined(trimmedfechanacimiento))
+        {
+           errfechanacimiento.setText("No permite >70 años");
+           error = true;
+        }
         if(trimmedfechanacimiento=="")
         {
            errfechanacimiento.setText("Es un campo obligatorio");
@@ -178,17 +212,6 @@ public class EmpleadoControlador {
         if(trimmedfechaningreso=="")
         {
            errfechaingreso.setText("Es un campo obligatorio");
-           error = true;
-        }
-        if(Validaciones.validarMayorEdad(trimmedfechaningreso)<18)
-        {
-           errfechaingreso.setText("No permitido menor Edad");
-           error = true;
-        }
-        
-        if(Validaciones.validarMayorEdad(trimmedfechanacimiento)<18)
-        {
-           errfechanacimiento.setText("Debe ser mayor de Edad");
            error = true;
         }
         

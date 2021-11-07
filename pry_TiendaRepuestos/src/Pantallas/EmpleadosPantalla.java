@@ -9,6 +9,8 @@ import Controladores.ControladorGeneral;
 import Controladores.EmpleadoControlador;
 import Modelos.CacheEmpleado;
 import Modelos.EmpleadosModelo;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -21,7 +23,7 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
      */
     public EmpleadosPantalla() {
         initComponents();
-        EmpleadoControlador.Llenartablaempleado(tabla_empleados, "Todos"); 
+        EmpleadoControlador.Llenartablaempleado(tabla_empleados, "Activos"); 
         ControladorGeneral.Filtrotabla(tabla_empleados, txtbuscar_empleado);
     }
 
@@ -35,25 +37,35 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
     private void initComponents() {
 
         jRadioButton1 = new javax.swing.JRadioButton();
-        btnagregar_empleado = new javax.swing.JButton();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jPanel1 = new javax.swing.JPanel();
         txtbuscar_empleado = new javax.swing.JTextField();
+        btnagregar_empleado = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_empleados = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         jRadioButton1.setText("jRadioButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        btnagregar_empleado.setText("Agregar");
-        btnagregar_empleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnagregar_empleadoActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(43, 47, 61));
+        jPanel1.setForeground(new java.awt.Color(43, 47, 61));
 
         txtbuscar_empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtbuscar_empleadoActionPerformed(evt);
+            }
+        });
+
+        btnagregar_empleado.setBackground(new java.awt.Color(70, 104, 116));
+        btnagregar_empleado.setForeground(new java.awt.Color(255, 255, 255));
+        btnagregar_empleado.setText("Agregar");
+        btnagregar_empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnagregar_empleadoActionPerformed(evt);
             }
         });
 
@@ -76,6 +88,7 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabla_empleados.setGridColor(new java.awt.Color(102, 102, 102));
         tabla_empleados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_empleadosMouseClicked(evt);
@@ -83,31 +96,58 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla_empleados);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\fgodo\\OneDrive\\Documentos\\GitHub\\proyectotiendarepuestos\\pry_TiendaRepuestos\\src\\Imagenes\\LogoPantallamd.PNG")); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(230, 230, 230));
+        jLabel2.setText("Tabla Empleados");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtbuscar_empleado)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnagregar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1016, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(58, 58, 58)
+                                .addComponent(jLabel2)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(47, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnagregar_empleado)
+                    .addComponent(txtbuscar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(266, Short.MAX_VALUE)
-                .addComponent(txtbuscar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnagregar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(231, 231, 231))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1016, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnagregar_empleado)
-                    .addComponent(txtbuscar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -153,7 +193,7 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -184,10 +224,15 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
                 new EmpleadosPantalla().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnagregar_empleado;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_empleados;

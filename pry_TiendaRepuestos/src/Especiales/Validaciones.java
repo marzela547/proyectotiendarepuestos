@@ -192,4 +192,126 @@ public class Validaciones {
         
         return 0;
     }
+    public static boolean validarlimitemined(String fingreso)
+    {
+        String hoy= String.valueOf(LocalDate.now());
+        Date Datehoy = null;
+        boolean limi=false;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+        Integer anio =0;
+        JDateChooser today = new JDateChooser();
+        JDateChooser nacimiento = new JDateChooser();
+        try
+        {
+            Datehoy = formatter.parse(hoy);  
+            today.setDate(Datehoy);  
+            Datehoy = formatter.parse(fingreso);
+            nacimiento.setDate(Datehoy);
+            anio = today.getCalendar().get(Calendar.YEAR)-nacimiento.getCalendar().get(Calendar.YEAR);
+
+            if(anio < 70)
+            {
+                limi= false;
+            }else
+            {
+                limi=  true;
+            }
+            
+        }catch(Exception e)
+        {
+            System.out.println("error");
+        
+        }
+        return limi;
+       
+    }    
+    public static boolean validarlimitemaxingreso(String fecha)
+    {
+
+        String hoy= String.valueOf(LocalDate.now());
+        Date Datehoy = null;
+        boolean limi=false;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+        Integer anio =0;
+        JDateChooser today = new JDateChooser();
+        JDateChooser ingreso = new JDateChooser();
+        try
+        {
+            Datehoy = formatter.parse(hoy);  
+            today.setDate(Datehoy);  
+            Datehoy = formatter.parse(fecha);
+            ingreso.setDate(Datehoy);
+            anio = today.getCalendar().get(Calendar.YEAR)-ingreso.getCalendar().get(Calendar.YEAR);
+            Integer mes = today.getCalendar().get(Calendar.MONTH)-ingreso.getCalendar().get(Calendar.MONTH);
+            Integer dia = today.getCalendar().get(Calendar.DATE)-ingreso.getCalendar().get(Calendar.DATE);         
+            
+
+            if(today.getCalendar().get(Calendar.DATE)>=ingreso.getCalendar().get(Calendar.DATE))
+            {
+                if(today.getCalendar().get(Calendar.MONTH)>=ingreso.getCalendar().get(Calendar.MONTH))
+                {
+                    if(today.getCalendar().get(Calendar.YEAR)>=ingreso.getCalendar().get(Calendar.YEAR))
+                    {
+                        limi= false;
+
+                    }else{
+                        limi= true;
+                    }   
+                    
+                }else{
+                    limi= true;
+                }                
+            }else{
+                limi= true;
+            }     
+        }catch(Exception e)
+        {
+            System.out.println("error");
+        
+        }
+        return limi;
+       
+    }
+    public static boolean validarfechaingresosalida(String fechai,String fechas)
+    {
+        String hoy= String.valueOf(LocalDate.now());
+        Date Datehoy = null;
+        boolean limi=false;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+        Integer anio =0;
+        JDateChooser ingreso = new JDateChooser();
+        JDateChooser salida = new JDateChooser();
+        try
+        {
+            Datehoy = formatter.parse(fechas);  
+            salida.setDate(Datehoy);  
+            Datehoy = formatter.parse(fechai);
+            ingreso.setDate(Datehoy);
+            anio = salida.getCalendar().get(Calendar.YEAR)-ingreso.getCalendar().get(Calendar.YEAR);
+            Integer mes = salida.getCalendar().get(Calendar.MONTH)-ingreso.getCalendar().get(Calendar.MONTH);
+            Integer dia = salida.getCalendar().get(Calendar.DATE)-ingreso.getCalendar().get(Calendar.DATE);            
+            
+              if(mes<0 ||(mes==0 && dia<0)){
+                anio =anio-1;
+                }
+            
+            
+            if(anio>0)
+            {
+                limi= false;
+            }else
+            {
+                limi=  true;
+            }
+            
+        }catch(Exception e)
+        {
+            System.out.println("error");
+        
+        }
+        return limi;
+       
+    }      
+    
+    
 }
