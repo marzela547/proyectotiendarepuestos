@@ -250,6 +250,7 @@ public class ProveedorControlador {
         cache.setProcodigo((Integer) tablaproveedor.getValueAt(fila, 0));
         cache.setPronombre((String) tablaproveedor.getValueAt(fila, 1));
         cache.setProdireccion((String) tablaproveedor.getValueAt(fila, 2));
+        cache.setProtelefono((String) tablaproveedor.getValueAt(fila, 3));
     }
 }
 

@@ -18,6 +18,23 @@ public class CachePedidos {
     private static String Proddescripcion;
     private static String Pronombre;
     private static String Prodireccion;
+    private static String Protelefono;
+    private static String tippago;
+
+    public static String getTippago() {
+        return tippago;
+    }
+
+    public static void setTippago(String tippago) {
+        CachePedidos.tippago = tippago;
+    }
+    public static String getProtelefono() {
+        return Protelefono;
+    }
+
+    public static void setProtelefono(String Protelefono) {
+        CachePedidos.Protelefono = Protelefono;
+    }
 
     public static String getProdireccion() {
         return Prodireccion;

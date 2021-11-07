@@ -12,6 +12,7 @@ import Modelos.TempModelo;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
@@ -41,15 +42,11 @@ public class CrearPDF {
     FileOutputStream archivo;
     Paragraph titulo;
     
-    public CrearPDF(String proveedorName, String proveedorAdd ,String fecha){
+    public CrearPDF(String fecha){
       this.fechas = fecha;
-      //this.proveedores.add(proveedorName);
-      //this.proveedores.add(proveedorAdd);
-      //this.empresadatos.add("Moto-Car Repuestos");
-      //this.empresadatos.add("P. Sherman Calle Wallaby 42");
       
       documento = new Document();
-      titulo = new Paragraph("Orden de Compra");
+      
     }
     
     public void crearPDF(){
@@ -57,7 +54,12 @@ public class CrearPDF {
             BaseColor myColor = WebColors.getRGBColor("#7da6b5");
             archivo = new FileOutputStream("D:\\Documentos\\pruebapedidos.pdf");
             PdfWriter writer= PdfWriter.getInstance(documento, archivo);
+            Font fuente = new Font();
+            fuente.setSize(28);
+            fuente.setColor(myColor);
+            fuente.setStyle(Font.BOLD);
             documento.open();
+            titulo = new Paragraph("Orden de Compra", fuente);
             titulo.setAlignment(2);
             Image ima = null;
             try{
@@ -75,8 +77,7 @@ public class CrearPDF {
             documento.add(fech);
             documento.add(Chunk.NEWLINE);
             documento.add(Chunk.NEWLINE);
-            documento.add(Chunk.NEWLINE);
-            documento.add(new Paragraph("\nMoto-Car Repuestos \n"
+            documento.add(new Paragraph("Moto-Car Repuestos \n"
             +"P. Sherman Calle Wallaby 42 \n"
             +"Sydney \n"
             +"11101 \n"
@@ -85,50 +86,63 @@ public class CrearPDF {
             titulos.setWidthPercentage(100);
             PdfPCell vendedor = new PdfPCell(new Phrase("Vendedor"));
             vendedor.setBackgroundColor(myColor);
-            vendedor.setBorderColor(BaseColor.WHITE);
             vendedor.setRowspan(2);
             PdfPCell comprador = new PdfPCell(new Phrase("Comprador"));
             comprador.setBackgroundColor(myColor);
-            comprador.setBorderColor(BaseColor.WHITE);
             comprador.setRowspan(2);
             titulos.addCell(vendedor);
             titulos.addCell(comprador);
             documento.add(titulos);
             documento.add(Chunk.NEWLINE);
             documento.add(Chunk.NEWLINE);
-            documento.add(Chunk.NEWLINE);
-            documento.add(Chunk.NEWLINE);
-            documento.add(Chunk.NEWLINE);
-            documento.add(Chunk.NEWLINE);
             CachePedidos cache = new CachePedidos();
-            String datos = cache.getPronombre() +" \nDepto. Ventas \n"+cache.getProdireccion()+" \n+504 2256-5789";
+            String datos = cache.getPronombre() +" \nDepto. Ventas \n"+cache.getProdireccion()+" \n+504 "+cache.getProtelefono();
             String datosTitu = "Vendedor";
-            Rectangle rect = new Rectangle(35, 10, 160, 593);
+            Rectangle rect = new Rectangle(35, 10, 160, 603);
             addColumn(writer, rect, false, datos,0);
             datos = "Moto-Car Repuestos \nDepto. Compras \nBarrio El Centro \n+504 2256-0000";
             datosTitu = "Comprador";
-            rect = new Rectangle(300, 10, 510, 585);
+            rect = new Rectangle(300, 10, 510, 595);
             addColumn(writer, rect, true, datos, 2);
+            documento.add(Chunk.NEWLINE);
+            PdfPTable datosEx = new PdfPTable(3);
+            datosEx.setWidthPercentage(100);
+            PdfPCell delivery = new PdfPCell(new Phrase("Delivery"));
+            delivery.setBackgroundColor(myColor);
+            PdfPCell pago = new PdfPCell(new Phrase("Términos de pago"));
+            pago.setBackgroundColor(myColor);
+            PdfPCell empleado = new PdfPCell(new Phrase("Solicitado por"));
+            empleado.setBackgroundColor(myColor);
             
-            PdfPTable productos = new PdfPTable(4);
+            datosEx.addCell(delivery);
+            datosEx.addCell(pago);
+            datosEx.addCell(empleado);
+            datosEx.addCell("Si");
+            datosEx.addCell(cache.getTippago());
+            datosEx.addCell("Marcela Zelaya");
+            documento.add(datosEx);
+            
+            documento.add(Chunk.NEWLINE);
+            
+            PdfPTable productos = new PdfPTable(5);
             productos.setWidthPercentage(100);
             PdfPCell codigo = new PdfPCell(new Phrase("Código"));
             codigo.setBackgroundColor(myColor);
-            codigo.setBorderColor(BaseColor.WHITE);
             PdfPCell descrip = new PdfPCell(new Phrase("Descripción"));
             descrip.setBackgroundColor(myColor);
-            descrip.setBorderColor(BaseColor.WHITE);
             PdfPCell precio = new PdfPCell(new Phrase("Precio"));
             precio.setBackgroundColor(myColor);
-            precio.setBorderColor(BaseColor.WHITE);
             PdfPCell canti = new PdfPCell(new Phrase("Cantidad"));
             canti.setBackgroundColor(myColor);
-            canti.setBorderColor(BaseColor.WHITE);
+            PdfPCell totales = new PdfPCell(new Phrase("Totales"));
+            totales.setBackgroundColor(myColor);
             productos.addCell(codigo);
             productos.addCell(descrip);
             productos.addCell(precio);
             productos.addCell(canti);
+            productos.addCell(totales);
             //System.out.println("ENTRA");
+            float subtot =0;
             List <TempModelo> producto = TempConexion.Listadotemp();
             //System.out.println("FUERA DEL FOR");
             for(int i=0; i<producto.size(); i++){
@@ -141,11 +155,34 @@ public class CrearPDF {
                 productos.addCell(String.valueOf(producto.get(i).getTempprodprecventa()));
                 //System.out.println(producto.get(i).getTempprodprecventa()+"<---------");
                 productos.addCell(String.valueOf(producto.get(i).getTempprodcanti()));
+                float total = producto.get(i).getTempprodprecventa() * producto.get(i).getTempprodcanti();
                // System.out.println(producto.get(i).getTempprodcanti()+"<---------");
-                
+                subtot+=total;
+                productos.addCell(String.valueOf(total));
             }
             documento.add(productos);
+            PdfPTable calculos = new PdfPTable(2);
+            calculos.setWidthPercentage(30);
+            PdfPCell subto = new PdfPCell(new Phrase("Subtotal"));
+            subto.setBackgroundColor(myColor);
+            PdfPCell valorsub = new PdfPCell(new Phrase(String.valueOf(subtot)));
+            //codigo.setBackgroundColor(myColor);
+            PdfPCell isv = new PdfPCell(new Phrase("ISV 15%"));
+            isv.setBackgroundColor(myColor);
+            PdfPCell totalf = new PdfPCell(new Phrase("Total"));
+            totalf.setBackgroundColor(myColor);
             
+            calculos.addCell(subto);
+            calculos.addCell(valorsub);
+            calculos.addCell(isv);
+            double isvval = subtot*0.15;
+            double tot = subtot+isvval;
+            calculos.addCell(String.valueOf(isvval));
+            calculos.addCell(totalf);
+            calculos.addCell(String.valueOf(tot));
+            calculos.setHorizontalAlignment(2);
+            documento.add(Chunk.NEWLINE);
+            documento.add(calculos);
             documento.add(Chunk.NEWLINE);
             documento.add(new Paragraph("Autorizado por: John Doe"));
             

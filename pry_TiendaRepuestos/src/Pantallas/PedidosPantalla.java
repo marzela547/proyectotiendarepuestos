@@ -8,6 +8,7 @@ package Pantallas;
 import Conexiones.TempConexion;
 import Controladores.PedidosControlador;
 import Especiales.CrearPDF;
+import Especiales.Validaciones;
 import Modelos.CachePedidos;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,12 +25,15 @@ public class PedidosPantalla extends javax.swing.JFrame {
     /**
      * Creates new form PedidosPantalla
      */
+    
+    boolean bandeedit = false;
+    
     public PedidosPantalla() {
         initComponents();
         this.setLocationRelativeTo(null);
         CachePedidos cache = new CachePedidos();
-        Date fecha = new Date();
-        fecha_pedidos.setDate(fecha);
+        //Date fecha = new Date();
+        //fecha_pedidos.setDate(fecha);
         PedidosControlador pedidocontrolador = new PedidosControlador();
         pedidocontrolador.setPlaceHolders(this.txtproveedor_pedidos, this.txtproducto_pedidos, this.txtproductodes_pedidos, this.txtprecio_pedidos);
         if(cache.isBandeProveedores()){
@@ -39,6 +43,7 @@ public class PedidosPantalla extends javax.swing.JFrame {
         if(cache.isBandeProductos()){
             PedidosControlador.agregarProducto(txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
             PedidosControlador.Llenartablapedidostemp(tabla_pedidos);
+            spinnercanti_pedidos.setEnabled(true);
             btnagregarprod_pedidos.setEnabled(true);
         }
     }
@@ -57,7 +62,6 @@ public class PedidosPantalla extends javax.swing.JFrame {
         tabla_pedidos = new javax.swing.JTable();
         txtproveedor_pedidos = new javax.swing.JTextField();
         btnbuscarproveedor = new javax.swing.JButton();
-        fecha_pedidos = new com.toedter.calendar.JDateChooser();
         btnbuscarproducto = new javax.swing.JButton();
         txtproducto_pedidos = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -67,10 +71,13 @@ public class PedidosPantalla extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnagregarprod_pedidos = new javax.swing.JButton();
         btnimprimir_pedidos = new javax.swing.JButton();
-        btnagregar_cliente4 = new javax.swing.JButton();
+        btnregresar_pedidos = new javax.swing.JButton();
         txtprecio_pedidos = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        cmbTipPago = new javax.swing.JComboBox<>();
+        btncancelar_pedidos = new javax.swing.JButton();
+        btneliminarprod_pedidos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,6 +100,11 @@ public class PedidosPantalla extends javax.swing.JFrame {
             }
         });
         tabla_pedidos.getTableHeader().setReorderingAllowed(false);
+        tabla_pedidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_pedidosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla_pedidos);
         if (tabla_pedidos.getColumnModel().getColumnCount() > 0) {
             tabla_pedidos.getColumnModel().getColumn(0).setResizable(false);
@@ -117,10 +129,6 @@ public class PedidosPantalla extends javax.swing.JFrame {
             }
         });
 
-        fecha_pedidos.setBackground(new java.awt.Color(70, 104, 116));
-        fecha_pedidos.setEnabled(false);
-        fecha_pedidos.setOpaque(false);
-
         btnbuscarproducto.setBackground(new java.awt.Color(70, 104, 116));
         btnbuscarproducto.setForeground(new java.awt.Color(255, 255, 255));
         btnbuscarproducto.setText("Buscar Producto");
@@ -144,6 +152,7 @@ public class PedidosPantalla extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txtproductodes_pedidos);
 
         spinnercanti_pedidos.setEditor(new javax.swing.JSpinner.NumberEditor(spinnercanti_pedidos, ""));
+        spinnercanti_pedidos.setEnabled(false);
         spinnercanti_pedidos.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 spinnercanti_pedidosStateChanged(evt);
@@ -158,11 +167,12 @@ public class PedidosPantalla extends javax.swing.JFrame {
         txtempleado_pedidos.setEditable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cantidad:");
 
         btnagregarprod_pedidos.setBackground(new java.awt.Color(70, 104, 116));
         btnagregarprod_pedidos.setForeground(new java.awt.Color(255, 255, 255));
-        btnagregarprod_pedidos.setText("Agregar Producto");
+        btnagregarprod_pedidos.setText("Guardar Producto");
         btnagregarprod_pedidos.setEnabled(false);
         btnagregarprod_pedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,7 +182,7 @@ public class PedidosPantalla extends javax.swing.JFrame {
 
         btnimprimir_pedidos.setBackground(new java.awt.Color(70, 104, 116));
         btnimprimir_pedidos.setForeground(new java.awt.Color(255, 255, 255));
-        btnimprimir_pedidos.setText("Imprimir Pedido");
+        btnimprimir_pedidos.setText("Realizar Pedido");
         btnimprimir_pedidos.setActionCommand("");
         btnimprimir_pedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,13 +190,13 @@ public class PedidosPantalla extends javax.swing.JFrame {
             }
         });
 
-        btnagregar_cliente4.setBackground(new java.awt.Color(70, 104, 116));
-        btnagregar_cliente4.setForeground(new java.awt.Color(255, 255, 255));
-        btnagregar_cliente4.setText("Regresar");
-        btnagregar_cliente4.setActionCommand("");
-        btnagregar_cliente4.addActionListener(new java.awt.event.ActionListener() {
+        btnregresar_pedidos.setBackground(new java.awt.Color(70, 104, 116));
+        btnregresar_pedidos.setForeground(new java.awt.Color(255, 255, 255));
+        btnregresar_pedidos.setText("Regresar");
+        btnregresar_pedidos.setActionCommand("");
+        btnregresar_pedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnagregar_cliente4ActionPerformed(evt);
+                btnregresar_pedidosActionPerformed(evt);
             }
         });
 
@@ -201,36 +211,57 @@ public class PedidosPantalla extends javax.swing.JFrame {
         jLabel4.setText("Generar Orden de Compra");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        cmbTipPago.setBackground(new java.awt.Color(70, 104, 116));
+        cmbTipPago.setForeground(new java.awt.Color(255, 255, 255));
+        cmbTipPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de pago...", "Crédito", "Al contado", "Transferencia" }));
+
+        btncancelar_pedidos.setBackground(new java.awt.Color(70, 104, 116));
+        btncancelar_pedidos.setForeground(new java.awt.Color(255, 255, 255));
+        btncancelar_pedidos.setText("Cancelar Pedido");
+        btncancelar_pedidos.setActionCommand("");
+        btncancelar_pedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncancelar_pedidosActionPerformed(evt);
+            }
+        });
+
+        btneliminarprod_pedidos.setBackground(new java.awt.Color(70, 104, 116));
+        btneliminarprod_pedidos.setForeground(new java.awt.Color(255, 255, 255));
+        btneliminarprod_pedidos.setText("Eliminar Producto");
+        btneliminarprod_pedidos.setEnabled(false);
+        btneliminarprod_pedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarprod_pedidosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnagregar_cliente4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(365, 365, 365)
-                        .addComponent(btnimprimir_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtproducto_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnbuscarproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(txtproveedor_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnbuscarproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(55, 55, 55)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(fecha_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnregresar_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(134, 134, 134)
+                        .addComponent(btncancelar_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(146, 146, 146)
+                        .addComponent(btnimprimir_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(txtproducto_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnbuscarproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(txtproveedor_pedidos)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnbuscarproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(55, 55, 55)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,16 +269,15 @@ public class PedidosPantalla extends javax.swing.JFrame {
                                         .addComponent(spinnercanti_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(txtempleado_pedidos)
                                     .addComponent(txtprecio_pedidos)
-                                    .addComponent(btnagregarprod_pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(47, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(87, 87, 87)
-                                .addComponent(jLabel4))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                                    .addComponent(btnagregarprod_pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmbTipPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btneliminarprod_pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(87, 87, 87)
+                            .addComponent(jLabel4))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,18 +290,11 @@ public class PedidosPantalla extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtproveedor_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnbuscarproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fecha_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cmbTipPago, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnbuscarproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtproducto_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(txtempleado_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -281,15 +304,25 @@ public class PedidosPantalla extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(spinnercanti_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnagregarprod_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnagregarprod_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addComponent(btneliminarprod_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnbuscarproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtproducto_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnagregar_cliente4, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(btnimprimir_pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnimprimir_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnregresar_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btncancelar_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -306,28 +339,41 @@ public class PedidosPantalla extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnagregar_cliente4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregar_cliente4ActionPerformed
+    private void btnregresar_pedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregresar_pedidosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnagregar_cliente4ActionPerformed
+    }//GEN-LAST:event_btnregresar_pedidosActionPerformed
 
     private void btnimprimir_pedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimprimir_pedidosActionPerformed
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String Date;
         Date fecha = new Date();
         Date = formatter.format(fecha);
-        //CachePedidos cache = new CachePedidos();
-        //System.out.println(cache.getProcodigo()+"<------------ \n"+Date+"<------------- \n"+cache.getProdcodigo()+"<----------- \n"+Integer.parseInt(String.valueOf(spinnercanti_pedidos.getValue()))+"<------------------ \n"+Float.parseFloat( txtprecio_pedidos.getText())+"<--------------");
-        //PedidosControlador.Mantenimientopedidos("insertar", 0, cache.getProcodigo(),Date, 1, "ACT");
-        //PedidosControlador.Mantenimientotemp("eliminar", txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
-        CachePedidos cache=new CachePedidos();
-        CrearPDF pdf = new CrearPDF("Variedades K&D","Barrio La Ronda", Date);
-        pdf.crearPDF();
+        if(Validaciones.validarSelecciones(txtproveedor_pedidos, cmbTipPago, tabla_pedidos)){
+            CachePedidos cache = new CachePedidos();
+            PedidosControlador.seleccionPago(cmbTipPago);
+            if(!PedidosControlador.Mantenimientopedidos("insertar", 0, cache.getProcodigo(),Date, 1, "ACT")){
+                CrearPDF pdf = new CrearPDF( Date);
+                pdf.crearPDF();
+            }
+            
+            PedidosControlador.Mantenimientotemp("eliminar", txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
+            
+        }
+        
     }//GEN-LAST:event_btnimprimir_pedidosActionPerformed
 
     private void btnagregarprod_pedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarprod_pedidosActionPerformed
-        PedidosControlador.Mantenimientotemp("insertar", txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
-        PedidosControlador.Llenartablapedidostemp(tabla_pedidos);
-        PedidosControlador.limpiarTextos(txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
+        if(bandeedit==true){
+            PedidosControlador.Mantenimientotemp("editar", txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
+            PedidosControlador.Llenartablapedidostemp(tabla_pedidos);
+            PedidosControlador.limpiarTextos(txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
+            btneliminarprod_pedidos.setEnabled(false);
+        }else{
+            PedidosControlador.Mantenimientotemp("insertar", txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
+            PedidosControlador.Llenartablapedidostemp(tabla_pedidos);
+            PedidosControlador.limpiarTextos(txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
+            btnbuscarproveedor.setEnabled(false);
+        }
         //PedidosControlador.agregarFilaProducto(tabla_pedidos, txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
     }//GEN-LAST:event_btnagregarprod_pedidosActionPerformed
 
@@ -362,6 +408,28 @@ public class PedidosPantalla extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtproveedor_pedidosActionPerformed
 
+    private void btncancelar_pedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelar_pedidosActionPerformed
+        PedidosControlador.limpiarTodo(txtproveedor_pedidos, txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos, cmbTipPago, btnbuscarproveedor, btnbuscarproducto, btnagregarprod_pedidos);
+        PedidosControlador.Llenartablapedidostemp(tabla_pedidos);
+    }//GEN-LAST:event_btncancelar_pedidosActionPerformed
+
+    private void tabla_pedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_pedidosMouseClicked
+        int seleccion = this.tabla_pedidos.rowAtPoint(evt.getPoint());
+        txtproducto_pedidos.setText(String.valueOf(this.tabla_pedidos.getModel().getValueAt(seleccion, 0)));
+        txtproductodes_pedidos.setText(String.valueOf(this.tabla_pedidos.getModel().getValueAt(seleccion, 1)));
+        txtprecio_pedidos.setText(String.valueOf(this.tabla_pedidos.getModel().getValueAt(seleccion, 2)));
+        spinnercanti_pedidos.setValue(this.tabla_pedidos.getModel().getValueAt(seleccion, 3));
+        bandeedit=true;
+        btneliminarprod_pedidos.setEnabled(true);
+    }//GEN-LAST:event_tabla_pedidosMouseClicked
+
+    private void btneliminarprod_pedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarprod_pedidosActionPerformed
+            PedidosControlador.Mantenimientotemp("quitar", txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
+            PedidosControlador.Llenartablapedidostemp(tabla_pedidos);
+            PedidosControlador.limpiarTextos(txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);
+            btneliminarprod_pedidos.setEnabled(false);
+    }//GEN-LAST:event_btneliminarprod_pedidosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -392,12 +460,14 @@ public class PedidosPantalla extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnagregar_cliente4;
     private javax.swing.JButton btnagregarprod_pedidos;
     private javax.swing.JButton btnbuscarproducto;
     private javax.swing.JButton btnbuscarproveedor;
+    private javax.swing.JButton btncancelar_pedidos;
+    private javax.swing.JButton btneliminarprod_pedidos;
     private javax.swing.JButton btnimprimir_pedidos;
-    private com.toedter.calendar.JDateChooser fecha_pedidos;
+    private javax.swing.JButton btnregresar_pedidos;
+    private javax.swing.JComboBox<String> cmbTipPago;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

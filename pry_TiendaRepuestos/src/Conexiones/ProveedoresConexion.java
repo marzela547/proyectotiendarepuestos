@@ -99,6 +99,7 @@ public class ProveedoresConexion {
                         proveedor.setProcodigo(rss.getInt("Procodigo"));
                         proveedor.setPronombre(rss.getString("Pronombre"));
                         proveedor.setProdireccion(rss.getString("Prodireccion"));
+                        proveedor.setProtelefono(rss.getString("Protelefono"));
                         proveedor.setProestado(rss.getString("Proestado"));;
                         proveedores.add(proveedor);
                     }

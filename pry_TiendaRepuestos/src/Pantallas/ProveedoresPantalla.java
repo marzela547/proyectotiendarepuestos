@@ -93,6 +93,7 @@ public class ProveedoresPantalla extends javax.swing.JFrame {
             tabla_proveedores.getColumnModel().getColumn(1).setResizable(false);
             tabla_proveedores.getColumnModel().getColumn(2).setResizable(false);
             tabla_proveedores.getColumnModel().getColumn(3).setResizable(false);
+            tabla_proveedores.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jButton1.setBackground(new java.awt.Color(70, 104, 116));
