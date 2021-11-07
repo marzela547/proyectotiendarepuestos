@@ -14,6 +14,8 @@ import Modelos.CachePedidos;
 import Modelos.PedidosModelo;
 import Modelos.ProductosModelo;
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
@@ -43,16 +45,16 @@ public class PedidosControlador {
     }
     public static void agregarProducto(JTextField txtProducto, JTextArea txtDescrip, JTextField txtPrecio, JSpinner spinner){
         CachePedidos cache = new CachePedidos();
-        spinner.setValue(1);
+        spinner.setValue(5);
         txtDescrip.setText(cache.getProddescripcion());
         txtPrecio.setText(cache.getDetpedprodprecio().toString());
         txtProducto.setText(String.valueOf(cache.getProdcodigo()));
     }
     
     public static void cambioSpinner(JSpinner spinner){
-        if(Integer.parseInt(spinner.getValue().toString())<1){
-            JOptionPane.showMessageDialog(null, "Lo sentimos, la cantidad no puede ser menor a 1");
-            spinner.setValue(1);
+        if(Integer.parseInt(spinner.getValue().toString())<5){
+            JOptionPane.showMessageDialog(null, "Lo sentimos, la cantidad no puede ser menor a 5");
+            spinner.setValue(5);
         }
         
     }
@@ -89,7 +91,7 @@ public class PedidosControlador {
         {
             case "OK": 
                     System.out.println("llego insertar 5");
-                   JOptionPane.showMessageDialog(null, "Pedido ingresado con éxito.");              
+                   //JOptionPane.showMessageDialog(null, "Pedido ingresado con éxito.");              
             break;
             default:
                 System.out.println("llego insertar 9");
@@ -166,6 +168,9 @@ public class PedidosControlador {
                 case "eliminar":   
                     mnterror = PedidosControlador.Eliminartemp();             
                 break;
+                case "quitar":   
+                    mnterror = PedidosControlador.EliminartempUno(Integer.parseInt(txtcodigo.getText()));             
+                break;
             }
         
         
@@ -209,7 +214,7 @@ public class PedidosControlador {
         switch (resultado) 
         {
             case "OK": 
-                   JOptionPane.showMessageDialog(null, "Cliente editado con éxito.");              
+                   JOptionPane.showMessageDialog(null, "Producto editado con éxito.");              
             break;
             default:
                 System.out.println("llego insertar 9");
@@ -219,6 +224,23 @@ public class PedidosControlador {
         }
         return error;
     }
+    private static boolean EliminartempUno(Integer id)
+    {
+        boolean error = false;
+        System.out.println("llegue");
+        PedidosModelo pedidomodelo = new PedidosModelo();
+        pedidomodelo = PedidosControlador.Setpedidomodelo(id, "",Float.parseFloat("0"),0);
+        String resultado = PedidosConexion.Mantenimientotemp("quitar", pedidomodelo);    
+        switch (resultado) 
+        {
+            case "OK": 
+                   JOptionPane.showMessageDialog(null, "Producto eliminado con éxito.");    
+                   error=true;
+            break;
+            
+        }
+        return error;
+    } 
     private static boolean Eliminartemp()
     {
         boolean error = false;
@@ -271,6 +293,48 @@ public class PedidosControlador {
         txtcodigo.setText("");
         txtdescrip.setText("");
         txtprecio.setText("");
-        spinner.setValue(1);
+        spinner.setValue(5);
+    }
+    
+    public static void seleccionPago(JComboBox cmbtipo){
+        CachePedidos cache = new CachePedidos();
+        switch (cmbtipo.getSelectedIndex()){
+            case 1:
+                cache.setTippago(cmbtipo.getSelectedItem().toString());
+                break;
+            case 2:
+                cache.setTippago(cmbtipo.getSelectedItem().toString());
+                break;
+            case 3:
+                cache.setTippago(cmbtipo.getSelectedItem().toString());
+                break;
+            
+        }
+    }
+    
+    public static void limpiarTodo(JTextField txtproveedor ,JTextField txtcodigo, JTextArea txtdescrip, JTextField txtprecio, JSpinner spinner, 
+            JComboBox cmbtipo, JButton btnproveedor, JButton btnproducto, JButton btnagregar){
+        txtproveedor.setText("");
+        txtcodigo.setText("");
+        txtdescrip.setText("");
+        txtprecio.setText("");
+        spinner.setValue(5);
+        cmbtipo.setSelectedIndex(0);
+        btnproveedor.setEnabled(true);
+        btnproducto.setEnabled(false);
+        btnagregar.setEnabled(false);
+        spinner.setEnabled(false);
+        PedidosControlador.Eliminartemp();
+        CachePedidos cache = new CachePedidos();
+        cache.setBandeProveedores(false);
+        cache.setProcodigo(0);
+        cache.setPronombre("");
+        cache.setProdireccion("");
+        cache.setProtelefono("");
+        cache.setBandeProductos(false);
+        cache.setProdcodigo(0);
+        cache.setProddescripcion("");
+        cache.setDetpedprodprecio(Float.parseFloat(String.valueOf(0)));
+        
     }
 }

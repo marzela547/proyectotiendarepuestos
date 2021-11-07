@@ -7,7 +7,10 @@ package Especiales;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -147,5 +150,21 @@ public class Validaciones {
     public static Boolean validarNomenclatura(String letras) 
     {
         return letras.matches("[a-zA-Z]{3}");
-    }    
+    }
+    
+    public static Boolean validarSelecciones(JTextField proveedor, JComboBox cmbtipo, JTable tabla){
+        if(proveedor.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione un proveedor");
+            return false;
+        }else
+            if( cmbtipo.getSelectedIndex()==0){
+                JOptionPane.showMessageDialog(null, "Por favor, seleccione un tipo de pago");
+                return false;
+            }else
+                if(tabla.getRowCount() <1){
+                    JOptionPane.showMessageDialog(null, "Por favor, seleccione un producto a ordenar");
+                    return false;
+                }
+        return true;
+    }
 }

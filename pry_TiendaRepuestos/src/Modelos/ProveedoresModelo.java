@@ -14,6 +14,15 @@ public class ProveedoresModelo {
     private String Pronombre;
     private String Proestado;
     private String Prodireccion;
+    private String Protelefono;
+
+    public String getProtelefono() {
+        return Protelefono;
+    }
+
+    public void setProtelefono(String Protelefono) {
+        this.Protelefono = Protelefono;
+    }
 
     public String getProdireccion() {
         return Prodireccion;
