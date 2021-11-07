@@ -38,7 +38,7 @@ public class ProveedoresPantalla extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(247, 247, 226));
+        jPanel1.setBackground(new java.awt.Color(43, 47, 61));
 
         tabla_proveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -87,8 +87,8 @@ public class ProveedoresPantalla extends javax.swing.JFrame {
                 .addGap(98, 98, 98))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(508, 508, 508)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(495, 495, 495)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(74, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
@@ -99,8 +99,8 @@ public class ProveedoresPantalla extends javax.swing.JFrame {
                 .addContainerGap(143, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(299, 299, 299)
-                    .addComponent(jButton1)
+                    .addGap(289, 289, 289)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(103, Short.MAX_VALUE)))
         );
 

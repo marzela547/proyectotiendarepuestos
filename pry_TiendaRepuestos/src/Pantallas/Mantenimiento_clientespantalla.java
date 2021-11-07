@@ -85,7 +85,7 @@ public class Mantenimiento_clientespantalla extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(247, 247, 226));
+        jPanel1.setBackground(new java.awt.Color(43, 47, 61));
 
         cmbestado_cliente.setBackground(new java.awt.Color(79, 78, 71));
         cmbestado_cliente.setForeground(new java.awt.Color(255, 255, 255));
