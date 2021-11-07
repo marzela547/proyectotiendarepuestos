@@ -39,7 +39,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="b9" green="c2" red="c9" type="rgb"/>
+          <Color blue="3d" green="2f" red="2b" type="rgb"/>
         </Property>
       </Properties>
 
@@ -199,7 +199,10 @@
         <Component class="javax.swing.JButton" name="btnbuscarproveedor">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="26" green="b8" red="ff" type="rgb"/>
+              <Color blue="74" green="68" red="46" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar Proveedor"/>
           </Properties>
@@ -209,13 +212,20 @@
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="fecha_pedidos">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="74" green="68" red="46" type="rgb"/>
+            </Property>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnbuscarproducto">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="26" green="b8" red="ff" type="rgb"/>
+              <Color blue="74" green="68" red="46" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar Producto"/>
             <Property name="enabled" type="boolean" value="false"/>
@@ -275,7 +285,10 @@
         <Component class="javax.swing.JButton" name="btnagregarprod_pedidos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="26" green="b8" red="ff" type="rgb"/>
+              <Color blue="74" green="68" red="46" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Agregar Producto"/>
             <Property name="enabled" type="boolean" value="false"/>
@@ -287,7 +300,10 @@
         <Component class="javax.swing.JButton" name="btnimprimir_pedidos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="26" green="b8" red="ff" type="rgb"/>
+              <Color blue="74" green="68" red="46" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir Pedido"/>
             <Property name="actionCommand" type="java.lang.String" value=""/>
@@ -299,7 +315,10 @@
         <Component class="javax.swing.JButton" name="btnagregar_cliente4">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="26" green="b8" red="ff" type="rgb"/>
+              <Color blue="74" green="68" red="46" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Regresar"/>
             <Property name="actionCommand" type="java.lang.String" value=""/>

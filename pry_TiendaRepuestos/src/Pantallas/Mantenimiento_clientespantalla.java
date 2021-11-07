@@ -85,8 +85,10 @@ public class Mantenimiento_clientespantalla extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(201, 194, 185));
+        jPanel1.setBackground(new java.awt.Color(247, 247, 226));
 
+        cmbestado_cliente.setBackground(new java.awt.Color(79, 78, 71));
+        cmbestado_cliente.setForeground(new java.awt.Color(255, 255, 255));
         cmbestado_cliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACT", "INA" }));
 
         txttelefono_cliente.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +97,8 @@ public class Mantenimiento_clientespantalla extends javax.swing.JFrame {
             }
         });
 
-        btnagregar_cliente.setBackground(new java.awt.Color(255, 184, 38));
+        btnagregar_cliente.setBackground(new java.awt.Color(70, 104, 116));
+        btnagregar_cliente.setForeground(new java.awt.Color(255, 255, 255));
         btnagregar_cliente.setText("Agregar");
         btnagregar_cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +106,8 @@ public class Mantenimiento_clientespantalla extends javax.swing.JFrame {
             }
         });
 
-        btnmodificar_cliente.setBackground(new java.awt.Color(255, 184, 38));
+        btnmodificar_cliente.setBackground(new java.awt.Color(70, 104, 116));
+        btnmodificar_cliente.setForeground(new java.awt.Color(255, 255, 255));
         btnmodificar_cliente.setText("Modificar");
         btnmodificar_cliente.setEnabled(false);
         btnmodificar_cliente.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +116,8 @@ public class Mantenimiento_clientespantalla extends javax.swing.JFrame {
             }
         });
 
-        btn_eliminar_cliente.setBackground(new java.awt.Color(255, 184, 38));
+        btn_eliminar_cliente.setBackground(new java.awt.Color(70, 104, 116));
+        btn_eliminar_cliente.setForeground(new java.awt.Color(255, 255, 255));
         btn_eliminar_cliente.setText("Eliminar");
         btn_eliminar_cliente.setEnabled(false);
         btn_eliminar_cliente.addActionListener(new java.awt.event.ActionListener() {
@@ -121,7 +126,8 @@ public class Mantenimiento_clientespantalla extends javax.swing.JFrame {
             }
         });
 
-        btnregresar.setBackground(new java.awt.Color(255, 184, 38));
+        btnregresar.setBackground(new java.awt.Color(70, 104, 116));
+        btnregresar.setForeground(new java.awt.Color(255, 255, 255));
         btnregresar.setText("Regresar");
         btnregresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

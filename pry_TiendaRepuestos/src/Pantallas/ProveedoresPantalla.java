@@ -38,21 +38,21 @@ public class ProveedoresPantalla extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(201, 194, 185));
+        jPanel1.setBackground(new java.awt.Color(247, 247, 226));
 
         tabla_proveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Código", "Nombre", "Estado"
+                "Código", "Nombre", "Dirección", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -63,9 +63,13 @@ public class ProveedoresPantalla extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabla_proveedores);
         if (tabla_proveedores.getColumnModel().getColumnCount() > 0) {
             tabla_proveedores.getColumnModel().getColumn(0).setResizable(false);
+            tabla_proveedores.getColumnModel().getColumn(1).setResizable(false);
             tabla_proveedores.getColumnModel().getColumn(2).setResizable(false);
+            tabla_proveedores.getColumnModel().getColumn(3).setResizable(false);
         }
 
+        jButton1.setBackground(new java.awt.Color(70, 104, 116));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

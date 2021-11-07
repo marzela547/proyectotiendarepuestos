@@ -35,6 +35,7 @@ public class ProveedorControlador {
                 {
                     proveedores.get(i).getProcodigo(), 
                     proveedores.get(i).getPronombre(),
+                    proveedores.get(i).getProdireccion(),
                     proveedores.get(i).getProestado()
                     
                 }
@@ -51,5 +52,6 @@ public class ProveedorControlador {
         cache.setBandeProveedores(true);
         cache.setProcodigo((Integer) tablaproveedor.getValueAt(fila, 0));
         cache.setPronombre((String) tablaproveedor.getValueAt(fila, 1));
+        cache.setProdireccion((String) tablaproveedor.getValueAt(fila, 2));
     }
 }

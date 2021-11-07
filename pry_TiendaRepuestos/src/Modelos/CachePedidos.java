@@ -17,6 +17,15 @@ public class CachePedidos {
     private static Float Detpedprodprecio;
     private static String Proddescripcion;
     private static String Pronombre;
+    private static String Prodireccion;
+
+    public static String getProdireccion() {
+        return Prodireccion;
+    }
+
+    public static void setProdireccion(String Prodireccion) {
+        CachePedidos.Prodireccion = Prodireccion;
+    }
 
     public static String getPronombre() {
         return Pronombre;

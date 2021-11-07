@@ -50,7 +50,7 @@ public class ClientesPantalla extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(201, 194, 185));
+        jPanel1.setBackground(new java.awt.Color(247, 247, 226));
 
         txtbuscar_cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +94,8 @@ public class ClientesPantalla extends javax.swing.JFrame {
             tabla_clientes.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        btnagregar_cliente.setBackground(new java.awt.Color(255, 184, 38));
+        btnagregar_cliente.setBackground(new java.awt.Color(70, 104, 116));
+        btnagregar_cliente.setForeground(new java.awt.Color(255, 255, 255));
         btnagregar_cliente.setText("Agregar");
         btnagregar_cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +103,8 @@ public class ClientesPantalla extends javax.swing.JFrame {
             }
         });
 
-        btnregresar.setBackground(new java.awt.Color(255, 184, 38));
+        btnregresar.setBackground(new java.awt.Color(70, 104, 116));
+        btnregresar.setForeground(new java.awt.Color(255, 255, 255));
         btnregresar.setText("Cerrar");
         btnregresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,7 +205,7 @@ public class ClientesPantalla extends javax.swing.JFrame {
          */
        try {
            // UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
-           UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+           UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
         } catch (ClassNotFoundException ex) {
             //java.util.logging.Logger.getLogger(ClientesPantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
