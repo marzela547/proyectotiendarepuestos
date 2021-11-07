@@ -5,6 +5,11 @@
  */
 package pry_tiendarepuestos;
 
+import Controladores.ProveeedoresControlador;
+import Modelos.ConsultaProveedores;
+import Modelos.ProveedoresModelo;
+import Pantallas.FrmProveedores;
+
 /**
  *
  * @author Kevin Espinal
@@ -15,7 +20,13 @@ public class Pry_TiendaRepuestos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ProveedoresModelo mod= new ProveedoresModelo();
+        ConsultaProveedores modC=new ConsultaProveedores();
+        FrmProveedores frm=new FrmProveedores();
+        
+        ProveeedoresControlador ctrl =new ProveeedoresControlador(mod,modC,frm);
+        ctrl.iniciar();
+        frm.setVisible(true);
     }
     
 }

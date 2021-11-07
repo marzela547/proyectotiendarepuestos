@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class Conexion {
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String user = "root";
-    private static final String pass = "olimpia10";
+    private static final String pass = "svt13122cxs";
     private static final String url = "jdbc:mysql://localhost:3306/bdrepuestos?characterEncoding=utf8";
     private Connection con = null;
     

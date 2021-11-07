@@ -7,15 +7,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConsultaProveedores extends Conexion {
+    String con = null;
 
     //registrar
     public boolean registrar(ProveedoresModelo prov) {
         PreparedStatement ps = null;
-        Connection con = getConexion();
+        Connection con = null;
+        con = Conexiones.Conexion.getConexion(con);
 
         String sql = "INSERT INTO proveedores (Pronombre,Prodireccion,Protelefono) VALUES(?,?,?)";
         try {
-            ps = con.prepareStatement(sql);
+            //ps = con.prepareStatement(sql);
+            ps = (PreparedStatement) con.prepareStatement(sql);
 
             ps.setString(1, prov.getPronombre());
             ps.setString(2, prov.getProdireccion());
@@ -40,7 +43,8 @@ public class ConsultaProveedores extends Conexion {
     //Modificar
     public boolean modificar(ProveedoresModelo prov) {
         PreparedStatement ps = null;
-        Connection con = getConexion();
+        Connection con = null;
+        con = Conexiones.Conexion.getConexion(con);
 
         String sql = "UPDATE proveedores SET Pronombre=?, Prodireccion=?,Protelefono=? WHERE Procodigo=?";
         try {
@@ -70,7 +74,8 @@ public class ConsultaProveedores extends Conexion {
     //Eliminar
     public boolean eliminar(ProveedoresModelo prov) {
         PreparedStatement ps = null;
-        Connection con = getConexion();
+        Connection con = null;
+        con = Conexiones.Conexion.getConexion(con);
 
         String sql = "DELETE FROM proveedores WHERE Procodigo=?";
         try {
@@ -96,7 +101,8 @@ public class ConsultaProveedores extends Conexion {
     public boolean buscar(ProveedoresModelo prov) {
         PreparedStatement ps = null;
         ResultSet rs= null;
-        Connection con = getConexion();
+        Connection con = null;
+        con = Conexiones.Conexion.getConexion(con);
 
         String sql = "SELECT * FROM proveedores WHERE Pronombre=?";
         try {
