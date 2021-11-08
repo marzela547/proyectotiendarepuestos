@@ -9,6 +9,7 @@ import Conexiones.TempConexion;
 import Controladores.PedidosControlador;
 import Especiales.CrearPDF;
 import Especiales.Validaciones;
+import Modelos.CacheLogin;
 import Modelos.CachePedidos;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,6 +35,7 @@ public class PedidosPantalla extends javax.swing.JFrame {
         CachePedidos cache = new CachePedidos();
         //Date fecha = new Date();
         //fecha_pedidos.setDate(fecha);
+        txtempleado_pedidos.setText(CacheLogin.getEmpnombre());
         PedidosControlador pedidocontrolador = new PedidosControlador();
         pedidocontrolador.setPlaceHolders(this.txtproveedor_pedidos, this.txtproducto_pedidos, this.txtproductodes_pedidos, this.txtprecio_pedidos);
         if(cache.isBandeProveedores()){

@@ -313,6 +313,7 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
         jMenuBar1.setMinimumSize(new java.awt.Dimension(100, 50));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(64, 50));
 
+        jmenunombre.setBackground(new java.awt.Color(43, 47, 61));
         jmenunombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario.png"))); // NOI18N
         jmenunombre.setText("Usuario");
         jmenunombre.setMinimumSize(new java.awt.Dimension(100, 40));

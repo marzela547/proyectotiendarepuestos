@@ -6,6 +6,7 @@
 package Especiales;
 
 import Conexiones.TempConexion;
+import Modelos.CacheLogin;
 import Modelos.CachePedidos;
 import Modelos.PedidosModelo;
 import Modelos.TempModelo;
@@ -119,7 +120,7 @@ public class CrearPDF {
             datosEx.addCell(empleado);
             datosEx.addCell("Si");
             datosEx.addCell(cache.getTippago());
-            datosEx.addCell("Marcela Zelaya");
+            datosEx.addCell(CacheLogin.getEmpnombre());
             documento.add(datosEx);
             
             documento.add(Chunk.NEWLINE);
