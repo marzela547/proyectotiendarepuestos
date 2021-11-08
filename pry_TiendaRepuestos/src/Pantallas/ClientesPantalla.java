@@ -25,7 +25,7 @@ public class ClientesPantalla extends javax.swing.JFrame {
     public ClientesPantalla() {
         initComponents();
         this.setLocationRelativeTo(null);
-        ClienteControlador.Llenartablacliente(tabla_clientes, "Todos"); 
+        ClienteControlador.Llenartablacliente(tabla_clientes, "Activos"); 
         ControladorGeneral.Filtrotabla(tabla_clientes, txtbuscar_cliente);
         ClienteControlador.setPlaceHolder(txtbuscar_cliente);
     }
@@ -239,8 +239,12 @@ public class ClientesPantalla extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             //java.util.logging.Logger.getLogger(ClientesPantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PedidosPantalla().setVisible(true);
+            }
+        });
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
