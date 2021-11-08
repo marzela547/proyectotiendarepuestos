@@ -252,6 +252,11 @@ int codigoventa;
                 cmbEstadoMouseClicked(evt);
             }
         });
+        cmbEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbEstadoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -343,15 +348,15 @@ int codigoventa;
 
     private void cmbEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbEstadoMouseClicked
         int fila = TablaVentasHistorial.getSelectedRow();
-        TablaVentasHistorial.setValueAt(cmbEstado.getSelectedItem().toString(),TablaVentasHistorial.convertRowIndexToModel(fila),2);
+        TablaVentasHistorial.setValueAt(cmbEstado.getSelectedItem(),TablaVentasHistorial.convertRowIndexToModel(fila),2);
     }//GEN-LAST:event_cmbEstadoMouseClicked
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         for(int i = 0; i<TablaVentasHistorial.getRowCount();i++){
             if(TablaVentasHistorial.getValueAt(i, 2).toString().equals("Activo")){
-                updEstVenta(Integer.parseInt(TablaVentasHistorial.getValueAt(i, 0).toString()),1);
+                updEstVenta(Integer.parseInt(TablaVentasHistorial.getValueAt(i, 0).toString()),"ACT");
             }else{
-                updEstVenta(Integer.parseInt(TablaVentasHistorial.getValueAt(i, 0).toString()),2);
+                updEstVenta(Integer.parseInt(TablaVentasHistorial.getValueAt(i, 0).toString()),"INA");
             }
         }
 
@@ -400,6 +405,10 @@ int codigoventa;
             ex.printStackTrace();
         }
     }//GEN-LAST:event_btnGenerarReporteActionPerformed
+
+    private void cmbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbEstadoActionPerformed
 
     
     public static void main(String args[]) {
@@ -471,14 +480,14 @@ int codigoventa;
         }
 }  
          
-         public void updEstVenta(int codigo, int est){
+         public void updEstVenta(int codigo, String est){
               con = Conexiones.Conexion.getConexion(con);
               try
               {
                   String query = "call bdrepuestos.UPD_EstVenta(?, ?);";
                   PreparedStatement preparedStmt = con.prepareStatement(query);
                   preparedStmt.setInt   (1, codigo);
-                  preparedStmt.setInt   (2, est);
+                  preparedStmt.setString   (2, est);
                   preparedStmt.executeUpdate();
               }
               catch(Exception e)

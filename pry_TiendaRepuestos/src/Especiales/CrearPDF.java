@@ -52,8 +52,9 @@ public class CrearPDF {
     
     public void crearPDF(){
         try{
+            int num =0;
             BaseColor myColor = WebColors.getRGBColor("#7da6b5");
-            archivo = new FileOutputStream("D:\\Documentos\\pruebapedidos.pdf");
+            archivo = new FileOutputStream("src/pdf/ordencompra"+num+".pdf");
             PdfWriter writer= PdfWriter.getInstance(documento, archivo);
             Font fuente = new Font();
             fuente.setSize(28);
@@ -64,7 +65,7 @@ public class CrearPDF {
             titulo.setAlignment(2);
             Image ima = null;
             try{
-                ima = Image.getInstance("C:\\Users\\marce\\Documents\\NetBeansProjects\\ProyectoRepuestos\\pry_TiendaRepuestos\\src\\Imagenes\\Logoproto.png");
+                ima = Image.getInstance("src/Imagenes/Logoproto.png");
                 ima.scaleAbsolute(100, 100);
                 ima.setAbsolutePosition(35, 705);
             }catch(Exception ex){

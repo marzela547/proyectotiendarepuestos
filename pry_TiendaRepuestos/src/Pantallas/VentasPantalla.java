@@ -566,6 +566,11 @@ public class VentasPantalla extends javax.swing.JFrame {
         cmbTipoPago.setBackground(new java.awt.Color(70, 104, 116));
         cmbTipoPago.setForeground(new java.awt.Color(255, 255, 255));
         cmbTipoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un Tipo de pago", "Débito", "Crédito" }));
+        cmbTipoPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTipoPagoActionPerformed(evt);
+            }
+        });
 
         TablaDetalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -781,7 +786,7 @@ public class VentasPantalla extends javax.swing.JFrame {
                         
                   if (opcion != 0)
                     {
-                        insertVtn(txtFechaActual.getText(),1,cliente,cmbTipoPago.getSelectedItem().toString(),0,1,1);
+                        insertVtn(txtFechaActual.getText(),1,cliente,cmbTipoPago.getSelectedItem().toString(),0,"ACT",1);
                          for(int i = 0; i<TablaDetalle.getRowCount();i++){
                          int idPro = Integer.parseInt(TablaDetalle.getValueAt(i, 0).toString());
                          int cant = Integer.parseInt(TablaDetalle.getValueAt(i, 0).toString());
@@ -1031,6 +1036,10 @@ public class VentasPantalla extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void cmbTipoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoPagoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTipoPagoActionPerformed
+
  
     public static void main(String args[]) {
             
@@ -1269,7 +1278,7 @@ public class VentasPantalla extends javax.swing.JFrame {
           return Existe;
       }
       
-      public void insertVtn(String Venfecha, int Empcodigo,int Clicodigo,String Tippacodigo,float Vendescuento, int Estcodigo ,int id_sar){
+      public void insertVtn(String Venfecha, int Empcodigo,int Clicodigo,String Tippacodigo,float Vendescuento, String Estcodigo ,int id_sar){
           con = Conexiones.Conexion.getConexion(con);
               try
               {
@@ -1280,7 +1289,7 @@ public class VentasPantalla extends javax.swing.JFrame {
                   preparedStmt.setInt   (3, Clicodigo);
                   preparedStmt.setString   (4, Tippacodigo);
                   preparedStmt.setFloat   (5, Vendescuento);
-                  preparedStmt.setInt   (6, Estcodigo);
+                  preparedStmt.setString   (6, Estcodigo);
                   preparedStmt.setInt   (7, id_sar);
                   preparedStmt.executeUpdate();
               }
@@ -1323,7 +1332,7 @@ public class VentasPantalla extends javax.swing.JFrame {
                rs=ps.executeQuery();
                if(rs.next())
                {
-                 id = Integer.parseInt(rs.getString(1));
+                 id = rs.getInt(1);
                }
 
            }catch(SQLException ex){
@@ -1354,7 +1363,7 @@ public class VentasPantalla extends javax.swing.JFrame {
              PdfWriter.getInstance(doc, archivo);
              doc.open();
              
-             Image img = Image.getInstance("src/img/logoMotoRepuestos.jpeg");
+             Image img = Image.getInstance("src/Imagenes/Logoproto.png");
              
              Paragraph fecha = new Paragraph();
              Font negrita = new Font(Font.FontFamily.TIMES_ROMAN,12,Font.BOLD,BaseColor.BLUE);
