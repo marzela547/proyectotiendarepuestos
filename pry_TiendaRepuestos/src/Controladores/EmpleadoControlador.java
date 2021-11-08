@@ -136,8 +136,10 @@ public class EmpleadoControlador {
            erridentidad.setText("Es un campo obligatorio");
            error = true;
         }
+        System.out.println("AQUI VOY");
         if(!Validaciones.validarIdentidad(trimmedidentidad))
         {
+            System.out.println("AQUI ENTRÉ");
            erridentidad.setText("Formato incorrecto [####-####-#####]");
            error = true;
         }

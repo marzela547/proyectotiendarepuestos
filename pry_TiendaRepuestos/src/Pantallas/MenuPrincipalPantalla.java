@@ -5,6 +5,8 @@
  */
 package Pantallas;
 
+import Controladores.LoginControlador;
+import Modelos.CacheLogin;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -22,7 +24,7 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
     public MenuPrincipalPantalla() {
         initComponents();
         this.setLocationRelativeTo(null);
-        jmenunombre.setText("Marcela Zelaya");
+        jmenunombre.setText(CacheLogin.getEmpnombre());
         ImageIcon venta = new ImageIcon(getClass().getResource("/Imagenes/ventafinal.png"));
         ImageIcon compra = new ImageIcon(getClass().getResource("/Imagenes/compras.png"));
         ImageIcon pedido = new ImageIcon(getClass().getResource("/Imagenes/pedidos.png"));
@@ -67,13 +69,14 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmenunombre = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(43, 47, 61));
 
-        jPanel5.setBackground(new java.awt.Color(43, 47, 61));
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         btnventas.setBackground(new java.awt.Color(70, 104, 116));
 
@@ -94,7 +97,7 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel6.setBackground(new java.awt.Color(43, 47, 61));
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
         btncompras.setBackground(new java.awt.Color(70, 104, 116));
 
@@ -115,7 +118,7 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel9.setBackground(new java.awt.Color(43, 47, 61));
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
         btnpedidos.setBackground(new java.awt.Color(70, 104, 116));
         btnpedidos.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +144,7 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel10.setBackground(new java.awt.Color(43, 47, 61));
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
         btnclientes.setBackground(new java.awt.Color(70, 104, 116));
         btnclientes.addActionListener(new java.awt.event.ActionListener() {
@@ -167,9 +170,14 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel11.setBackground(new java.awt.Color(43, 47, 61));
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
         btnempleados.setBackground(new java.awt.Color(70, 104, 116));
+        btnempleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnempleadosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -188,7 +196,7 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel14.setBackground(new java.awt.Color(43, 47, 61));
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
         btnproveedores.setBackground(new java.awt.Color(70, 104, 116));
 
@@ -210,27 +218,27 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
         );
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(43, 43, 61));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ventas");
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(43, 43, 61));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Compras");
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(43, 43, 61));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Pedidos");
 
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(43, 43, 61));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Proveedores");
 
         jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(43, 43, 61));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Empleados");
 
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(43, 43, 61));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Clientes");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -300,18 +308,37 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
                 .addGap(27, 27, 27))
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuBar1.setBackground(new java.awt.Color(43, 47, 61));
         jMenuBar1.setMaximumSize(new java.awt.Dimension(100, 32769));
         jMenuBar1.setMinimumSize(new java.awt.Dimension(100, 50));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(64, 50));
 
         jmenunombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario.png"))); // NOI18N
+        jmenunombre.setText("Usuario");
         jmenunombre.setMinimumSize(new java.awt.Dimension(100, 40));
         jmenunombre.setPreferredSize(new java.awt.Dimension(200, 40));
 
+        jMenuItem2.setBackground(new java.awt.Color(43, 47, 61));
+        jMenuItem2.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/contra.png"))); // NOI18N
+        jMenuItem2.setText("Cambiar Contraseña");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jmenunombre.add(jMenuItem2);
+
+        jMenuItem1.setBackground(new java.awt.Color(43, 47, 61));
+        jMenuItem1.setForeground(new java.awt.Color(255, 255, 255));
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
         jMenuItem1.setText("Cerrar Sesión");
         jMenuItem1.setPreferredSize(new java.awt.Dimension(121, 40));
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jmenunombre.add(jMenuItem1);
 
         jMenuBar1.add(jmenunombre);
@@ -343,6 +370,25 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
         pantalla.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnclientesActionPerformed
+
+    private void btnempleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnempleadosActionPerformed
+        OpcionesEmpleados empleados = new OpcionesEmpleados(this, true);
+        empleados.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnempleadosActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Mantenimiento_ContrasenaPantalla contra = new Mantenimiento_ContrasenaPantalla();
+        contra.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        LoginPantalla pantalla = new LoginPantalla();
+        pantalla.setVisible(true);
+        LoginControlador.Logout();
+        dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -386,8 +432,6 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
     private javax.swing.JButton btnpedidos;
     private javax.swing.JButton btnproveedores;
     private javax.swing.JButton btnventas;
-    private javax.swing.JButton btnventas1;
-    private javax.swing.JButton btnventas4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -396,16 +440,13 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JMenu jmenunombre;
     // End of variables declaration//GEN-END:variables

@@ -14,7 +14,6 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.lowagie.text.pdf.PdfTable;
 import java.awt.Desktop;
 import java.awt.TextField;
 import java.awt.event.TextEvent;
@@ -38,12 +37,12 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import javax.swing.JTable;
 import javax.swing.UIManager;
-import net.sf.jasperreports.engine.JasperCompileManager;
+/*import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
+import net.sf.jasperreports.view.JasperViewer;*/
 /**
  *
  * @author Kevin Espinal
@@ -60,7 +59,7 @@ public class VentasPantalla extends javax.swing.JFrame {
       
     public VentasPantalla(){
         initComponents();
-        
+        this.setLocationRelativeTo(null);
         TextPrompt nombreCliente = new TextPrompt("Nombre del cliente",txtNombreCliente);
         TextPrompt rtn = new TextPrompt("RTN",txtRTN);
         TextPrompt nombreVendedor = new TextPrompt("Nombre del Vendedor",txtNomVendedor);

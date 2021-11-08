@@ -35,6 +35,7 @@ public class SarPanta extends javax.swing.JFrame {
      */
     public SarPanta() {
         initComponents();
+        this.setLocationRelativeTo(null);
         TextPrompt RangoIniial = new TextPrompt("Rango Inicial",txtRangoIncial);
         TextPrompt RangoFinal = new TextPrompt("Rango Final",txtRangoFinal);
         TextPrompt cai = new TextPrompt("CAI",txtCai);

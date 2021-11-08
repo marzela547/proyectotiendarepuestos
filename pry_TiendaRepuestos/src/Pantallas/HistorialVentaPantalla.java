@@ -38,6 +38,7 @@ int codigoventa;
   
     public HistorialVentaPantalla() {
         initComponents();
+        this.setLocationRelativeTo(null);
          cargarVentasHistorial();
          Calendar fecha = new GregorianCalendar();
         String anio = Integer.toString(fecha.get(Calendar.YEAR));

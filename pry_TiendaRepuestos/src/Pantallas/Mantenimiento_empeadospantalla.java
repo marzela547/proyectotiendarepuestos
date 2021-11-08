@@ -39,6 +39,7 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
     
     public Mantenimiento_empeadospantalla() {
         initComponents();
+        this.setLocationRelativeTo(null);
         EmpleadoControlador empleadocontrol = new EmpleadoControlador();
         //fecha = new PlaceHolder(jdfechanacimiento_empleado,"Fecha de Nacimiento");
         EmpleadoControlador.setPlaceHolders(this.txtidentidad_empleado, this.txtnombre_empleado, this.txttelefono_empleado,
@@ -140,12 +141,14 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
         txtcontrasena_empleado = new javax.swing.JPasswordField();
         jPanel1 = new javax.swing.JPanel();
         cmbpuestos_empelados = new javax.swing.JComboBox<>();
-        btnagregarpuesto_empleado = new javax.swing.JButton();
-        btneliminarpuesto_empleado = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_puesto = new javax.swing.JTable();
+        btnagregarpuesto_empleado = new javax.swing.JButton();
+        btneliminarpuesto_empleado = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        btnregresar = new javax.swing.JButton();
 
         jButton6.setText("jButton3");
 
@@ -252,26 +255,8 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
         jLabel3.setText("Fecha Nacimiento:");
 
         jPanel1.setBackground(new java.awt.Color(43, 47, 61));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 10), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
-
-        btnagregarpuesto_empleado.setBackground(new java.awt.Color(70, 104, 116));
-        btnagregarpuesto_empleado.setForeground(new java.awt.Color(255, 255, 255));
-        btnagregarpuesto_empleado.setText("Agregar");
-        btnagregarpuesto_empleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnagregarpuesto_empleadoActionPerformed(evt);
-            }
-        });
-
-        btneliminarpuesto_empleado.setBackground(new java.awt.Color(70, 104, 116));
-        btneliminarpuesto_empleado.setForeground(new java.awt.Color(255, 255, 255));
-        btneliminarpuesto_empleado.setText("Eliminar");
-        btneliminarpuesto_empleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneliminarpuesto_empleadoActionPerformed(evt);
-            }
-        });
 
         tabla_puesto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -296,6 +281,24 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabla_puesto);
 
+        btnagregarpuesto_empleado.setBackground(new java.awt.Color(70, 104, 116));
+        btnagregarpuesto_empleado.setForeground(new java.awt.Color(255, 255, 255));
+        btnagregarpuesto_empleado.setText("Agregar");
+        btnagregarpuesto_empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnagregarpuesto_empleadoActionPerformed(evt);
+            }
+        });
+
+        btneliminarpuesto_empleado.setBackground(new java.awt.Color(70, 104, 116));
+        btneliminarpuesto_empleado.setForeground(new java.awt.Color(255, 255, 255));
+        btneliminarpuesto_empleado.setText("Eliminar");
+        btneliminarpuesto_empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarpuesto_empleadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -307,9 +310,9 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(cmbpuestos_empelados, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnagregarpuesto_empleado)
-                        .addGap(18, 18, 18)
-                        .addComponent(btneliminarpuesto_empleado)))
+                        .addComponent(btnagregarpuesto_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btneliminarpuesto_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -317,9 +320,9 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbpuestos_empelados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnagregarpuesto_empleado)
-                    .addComponent(btneliminarpuesto_empleado))
+                    .addComponent(cmbpuestos_empelados, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnagregarpuesto_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btneliminarpuesto_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                 .addContainerGap())
@@ -329,7 +332,17 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(230, 230, 230));
         jLabel5.setText("Mantenimiento de Empleados");
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\fgodo\\OneDrive\\Documentos\\GitHub\\proyectotiendarepuestos\\pry_TiendaRepuestos\\src\\Imagenes\\Logomantenimiento.PNG")); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logomantenimiento.PNG"))); // NOI18N
+
+        btnregresar.setBackground(new java.awt.Color(70, 104, 116));
+        btnregresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnregresar.setText("Regresar");
+        btnregresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnregresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -340,38 +353,37 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(errcorreo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txttelefono_empleado)
-                                    .addComponent(txtidentidad_empleado)
-                                    .addComponent(txtnombre_empleado)
-                                    .addComponent(erridentidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(errnombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(errtelefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtcorre_empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(jLabel5))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtcontrasenac_empleado)
-                                    .addComponent(errcontrasena, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtusuario_empleado)
-                                    .addComponent(errusuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbestado_empleado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtcontrasena_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(errdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(errdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(errcorreo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txttelefono_empleado)
+                                        .addComponent(txtidentidad_empleado)
+                                        .addComponent(txtnombre_empleado)
+                                        .addComponent(erridentidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(errnombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(errtelefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtcorre_empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(errusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtusuario_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtcontrasenac_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(errcontrasena, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(cmbestado_empleado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtcontrasena_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(4, 6, Short.MAX_VALUE)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,90 +408,96 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnmodificar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btn_eliminar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btn_eliminar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnregresar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(93, 93, 93)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addGap(17, 17, 17)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(txtidentidad_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtusuario_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(27, 27, 27)
-                                                .addComponent(erridentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(7, 7, 7)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(txtnombre_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtcontrasena_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(50, 50, 50)
-                                        .addComponent(errusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel5))
+                            .addComponent(jLabel6)))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtidentidad_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtusuario_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(erridentidad, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(errusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtnombre_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtcontrasena_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, 0)
                                 .addComponent(errnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 114, Short.MAX_VALUE)
-                                .addComponent(errcontrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, 0)
+                            .addComponent(errcontrasena, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txttelefono_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtcontrasenac_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtcontrasenac_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txttelefono_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(errtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtcorre_empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbestado_empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, 0)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtcorre_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbestado_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(errcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jdfechasalida_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(errfechasa, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jdfechanacimiento_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(errfechana, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jdfechaingreso_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jdfechasalida_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(errfechain, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(errfechasa, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel3))
+                                .addGap(4, 4, 4)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jdfechanacimiento_empleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jdfechaingreso_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(errfechana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(errfechain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnmodificar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_eliminar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnagregar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnregresar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(errdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -496,62 +514,34 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txttelefono_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttelefono_empleadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txttelefono_empleadoActionPerformed
-
-    private void txtcorre_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcorre_empleadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcorre_empleadoActionPerformed
-
-    private void btnagregar_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregar_empleadoActionPerformed
-
-    
-    if(!EmpleadoControlador.Mantenimientoempelado("insertar", 0,
-            this.txtidentidad_empleado.getText(),this.txtnombre_empleado.getText(), this.txttelefono_empleado.getText(), Validaciones.Fechavacia(jdfechanacimiento_empleado.getDate()),
-            this.txtcorre_empleado.getText(), this.txtdireccion_empleado.getText(),Validaciones.Fechavacia(jdfechaingreso_empleado.getDate()),"0000-00-00","ACT",
-            this.txtusuario_empleado.getText(),this.txtcontrasena_empleado.getText(),this.txtcontrasenac_empleado.getText(),this.erridentidad, 
-            this.errnombre, this.errtelefono, this.errfechana, this.errcorreo,this.errdireccion, this.errfechain,this.errfechain,this.errusuario,this.errcontrasena))
-        {           
-            this.LimpiarInputs();
-            LimpiarTodo();
-            EmpleadosPantalla empleadopantalla = new EmpleadosPantalla();
-            empleadopantalla.setVisible(true); 
-            dispose();
-        }   
-    }//GEN-LAST:event_btnagregar_empleadoActionPerformed
-
-    private void btnagregarpuesto_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarpuesto_empleadoActionPerformed
-          EmpleadoControlador.AgregarPuesto(new Object[]{cmbpuestos_empelados.getSelectedItem().toString()}, tabla_puesto);
-    }//GEN-LAST:event_btnagregarpuesto_empleadoActionPerformed
+    private void tabla_puestoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_puestoMouseClicked
+        int seleccion = this.tabla_puesto.rowAtPoint(evt.getPoint());
+        puesto_nombre =String.valueOf(this.tabla_puesto.getModel().getValueAt(seleccion, 0));
+    }//GEN-LAST:event_tabla_puestoMouseClicked
 
     private void btneliminarpuesto_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarpuesto_empleadoActionPerformed
         EmpleadoControlador.Quitarpuestosseleccionados(puesto_nombre,tabla_puesto );
     }//GEN-LAST:event_btneliminarpuesto_empleadoActionPerformed
 
-    private void tabla_puestoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_puestoMouseClicked
-        int seleccion = this.tabla_puesto.rowAtPoint(evt.getPoint());    
-        puesto_nombre =String.valueOf(this.tabla_puesto.getModel().getValueAt(seleccion, 0));    
-    }//GEN-LAST:event_tabla_puestoMouseClicked
+    private void btnagregarpuesto_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarpuesto_empleadoActionPerformed
+        EmpleadoControlador.AgregarPuesto(new Object[]{cmbpuestos_empelados.getSelectedItem().toString()}, tabla_puesto);
+    }//GEN-LAST:event_btnagregarpuesto_empleadoActionPerformed
 
-    private void btnmodificar_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificar_empleadoActionPerformed
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
-    String Date;
-        if(!EmpleadoControlador.Mantenimientoempelado("editar", this.IdEmp,
-            this.txtidentidad_empleado.getText(),this.txtnombre_empleado.getText(), this.txttelefono_empleado.getText(),Validaciones.Fechavacia(jdfechanacimiento_empleado.getDate()),
-            this.txtcorre_empleado.getText(), this.txtdireccion_empleado.getText(),Validaciones.Fechavacia(jdfechaingreso_empleado.getDate()),"0000-00-00",cmbestado_empleado.getSelectedItem().toString(),
-            this.txtusuario_empleado.getText(),"Nopermitid@12","Nopermitid@12",
-            this.erridentidad, this.errnombre, this.errtelefono, this.errfechana, this.errcorreo,
-            this.errdireccion, this.errfechain,this.errfechain,this.errusuario,this.errcontrasena))
-        {
-            this.LimpiarInputs();
-            LimpiarTodo();
-            EmpleadosPantalla empleadopantalla = new EmpleadosPantalla();
-            empleadopantalla.setVisible(true); 
-            dispose();
-            
-        }            
-    }//GEN-LAST:event_btnmodificar_empleadoActionPerformed
+    private void cmbestado_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbestado_empleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbestado_empleadoActionPerformed
+
+    private void txtcorre_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcorre_empleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcorre_empleadoActionPerformed
+
+    private void txttelefono_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttelefono_empleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txttelefono_empleadoActionPerformed
+
+    private void txtnombre_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombre_empleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombre_empleadoActionPerformed
 
     private void btn_eliminar_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar_empleadoActionPerformed
 
@@ -560,19 +550,52 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
             this.LimpiarInputs();
             LimpiarTodo();
             EmpleadosPantalla empleadopantalla = new EmpleadosPantalla();
-            empleadopantalla.setVisible(true); 
+            empleadopantalla.setVisible(true);
             dispose();
-            
-        }         
+
+        }
     }//GEN-LAST:event_btn_eliminar_empleadoActionPerformed
 
-    private void cmbestado_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbestado_empleadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbestado_empleadoActionPerformed
+    private void btnmodificar_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificar_empleadoActionPerformed
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String Date;
+        if(!EmpleadoControlador.Mantenimientoempelado("editar", this.IdEmp,
+            this.txtidentidad_empleado.getText(),this.txtnombre_empleado.getText(), this.txttelefono_empleado.getText(),Validaciones.Fechavacia(jdfechanacimiento_empleado.getDate()),
+            this.txtcorre_empleado.getText(), this.txtdireccion_empleado.getText(),Validaciones.Fechavacia(jdfechaingreso_empleado.getDate()),"0000-00-00",cmbestado_empleado.getSelectedItem().toString(),
+            this.txtusuario_empleado.getText(),"Nopermitid@12","Nopermitid@12",
+            this.erridentidad, this.errnombre, this.errtelefono, this.errfechana, this.errcorreo,
+            this.errdireccion, this.errfechain,this.errfechain,this.errusuario,this.errcontrasena))
+    {
+        this.LimpiarInputs();
+        LimpiarTodo();
+        EmpleadosPantalla empleadopantalla = new EmpleadosPantalla();
+        empleadopantalla.setVisible(true);
+        dispose();
 
-    private void txtnombre_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombre_empleadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombre_empleadoActionPerformed
+        }
+    }//GEN-LAST:event_btnmodificar_empleadoActionPerformed
+
+    private void btnagregar_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregar_empleadoActionPerformed
+
+        if(!EmpleadoControlador.Mantenimientoempelado("insertar", 0,
+            this.txtidentidad_empleado.getText(),this.txtnombre_empleado.getText(), this.txttelefono_empleado.getText(), Validaciones.Fechavacia(jdfechanacimiento_empleado.getDate()),
+            this.txtcorre_empleado.getText(), this.txtdireccion_empleado.getText(),Validaciones.Fechavacia(jdfechaingreso_empleado.getDate()),"0000-00-00","ACT",
+            this.txtusuario_empleado.getText(),this.txtcontrasena_empleado.getText(),this.txtcontrasenac_empleado.getText(),this.erridentidad,
+            this.errnombre, this.errtelefono, this.errfechana, this.errcorreo,this.errdireccion, this.errfechain,this.errfechain,this.errusuario,this.errcontrasena))
+    {
+        this.LimpiarInputs();
+        LimpiarTodo();
+        EmpleadosPantalla empleadopantalla = new EmpleadosPantalla();
+        empleadopantalla.setVisible(true);
+        dispose();
+        }
+    }//GEN-LAST:event_btnagregar_empleadoActionPerformed
+
+    private void btnregresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregresarActionPerformed
+        MenuPrincipalPantalla menu = new MenuPrincipalPantalla();
+        menu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnregresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -584,23 +607,18 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+           // UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+           UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Mantenimiento_empeadospantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            //java.util.logging.Logger.getLogger(ClientesPantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Mantenimiento_empeadospantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            //java.util.logging.Logger.getLogger(ClientesPantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Mantenimiento_empeadospantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            //java.util.logging.Logger.getLogger(ClientesPantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Mantenimiento_empeadospantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            //java.util.logging.Logger.getLogger(ClientesPantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -615,6 +633,7 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
     private javax.swing.JButton btnagregarpuesto_empleado;
     private javax.swing.JButton btneliminarpuesto_empleado;
     private javax.swing.JButton btnmodificar_empleado;
+    private javax.swing.JButton btnregresar;
     private javax.swing.JComboBox<String> cmbestado_empleado;
     private javax.swing.JComboBox<String> cmbpuestos_empelados;
     private javax.swing.JLabel errcontrasena;
@@ -631,6 +650,7 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

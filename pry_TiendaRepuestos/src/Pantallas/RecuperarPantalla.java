@@ -21,6 +21,7 @@ public class RecuperarPantalla extends javax.swing.JFrame {
      */
     public RecuperarPantalla() {
         initComponents();
+        this.setLocationRelativeTo(null);
         RecuperarControlador.setPlaceHoldersCodigo(this.txtcorreo,this.txtcodigo); 
     }
 

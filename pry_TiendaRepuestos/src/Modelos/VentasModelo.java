@@ -2,7 +2,6 @@
 package Modelos;
 
 import Controladores.VentaControlador;
-import com.sun.istack.internal.logging.Logger;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;

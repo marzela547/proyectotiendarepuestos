@@ -144,11 +144,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\fgodo\OneDrive\Documentos\GitHub\proyectotiendarepuestos\pry_TiendaRepuestos\src\Imagenes\Logomantenimiento.PNG"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>

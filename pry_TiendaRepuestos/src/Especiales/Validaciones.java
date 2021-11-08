@@ -262,9 +262,7 @@ public class Validaciones {
             today.setDate(Datehoy);  
             Datehoy = formatter.parse(fecha);
             ingreso.setDate(Datehoy);
-            anio = today.getCalendar().get(Calendar.YEAR)-ingreso.getCalendar().get(Calendar.YEAR);
-            Integer mes = today.getCalendar().get(Calendar.MONTH)-ingreso.getCalendar().get(Calendar.MONTH);
-            Integer dia = today.getCalendar().get(Calendar.DATE)-ingreso.getCalendar().get(Calendar.DATE);         
+   
             
 
             if(today.getCalendar().get(Calendar.DATE)>=ingreso.getCalendar().get(Calendar.DATE))
@@ -334,10 +332,7 @@ public class Validaciones {
        
     }      
     
-    
-    }
-    
-    public static Boolean validarSelecciones(JTextField proveedor, JComboBox cmbtipo, JTable tabla){
+    public static boolean validarSelecciones(JTextField proveedor, JComboBox cmbtipo, JTable tabla){
         if(proveedor.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Por favor, seleccione un proveedor");
             return false;
@@ -352,4 +347,7 @@ public class Validaciones {
                 }
         return true;
     }
-}
+    }
+    
+    
+

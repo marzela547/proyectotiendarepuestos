@@ -85,8 +85,9 @@ public class RecuperarControlador {
         String receptor = txtcorreo;
         String asunto = "RECUPERACIÓN DE CONTRASEÑA";
         String mensaje= String.valueOf(valorDado);
+        //System.out.println("HOLA");
         MimeMessage mail = new MimeMessage(sesion);
-        
+        //System.out.println("HOLA AVANZADO");
       
         try {
             mail.setFrom(new InternetAddress (correoEnvia));
