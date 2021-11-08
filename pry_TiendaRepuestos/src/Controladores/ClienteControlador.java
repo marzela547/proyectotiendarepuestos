@@ -27,7 +27,7 @@ public class ClienteControlador {
     
     public static void setPlaceHolder(JTextField txtcliente)
     {
-        PlaceHolder placeholderNombre = new PlaceHolder("Vuscar cliente...", txtcliente);;
+        PlaceHolder placeholderNombre = new PlaceHolder("Buscar cliente...", txtcliente);;
     }
     
     public static void setPlaceHolders(JTextField txtNombre, JTextField txtRTN, JTextField txtTelefono)
@@ -37,7 +37,7 @@ public class ClienteControlador {
         PlaceHolder placeholderTel = new PlaceHolder(" Ingrese el teléfono del cliente", txtTelefono);
     }
     public static Boolean Mantenimientocliente(String accion, Integer id,
-             String nombre, String RTN, String telefono , String estado,
+             String RTN,  String nombre,String telefono , String estado,
             JLabel errRTN, JLabel errnombre, JLabel errtelefono)
     { 
         ClienteControlador.Erroresnull(errRTN,errnombre, errtelefono);
@@ -48,19 +48,20 @@ public class ClienteControlador {
         Boolean validaciongeneral = false;
         validaciongeneral = ClienteControlador.validacionesGenerales( trimmedRTN,trimmednombre, 
                trimmedtelefono, errRTN,errnombre, errtelefono);
-        
+        System.out.println("VOY A ENTRAR");
         if(validaciongeneral == false)
         //{
             
             switch(accion)
             {
                 case "insertar":
-                
+                    System.out.println("AQUI VOY");
                     mnterror = ClienteControlador.Insertarcliente(trimmedRTN, trimmednombre,
                             trimmedtelefono, estado);
                 break;
                 
                 case "editar":   
+                    System.out.println("AQUI VOY EDITANDO");
                     mnterror = ClienteControlador.Modificarcliente(id,trimmedRTN, trimmednombre,
                             trimmedtelefono, estado);             
                 break;
@@ -80,13 +81,12 @@ public class ClienteControlador {
         String trimmedtelefono, JLabel errRTN,JLabel errnombre,JLabel errtelefono)
     {
         boolean error = false;
-        
         if(Validaciones.validarCampoVacio(trimmedRTN))
         {
            errRTN.setText("Es un campo obligatorio");
            error = true;
         }
-        if(!Validaciones.validarIdentidad(trimmedRTN))
+        if(!Validaciones.validarRTN(trimmedRTN))
         {
            errRTN.setText("Formato incorrecto [####-####-######]");
            error = true;
@@ -108,7 +108,18 @@ public class ClienteControlador {
         {
            errtelefono.setText("El telefono es un campo numerico");
            error = true;
-        }      
+        }
+        
+        if(!Validaciones.validarTamanosNom(trimmednombre))
+        {
+           errtelefono.setText("El nombre es muy corto");
+           error = true;
+        }
+        if(!Validaciones.validarTamanosNum(trimmedtelefono))
+        {
+           errtelefono.setText("El número es muy corto");
+           error = true;
+        }
            
         return error;
     }

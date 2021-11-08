@@ -26,7 +26,10 @@ public class Validaciones {
     {
         return identidad.matches("\\d{4}-?\\d{4}-?\\d{5}$");
     }
-    
+    public static Boolean validarRTN(String identidad)
+    {
+        return identidad.matches("\\d{4}-?\\d{4}-?\\d{6}$");
+    }
     public static Boolean validarUsuario(String usuario)
     {
         return usuario.matches("^[a-zA-Z0-9ÁÉÍÓÚÜÑáéíóúüñ]*$");
@@ -101,6 +104,21 @@ public class Validaciones {
         }
     }
     
+    public static boolean validarTamanosNom(String nom){
+        if(nom.length()<3){
+            return false;
+        }
+        
+        return true;
+    }
+    public static boolean validarTamanosNum( String num){
+        if(num.length() <7){
+            return false;
+        }
+        
+        return true;
+    }
+   
     /**
     * 
     * @param fecha String

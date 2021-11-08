@@ -176,7 +176,23 @@ public class PedidosControlador {
         }
         return error;
     }
-    
+    public static boolean Eliminarpedido(Integer id)
+    {
+        boolean error = false;
+        System.out.println("llegue");
+        PedidosModelo pedidomodelo = new PedidosModelo();
+        pedidomodelo = PedidosControlador.Setpedidosmodelo(id, 0,"",0, "",0);
+        String resultado = PedidosConexion.Mantenimientopedidos("eliminar", pedidomodelo);    
+        switch (resultado) 
+        {
+            case "OK": 
+                   JOptionPane.showMessageDialog(null, "Pedido eliminado con éxito.");    
+                   error=true;
+            break;
+            
+        }
+        return error;
+    }
     public static void Llenartablapedidostemp(JTable tablatemp) 
     {  
         
