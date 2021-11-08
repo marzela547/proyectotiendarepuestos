@@ -24,6 +24,7 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
     public EmpleadosPantalla() {
         initComponents();
         this.setLocationRelativeTo(null);
+        ControladorGeneral.setPlaceHolder(txtbuscar_empleado);
         EmpleadoControlador.Llenartablaempleado(tabla_empleados, "Activos"); 
         ControladorGeneral.Filtrotabla(tabla_empleados, txtbuscar_empleado);
     }

@@ -7,7 +7,7 @@ package Conexiones;
 
 
 import Modelos.ContactoModelo;
-import Modelos.ProveedorModelo;
+import Modelos.ProveedoresModelo;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -131,13 +131,13 @@ public class ContactoConexion {
 
         return contactos;
     }      
-    public static ArrayList<ProveedorModelo> Listadoproveedores() 
+    public static ArrayList<ProveedoresModelo> Listadoproveedores() 
     {
         Connection con = null;
         Statement stm;
         ResultSet rss;
         
-        ArrayList<ProveedorModelo> proveedores = new ArrayList<>();
+        ArrayList<ProveedoresModelo> proveedores = new ArrayList<>();
 
                 try
                 {
@@ -150,7 +150,7 @@ public class ContactoConexion {
 
                      while(rss.next())
                      {
-                        ProveedorModelo proveedor = new ProveedorModelo();
+                        ProveedoresModelo proveedor = new ProveedoresModelo();
                         proveedor.setProcodigo(rss.getInt("Procodigo"));
                         proveedor.setPronombre(rss.getString("ProNombre"));
                         proveedores.add(proveedor);

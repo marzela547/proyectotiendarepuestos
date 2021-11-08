@@ -19,7 +19,8 @@ public class Mantenimiento_Contacto extends javax.swing.JFrame {
     static Integer IdCon=0;
     Integer mt;      
     public Mantenimiento_Contacto() {
-        initComponents();        
+        initComponents();
+        this.setLocationRelativeTo(null);
         ContactoContralador.Llenarcmbproveedor(this.cmbproveedor_contacto);
         ContactoContralador.setPlaceHolders(this.txtnombre_contacto, this.txttelefono_contacto, this.txtcorreo_contacto);
         mt = ContactoContralador.getOperacion();
@@ -223,7 +224,6 @@ public class Mantenimiento_Contacto extends javax.swing.JFrame {
                     .addComponent(txtcorreo_contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addComponent(errcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cmbproveedor_contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,8 +236,8 @@ public class Mantenimiento_Contacto extends javax.swing.JFrame {
                     .addComponent(btnmodificar_contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_eliminar_contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnagregar_contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addComponent(btnregresar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(btnregresar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 

@@ -9,7 +9,7 @@ package Controladores;
 import Conexiones.ProveedorConexion;
 import Especiales.PlaceHolder;
 import Especiales.Validaciones;
-import Modelos.ProveedorModelo;
+import Modelos.ProveedoresModelo;
 import static Controladores.ControladorGeneral.FormatoTabla;
 import Modelos.CachePedidos;
 import Modelos.CacheProveedor;
@@ -112,7 +112,7 @@ public class ProveedorControlador {
             String trimmeddireccion, String estado)
     {
         boolean error = false;
-        ProveedorModelo proveedormodelo = new ProveedorModelo();
+        ProveedoresModelo proveedormodelo = new ProveedoresModelo();
         proveedormodelo = ProveedorControlador.Setproveedormodelo(0,trimmednombre, trimmedtelefono,
                 trimmeddireccion,"ACT");
         String resultado = ProveedorConexion.Mantenimientoproveedores("insertar", proveedormodelo);    
@@ -141,7 +141,7 @@ public class ProveedorControlador {
             String trimmeddireccion, String estado)
     {
         boolean error = false;
-        ProveedorModelo proveedormodelo = new ProveedorModelo();
+        ProveedoresModelo proveedormodelo = new ProveedoresModelo();
         proveedormodelo = ProveedorControlador.Setproveedormodelo(id,trimmednombre, trimmedtelefono,
                 trimmeddireccion,"ACT");
         String resultado = ProveedorConexion.Mantenimientoproveedores("editar", proveedormodelo);    
@@ -169,7 +169,7 @@ public class ProveedorControlador {
     public static boolean Eliminarproveedor(Integer id)
     {
         boolean error = false;
-        ProveedorModelo proveedormodelo = new ProveedorModelo();
+        ProveedoresModelo proveedormodelo = new ProveedoresModelo();
 
         proveedormodelo =  ProveedorControlador.Setproveedormodelo(id,"","","","");
         String resultado = ProveedorConexion.Mantenimientoproveedores("eliminar", proveedormodelo);    
@@ -183,10 +183,10 @@ public class ProveedorControlador {
         }
         return error;
     }    
-    private static ProveedorModelo Setproveedormodelo(Integer id, String trimmednombre, 
+    private static ProveedoresModelo Setproveedormodelo(Integer id, String trimmednombre, 
             String trimmedtelefono, String trimmeddireccion,String estado)
     {
-        ProveedorModelo proveedormodelo = new ProveedorModelo();      
+        ProveedoresModelo proveedormodelo = new ProveedoresModelo();      
         proveedormodelo.setProcodigo(id);
         proveedormodelo.setPronombre(trimmednombre);
         proveedormodelo.setProtelefono(trimmedtelefono);
@@ -199,7 +199,7 @@ public class ProveedorControlador {
         
         DefaultTableModel modelo = (DefaultTableModel) tablaproveedor.getModel(); 
         modelo.setRowCount(0);
-        ArrayList<ProveedorModelo> proveedor = new ArrayList<>();
+        ArrayList<ProveedoresModelo> proveedor = new ArrayList<>();
         proveedor = ProveedorConexion.Listadoproveedores(accion);
         for (int i = 0; i <proveedor.size(); i++) 
         {

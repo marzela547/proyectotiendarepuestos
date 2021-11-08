@@ -12,7 +12,7 @@ import Especiales.Validaciones;
 import Modelos.CacheContacto;
 import Modelos.CacheProveedor;
 import Modelos.ContactoModelo;
-import Modelos.ProveedorModelo;
+import Modelos.ProveedoresModelo;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -248,7 +248,7 @@ public class ContactoContralador {
     }
     public static void Llenarcmbproveedor(JComboBox CmbProveedor)
     {
-        ArrayList<ProveedorModelo> proveedores = new ArrayList<>();
+        ArrayList<ProveedoresModelo> proveedores = new ArrayList<>();
         proveedores = ContactoConexion.Listadoproveedores();
         
         for (int i = 0; i<proveedores.size(); i++)

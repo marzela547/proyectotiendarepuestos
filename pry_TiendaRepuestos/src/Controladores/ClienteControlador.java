@@ -25,10 +25,6 @@ import javax.swing.table.DefaultTableModel;
 public class ClienteControlador {
     static Integer op = 0;
     
-    public static void setPlaceHolder(JTextField txtcliente)
-    {
-        PlaceHolder placeholderNombre = new PlaceHolder("Buscar cliente...", txtcliente);;
-    }
     
     public static void setPlaceHolders(JTextField txtNombre, JTextField txtRTN, JTextField txtTelefono)
     {

@@ -24,6 +24,7 @@ public class PuestosPantalla extends javax.swing.JFrame {
     public PuestosPantalla() {
         initComponents();
         this.setLocationRelativeTo(null);
+        ControladorGeneral.setPlaceHolder(txtbuscador_puestos);
         PuestoControlador.Llenartablaempleado(tabla_puestos, "Activos");
         ControladorGeneral.Filtrotabla(tabla_puestos, txtbuscador_puestos);
     }
@@ -109,7 +110,7 @@ public class PuestosPantalla extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtbuscador_puestos, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtbuscador_puestos, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnagregar_puesto, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58))

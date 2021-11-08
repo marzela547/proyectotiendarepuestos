@@ -27,7 +27,7 @@ public class ClientesPantalla extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         ClienteControlador.Llenartablacliente(tabla_clientes, "Activos"); 
         ControladorGeneral.Filtrotabla(tabla_clientes, txtbuscar_cliente);
-        ClienteControlador.setPlaceHolder(txtbuscar_cliente);
+        ControladorGeneral.setPlaceHolder(txtbuscar_cliente);
     }
 
     /**

@@ -11,7 +11,7 @@ package Modelos;
  */
 public class CacheProveedor {
     private static boolean DatosCompartidos = false;
-    private static ProveedorModelo proveedor;
+    private static ProveedoresModelo proveedor;
     public static Integer Procodigo; 
 
     public boolean isDatosCompartidos() {
@@ -22,11 +22,11 @@ public class CacheProveedor {
         CacheProveedor.DatosCompartidos = DatosCompartidos;
     }
 
-    public  ProveedorModelo getProveedor() {
+    public  ProveedoresModelo getProveedor() {
         return proveedor;
     }
 
-    public void setProveedor(ProveedorModelo Procodigo) {
+    public void setProveedor(ProveedoresModelo Procodigo) {
         CacheProveedor.proveedor = Procodigo;
     }
 

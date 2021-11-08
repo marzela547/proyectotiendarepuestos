@@ -23,6 +23,7 @@ public class ContactoPantalla extends javax.swing.JFrame {
     public ContactoPantalla() {
         initComponents();
         this.setLocationRelativeTo(null);
+        ControladorGeneral.setPlaceHolder(txtbuscar_contacto);
         ContactoContralador.Llenartablacontacto(tabla_contacto, "Activos");   
         ControladorGeneral.Filtrotabla(tabla_contacto, txtbuscar_contacto);    
         

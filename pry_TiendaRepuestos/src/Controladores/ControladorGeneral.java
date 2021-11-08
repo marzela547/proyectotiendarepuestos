@@ -5,6 +5,7 @@
  */
 package Controladores;
 
+import Especiales.PlaceHolder;
 import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -92,5 +93,9 @@ public class ControladorGeneral {
             }
         }
         );  
-    }       
+    }
+    public static void setPlaceHolder(JTextField txtbuscar)
+    {
+        PlaceHolder placeholderNombre = new PlaceHolder("Buscar registro...", txtbuscar);;
+    }
 }

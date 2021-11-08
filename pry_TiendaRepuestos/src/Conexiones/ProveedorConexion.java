@@ -6,7 +6,7 @@
 package Conexiones;
 
 import Modelos.EmpleadosModelo;
-import Modelos.ProveedorModelo;
+import Modelos.ProveedoresModelo;
 import Modelos.PuestoModelo;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -22,13 +22,13 @@ import javax.swing.JOptionPane;
  * @author fgodo
  */
 public class ProveedorConexion {
-      public static ArrayList<ProveedorModelo> Listadoproveedores(String accion) 
+      public static ArrayList<ProveedoresModelo> Listadoproveedores(String accion) 
     {
         Connection con = null;
         Statement stm;
         ResultSet rss;
         
-        ArrayList<ProveedorModelo> proveedores = new ArrayList<>();
+        ArrayList<ProveedoresModelo> proveedores = new ArrayList<>();
         
         switch(accion)
         {
@@ -46,7 +46,7 @@ public class ProveedorConexion {
 
                     while (rss.next()) 
                     {
-                        ProveedorModelo proveedor = new ProveedorModelo();
+                        ProveedoresModelo proveedor = new ProveedoresModelo();
                         proveedor.setProcodigo(rss.getInt("Procodigo"));
                         proveedor.setPronombre(rss.getString("Pronombre"));
                         proveedor.setProdireccion(rss.getString("Prodireccion"));
@@ -77,7 +77,7 @@ public class ProveedorConexion {
 
                     while (rss.next()) 
                     {
-                        ProveedorModelo proveedor = new ProveedorModelo();
+                        ProveedoresModelo proveedor = new ProveedoresModelo();
                         proveedor.setProcodigo(rss.getInt("Procodigo"));
                         proveedor.setPronombre(rss.getString("Pronombre"));
                         proveedor.setProdireccion(rss.getString("Prodireccion"));
@@ -103,7 +103,7 @@ public class ProveedorConexion {
                     rss = stm.executeQuery(query);
                     while (rss.next()) 
                     {
-                        ProveedorModelo proveedor = new ProveedorModelo();
+                        ProveedoresModelo proveedor = new ProveedoresModelo();
                         proveedor.setProcodigo(rss.getInt("Procodigo"));
                         proveedor.setPronombre(rss.getString("Pronombre"));
                         proveedor.setProdireccion(rss.getString("Prodireccion"));
@@ -124,7 +124,7 @@ public class ProveedorConexion {
     }      
     
     
-    public static String Mantenimientoproveedores(String accion, ProveedorModelo ProveedorModelo)
+    public static String Mantenimientoproveedores(String accion, ProveedoresModelo ProveedorModelo)
     { 
         String estado = "";
         Connection con = null;     
