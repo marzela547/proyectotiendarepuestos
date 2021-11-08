@@ -5,6 +5,7 @@
  */
 package Pantallas;
 
+import Modelos.CachePedidos;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -156,6 +157,7 @@ public class OpcionesProveedores extends javax.swing.JDialog {
 
     private void btnlistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlistarActionPerformed
         ProveedoresPantalla pantalla = new ProveedoresPantalla();
+        CachePedidos.setOp(1);
         pantalla.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnlistarActionPerformed

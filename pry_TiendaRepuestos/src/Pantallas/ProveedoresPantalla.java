@@ -7,6 +7,7 @@ package Pantallas;
 
 import Controladores.ControladorGeneral;
 import Controladores.ProveedorControlador;
+import Modelos.CachePedidos;
 import Modelos.CacheProveedor;
 import Modelos.ProveedorModelo;
 import javax.swing.UIManager;
@@ -193,21 +194,32 @@ public class ProveedoresPantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_btnagregar_proveedorActionPerformed
 
     private void tabla_proveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_proveedorMouseClicked
-        int seleccion = this.tabla_proveedor.rowAtPoint(evt.getPoint());
-        ProveedorModelo promodelo = new ProveedorModelo();
-        ProveedorControlador proco = new ProveedorControlador();
-        promodelo.setProcodigo(Integer.parseInt(String.valueOf(this.tabla_proveedor.getModel().getValueAt(seleccion, 0))));
-        promodelo.setPronombre(String.valueOf(this.tabla_proveedor.getModel().getValueAt(seleccion, 1)));
-        promodelo.setProdireccion(String.valueOf(this.tabla_proveedor.getModel().getValueAt(seleccion, 2)));
-        promodelo.setProtelefono(String.valueOf(this.tabla_proveedor.getModel().getValueAt(seleccion, 3)));
-        promodelo.setProestado(String.valueOf(this.tabla_proveedor.getModel().getValueAt(seleccion,4)));
-        CacheProveedor proveedorcache = new CacheProveedor();
-        proveedorcache.setDatosCompartidos(true);
-        proveedorcache.setProveedor(promodelo);
-        proco.setOperacion(1);
-        dispose();
-        Mantenimiento_proveedorPantalla mantenimiento = new Mantenimiento_proveedorPantalla();
-        mantenimiento.setVisible(true);
+        CachePedidos cache=new CachePedidos();
+        
+        if(cache.getOp()==1){
+            int seleccion = this.tabla_proveedor.rowAtPoint(evt.getPoint());
+            ProveedorModelo promodelo = new ProveedorModelo();
+            ProveedorControlador proco = new ProveedorControlador();
+            promodelo.setProcodigo(Integer.parseInt(String.valueOf(this.tabla_proveedor.getModel().getValueAt(seleccion, 0))));
+            promodelo.setPronombre(String.valueOf(this.tabla_proveedor.getModel().getValueAt(seleccion, 1)));
+            promodelo.setProdireccion(String.valueOf(this.tabla_proveedor.getModel().getValueAt(seleccion, 2)));
+            promodelo.setProtelefono(String.valueOf(this.tabla_proveedor.getModel().getValueAt(seleccion, 3)));
+            promodelo.setProestado(String.valueOf(this.tabla_proveedor.getModel().getValueAt(seleccion,4)));
+            CacheProveedor proveedorcache = new CacheProveedor();
+            proveedorcache.setDatosCompartidos(true);
+            proveedorcache.setProveedor(promodelo);
+            proco.setOperacion(1);
+            dispose();
+            Mantenimiento_proveedorPantalla mantenimiento = new Mantenimiento_proveedorPantalla();
+            mantenimiento.setVisible(true);
+        }
+        else
+        {
+            ProveedorControlador.transferirDatos(tabla_proveedor);
+            PedidosPantalla pedidos = new PedidosPantalla();
+            pedidos.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_tabla_proveedorMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

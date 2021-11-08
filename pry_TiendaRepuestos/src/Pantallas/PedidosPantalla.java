@@ -404,6 +404,7 @@ public class PedidosPantalla extends javax.swing.JFrame {
 
     private void btnbuscarproveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarproveedorActionPerformed
         ProveedoresPantalla pro = new ProveedoresPantalla();
+        CachePedidos.setOp(2);
         pro.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnbuscarproveedorActionPerformed

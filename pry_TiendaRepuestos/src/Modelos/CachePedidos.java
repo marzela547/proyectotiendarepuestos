@@ -21,7 +21,16 @@ public class CachePedidos {
     private static String Protelefono;
     private static String tippago;
     private static Integer Pedcodigo;
+    private static Integer op;
 
+    public static Integer getOp() {
+        return op;
+    }
+
+    public static void setOp(Integer op) {
+        CachePedidos.op = op;
+    }
+    
     public static Integer getPedcodigo() {
         return Pedcodigo;
     }
