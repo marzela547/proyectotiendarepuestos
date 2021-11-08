@@ -14,6 +14,15 @@ public class ProductosModelo {
     private String Proddescripcion;
     private Float Prodprecventa;
     private String Prodestado;
+    private Integer Detpedcant;
+
+    public Integer getDetpedcant() {
+        return Detpedcant;
+    }
+
+    public void setDetpedcant(Integer Detpedcant) {
+        this.Detpedcant = Detpedcant;
+    }
 
     public Integer getProdcodigo() {
         return Prodcodigo;

@@ -21,6 +21,24 @@ public class PedidosModelo {
     private Integer Detpedcant;
     private Float Detpedprodprecio;
     private String Proddescripcion;
+    private String Pronombre;
+    private String Empnombre;
+
+    public String getPronombre() {
+        return Pronombre;
+    }
+
+    public void setPronombre(String Pronombre) {
+        this.Pronombre = Pronombre;
+    }
+
+    public String getEmpnombre() {
+        return Empnombre;
+    }
+
+    public void setEmpnombre(String Empnombre) {
+        this.Empnombre = Empnombre;
+    }
 
     public String getProddescripcion() {
         return Proddescripcion;

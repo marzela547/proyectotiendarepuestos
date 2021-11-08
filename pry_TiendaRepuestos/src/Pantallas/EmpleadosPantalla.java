@@ -51,6 +51,12 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
             }
         });
 
+        txtbuscar_empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtbuscar_empleadoActionPerformed(evt);
+            }
+        });
+
         tabla_empleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -139,6 +145,10 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
         
         mantenimientoempleado.setVisible(true);
     }//GEN-LAST:event_tabla_empleadosMouseClicked
+
+    private void txtbuscar_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbuscar_empleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtbuscar_empleadoActionPerformed
 
     /**
      * @param args the command line arguments

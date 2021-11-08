@@ -28,6 +28,80 @@ public class ProductosConexion {
         
         switch(accion)
         {
+                
+            case "detalle":
+                try
+                {
+                    con = Conexion.getConexion(con);
+                    stm = con.createStatement();
+                    String query = "SELECT dp.Prodcodigo, Proddescripcion, Detpedcant, Detpedprodprecio FROM detallepedido dp JOIN productos p  "
+                            + "ON dp.Prodcodigo = p.Prodcodigo "
+                            + "WHERE Pedcodigo = "+cod 
+                            + " ORDER BY dp.Prodcodigo ASC";
+                    
+                    rss = stm.executeQuery(query);
+                    while (rss.next()) 
+                    {
+                        ProductosModelo producto = new ProductosModelo();
+                        producto.setProdcodigo(rss.getInt("Prodcodigo"));
+                        producto.setProddescripcion(rss.getString("Proddescripcion"));
+                        producto.setDetpedcant(rss.getInt("Detpedcant"));
+                        producto.setProdprecventa(rss.getFloat("Detpedprodprecio"));
+                        
+                        productos.add(producto);
+                    } 
+                    
+                    con.close();
+                } 
+                catch (SQLException e)
+                {
+                    JOptionPane.showMessageDialog(null,e);
+                } 
+            break; 
+                
+            case "proveedor":
+                try
+                {
+                    con =Conexion.getConexion(con);
+                    stm = con.createStatement();
+                    String query = "SELECT pp.Prodcodigo, Proddescripcion, Prodprecventa, Prodestado FROM productos p JOIN `productos-proveedores` pp "
+                            + "ON p.Prodcodigo = pp.Prodcodigo JOIN proveedores pv "
+                            + "ON pv.Procodigo = pp.Procodigo "
+                            + "WHERE pp.Procodigo = "+cod 
+                            + " ORDER BY pp.Prodcodigo ASC";
+                    
+                    rss = stm.executeQuery(query);
+                    while (rss.next()) 
+                    {
+                        ProductosModelo producto = new ProductosModelo();
+                        producto.setProdcodigo(rss.getInt("Prodcodigo"));
+                        producto.setProddescripcion(rss.getString("Proddescripcion"));
+                        producto.setProdprecventa(rss.getFloat("Prodprecventa"));
+                        producto.setProdestado(rss.getString("Prodestado"));;
+                        productos.add(producto);
+                    }
+                    con.close();
+                } 
+                catch (SQLException e)
+                {
+                    JOptionPane.showMessageDialog(null,e);
+                } 
+            break;                
+        }
+
+        return productos;
+    }
+     
+     public static ArrayList<ProductosModelo> Listadoproductos(String accion, int cod) 
+    {
+        Connection con = null;
+        Statement stm;
+        ResultSet rss;
+       // cod = 2;
+        ArrayList<ProductosModelo> productos = new ArrayList<>();
+        
+        switch(accion)
+        {
             case "Activos":
                 try
                 {

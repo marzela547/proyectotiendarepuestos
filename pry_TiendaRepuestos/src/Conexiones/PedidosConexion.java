@@ -36,18 +36,21 @@ public class PedidosConexion {
                     con = Conexion.getConexion(con);
                     stm = con.createStatement();
                     
-                    String query = "SELECT * From pedidos "
-                     + "WHERE Pedestado = 'ACT' " 
-                     + "ORDER BY Pedcodigo ASC";
+                    String query = "SELECT Pedcodigo,Pronombre, Pedfecha, Empnombre, Pedestado FROM pedidos p JOIN proveedores pr "
+                     + " ON p.Procodigo = pr.Procodigo JOIN empleados e"
+                     +" ON p.Empcodigo = e.Empcodigo"
+                     +" WHERE Pedestado = 'ACT' " 
+                     + " ORDER BY Pedcodigo ASC";
 
                     rss = stm.executeQuery(query);
 
                     while (rss.next()) 
                     {
                         PedidosModelo pedido = new PedidosModelo();
-                        pedido.setProcodigo(rss.getInt("Procodigo"));
+                        pedido.setPedcodigo(rss.getInt("Pedcodigo"));
+                        pedido.setPronombre(rss.getString("Pronombre"));
                         pedido.setPedfecha(rss.getString("Pedfecha"));
-                        pedido.setEmpcodigo(rss.getInt("Empcodigo"));;
+                        pedido.setEmpnombre(rss.getString("Empnombre"));;
                         pedido.setPedestado(rss.getString("Pedestado"));
                         pedidos.add(pedido);
                     } 
@@ -65,22 +68,24 @@ public class PedidosConexion {
                 {
                     con = Conexion.getConexion(con);
                     stm = con.createStatement();
-                    String query = "SELECT * From pedidos "
-                     + "WHERE Pedestado = 'INA' " 
-                     + "ORDER BY Pedcodigo ASC";
-
+                    String query = "SELECT Pedcodigo,Pronombre, Pedfecha, Empnombre, Pedestado FROM pedidos p JOIN proveedores pr"
+                     + " ON p.Procodigo = pr.Procodigo JOIN empleados e "
+                     +" ON p.Empcodigo = e.Empcodigo"
+                     +" WHERE Pedestado = 'INA' " 
+                     + " ORDER BY Pedcodigo ASC";
 
                     rss = stm.executeQuery(query);
 
                     while (rss.next()) 
                     {
                         PedidosModelo pedido = new PedidosModelo();
-                        pedido.setProcodigo(rss.getInt("Procodigo"));
+                        pedido.setPedcodigo(rss.getInt("Pedcodigo"));
+                        pedido.setPronombre(rss.getString("Pronombre"));
                         pedido.setPedfecha(rss.getString("Pedfecha"));
-                        pedido.setEmpcodigo(rss.getInt("Empcodigo"));;
+                        pedido.setEmpnombre(rss.getString("Empnombre"));;
                         pedido.setPedestado(rss.getString("Pedestado"));
                         pedidos.add(pedido);
-                    } 
+                    }  
                     
                     con.close();
                 } 
@@ -95,17 +100,22 @@ public class PedidosConexion {
                 {
                     con =Conexion.getConexion(con);
                     stm = con.createStatement();
-                    String query = "SELECT * From pedidos";
+                    String query = "SELECT Pedcodigo,Pronombre, Pedfecha, Empnombre, Pedestado FROM pedidos p JOIN proveedores pr "
+                     + " ON p.Procodigo = pr.Procodigo JOIN empleados e"
+                     +" ON p.Empcodigo = e.Empcodigo";
+
                     rss = stm.executeQuery(query);
+
                     while (rss.next()) 
                     {
                         PedidosModelo pedido = new PedidosModelo();
-                        pedido.setProcodigo(rss.getInt("Procodigo"));
+                        pedido.setPedcodigo(rss.getInt("Pedcodigo"));
+                        pedido.setPronombre(rss.getString("Pronombre"));
                         pedido.setPedfecha(rss.getString("Pedfecha"));
-                        pedido.setEmpcodigo(rss.getInt("Empcodigo"));;
+                        pedido.setEmpnombre(rss.getString("Empnombre"));;
                         pedido.setPedestado(rss.getString("Pedestado"));
                         pedidos.add(pedido);
-                    }
+                    } 
                     con.close();
                 } 
                 catch (SQLException e)
