@@ -11,6 +11,7 @@ import Especiales.PlaceHolder;
 import Especiales.Validaciones;
 import Modelos.ProveedorModelo;
 import static Controladores.ControladorGeneral.FormatoTabla;
+import Modelos.CachePedidos;
 import Modelos.CacheProveedor;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
@@ -240,7 +241,7 @@ public class ProveedorControlador {
     {
         Integer opv = op;
         return opv;
-    
+    }
     public static void transferirDatos(JTable tablaproveedor){
         int fila;
         //PedidosModelo proveedor = new PedidosModelo();

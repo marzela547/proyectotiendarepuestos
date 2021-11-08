@@ -431,6 +431,9 @@
                   <Color blue="74" green="68" red="46" type="rgb"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnproveedoresActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -199,6 +199,11 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
         btnproveedores.setBackground(new java.awt.Color(70, 104, 116));
+        btnproveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnproveedoresActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -390,6 +395,12 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
         LoginControlador.Logout();
         dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void btnproveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnproveedoresActionPerformed
+        OpcionesProveedores proveedores = new OpcionesProveedores(this, true);
+        proveedores.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnproveedoresActionPerformed
 
     /**
      * @param args the command line arguments
