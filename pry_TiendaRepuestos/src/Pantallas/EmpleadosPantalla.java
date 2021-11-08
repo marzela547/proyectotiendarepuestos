@@ -69,6 +69,12 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
             }
         });
 
+        txtbuscar_empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtbuscar_empleadoActionPerformed(evt);
+            }
+        });
+
         tabla_empleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null},

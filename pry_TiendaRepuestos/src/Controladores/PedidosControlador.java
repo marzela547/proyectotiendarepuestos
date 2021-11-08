@@ -29,13 +29,64 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PedidosControlador {
     static Integer op = 0;
-    
+    public static void Llenartablapedido(JTable tablapedido, String accion) 
+    {  
+        
+        DefaultTableModel modelo = (DefaultTableModel) tablapedido.getModel(); 
+        modelo.setRowCount(0);
+        //Estados estados = new Estados();
+        ArrayList<PedidosModelo> pedidos = new ArrayList<>();
+        pedidos= PedidosConexion.Listadopedido(accion);
+        for (int i = 0; i <pedidos.size(); i++) 
+        {
+            modelo.addRow
+            (new Object[]
+                {
+                    pedidos.get(i).getPedcodigo(),
+                    pedidos.get(i).getPronombre(),
+                    pedidos.get(i).getPedfecha(),
+                    pedidos.get(i).getEmpnombre(),
+                    pedidos.get(i).getPedestado()
+                    
+                }
+            );
+        } 
+        FormatoTabla(tablapedido, modelo.getColumnCount());
+    }
+    public static void Llenartabladetalle(JTable tablaproducto, String accion, int cod) 
+    {  
+        
+        DefaultTableModel modelo = (DefaultTableModel) tablaproducto.getModel(); 
+        modelo.setRowCount(0);
+        //Estados estados = new Estados();
+        ArrayList<ProductosModelo> productos = new ArrayList<>();
+        productos = ProductosConexion.Listadoproducto(accion,cod);
+        for (int i = 0; i <productos.size(); i++) 
+        {
+            modelo.addRow
+            (new Object[]
+                {
+                    productos.get(i).getProdcodigo(), 
+                    productos.get(i).getProddescripcion(),
+                    productos.get(i).getProdprecventa(),
+                    productos.get(i).getProdestado()
+                    
+                }
+            );
+        } 
+        FormatoTabla(tablaproducto, modelo.getColumnCount());
+    }
     public static void setPlaceHolders(JTextField txtProveedor, JTextField txtProducto, JTextArea txtDescripproducto, JTextField txtprecio)
     {
         PlaceHolder placeholderProveddor = new PlaceHolder("Compañía...", txtProveedor);
         PlaceHolder placeholderProductoCod = new PlaceHolder("000...", txtProducto);
         PlaceHolder placeholderProductoDes = new PlaceHolder("Descripción...", txtDescripproducto);
         PlaceHolder placeholderProductoPre = new PlaceHolder("Lps.0.00", txtprecio);
+    }
+    
+    public static void setPlaceHolder(JTextField txtPedido)
+    {
+        PlaceHolder placeholderProveddor = new PlaceHolder("Buscar pedido...", txtPedido);
     }
     
     public static void agregarProveedor(JTextField txtProveedor){

@@ -20,6 +20,15 @@ public class CachePedidos {
     private static String Prodireccion;
     private static String Protelefono;
     private static String tippago;
+    private static Integer Pedcodigo;
+
+    public static Integer getPedcodigo() {
+        return Pedcodigo;
+    }
+
+    public static void setPedcodigo(Integer Pedcodigo) {
+        CachePedidos.Pedcodigo = Pedcodigo;
+    }
 
     public static String getTippago() {
         return tippago;
