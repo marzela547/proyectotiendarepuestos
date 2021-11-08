@@ -754,7 +754,7 @@ public class VentasPantalla extends javax.swing.JFrame {
                          
                         try{
                        
-                        JOptionPane.showMessageDialog(null, "Factura registrada con exito");
+                        
                         pdf();
                         try {
                             File path = new File ("src/pdf/factura"+getMaxidVenta()+".pdf");

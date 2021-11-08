@@ -19,8 +19,10 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,6 +38,8 @@ public class SarPanta extends javax.swing.JFrame {
         TextPrompt RangoIniial = new TextPrompt("Rango Inicial",txtRangoIncial);
         TextPrompt RangoFinal = new TextPrompt("Rango Final",txtRangoFinal);
         TextPrompt cai = new TextPrompt("CAI",txtCai);
+         Calendar c2 = new GregorianCalendar();
+           txtFecha.setCalendar(c2);
     }
 
     /**
@@ -462,8 +466,9 @@ public class SarPanta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistarActionPerformed
-        
-        try{
+      if(!(txtRangoIncial.getText().equals("")||txtRangoFinal.getText().equals("")||txtCai.getText().equals("")||txtFecha.getDate()==null)){ 
+      
+      try{
             int anio = txtFecha.getCalendar().get(Calendar.YEAR);
             int mes = txtFecha.getCalendar().get(Calendar.MONTH);
             int dia = txtFecha.getCalendar().get(Calendar.DAY_OF_MONTH);
@@ -471,8 +476,18 @@ public class SarPanta extends javax.swing.JFrame {
            String Fecha = anio + "-" + mes + "-" + dia;           
            insertSar(Fecha,txtRangoIncial.getText() , txtRangoFinal.getText() ,txtCai.getText());
             
+           
+           
+           txtRangoIncial.setText("");
+           txtRangoFinal.setText("");
+           txtCai.setText("");
+           Calendar c2 = new GregorianCalendar();
+           txtFecha.setCalendar(c2);
         }catch(Exception e){
         }
+      } else
+           JOptionPane.showMessageDialog(null, "Llenar todos los campos");
+        
         
         
         
@@ -490,13 +505,13 @@ public class SarPanta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistar2ActionPerformed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-        if(txtCodigo.getText().isEmpty())
-        {
-            //cargarProducto();
-        }
-        else{
-            //filtroProducto();
-        }
+          if(txtCodigo.getText().isEmpty())
+      {
+       cargarSar();   
+      }
+      else{
+        filtroSar();
+      }
     }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
@@ -561,7 +576,9 @@ public class SarPanta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCAIKeyTyped
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-      try{
+
+        if(!(txtCod.getText().equals("") || txtIni.getText().equals("") || txtFin.getText().equals("") || txtCAI.getText().equals(""))){
+               try{
             int anio = txtFech.getCalendar().get(Calendar.YEAR);
             int mes = txtFech.getCalendar().get(Calendar.MONTH);
             int dia = txtFech.getCalendar().get(Calendar.DAY_OF_MONTH);
@@ -572,6 +589,10 @@ public class SarPanta extends javax.swing.JFrame {
             
         }catch(Exception e){
         }
+        }else{
+                JOptionPane.showMessageDialog(null, "Llenar todos los campos");
+        }
+     
         
         
         
@@ -583,7 +604,7 @@ public class SarPanta extends javax.swing.JFrame {
     }//GEN-LAST:event_VentanaManSarComponentShown
 
     private void btnModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar1ActionPerformed
-        // TODO add your handling code here:
+             VentanaManSar.dispose();
     }//GEN-LAST:event_btnModificar1ActionPerformed
 
     private void txtCodKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodKeyPressed
@@ -691,7 +712,45 @@ public class SarPanta extends javax.swing.JFrame {
                   System.err.println(e.getMessage());
               }
          }
-     
+        public void filtroSar(){
+       try{
+            DefaultTableModel sr= new DefaultTableModel();
+            TablaSAR.setModel(sr);
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+  
+             con = Conexiones.Conexion.getConexion(con);
+            
+            String sql= "call bdrepuestos.filtrar_sar(?, ?, ?);";
+            ps= con.prepareStatement(sql);
+            ps.setString   (1, txtCodigo.getText());
+            ps.setString   (2, txtCodigo.getText());
+            ps.setString   (3, txtCodigo.getText());
+            rs=ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            
+            sr.addColumn("Codigo");   
+            sr.addColumn("Fecha limite edicion");
+            sr.addColumn("Rango inicial"); 
+            sr.addColumn("Rango final");
+            sr.addColumn("cai");
+            while(rs.next())
+            {
+                Object[] filas = new Object[cantidadColumnas];
+                for(int i=0; i<cantidadColumnas; i++)
+                {
+                    filas[i]=rs.getObject(i+1);
+                }
+                sr.addRow(filas);
+            }
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+
+}
      
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
