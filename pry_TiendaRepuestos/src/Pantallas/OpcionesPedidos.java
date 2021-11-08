@@ -77,6 +77,11 @@ public class OpcionesPedidos extends javax.swing.JDialog {
         jPanel6.setBackground(new java.awt.Color(43, 47, 61));
 
         btnnueva.setBackground(new java.awt.Color(70, 104, 116));
+        btnnueva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnuevaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -159,6 +164,12 @@ public class OpcionesPedidos extends javax.swing.JDialog {
         pantalla.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnlistarActionPerformed
+
+    private void btnnuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevaActionPerformed
+        PedidosPantalla pantalla = new PedidosPantalla();
+        pantalla.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnnuevaActionPerformed
 
     /**
      * @param args the command line arguments

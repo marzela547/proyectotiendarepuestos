@@ -92,7 +92,7 @@ public class PedidosListadoPantalla extends javax.swing.JFrame {
 
         btnregresar.setBackground(new java.awt.Color(70, 104, 116));
         btnregresar.setForeground(new java.awt.Color(255, 255, 255));
-        btnregresar.setText("Cerrar");
+        btnregresar.setText("Regresar");
         btnregresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnregresarActionPerformed(evt);
@@ -178,8 +178,9 @@ public class PedidosListadoPantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_tabla_pedidoMouseClicked
 
     private void btnregresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregresarActionPerformed
-
-        System.exit(0);
+        MenuPrincipalPantalla menu = new MenuPrincipalPantalla();
+        menu.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnregresarActionPerformed
 
     /**

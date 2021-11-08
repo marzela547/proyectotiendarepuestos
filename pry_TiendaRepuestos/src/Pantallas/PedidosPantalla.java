@@ -340,7 +340,9 @@ public class PedidosPantalla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnregresar_pedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregresar_pedidosActionPerformed
-        // TODO add your handling code here:
+        MenuPrincipalPantalla menu = new MenuPrincipalPantalla();
+        menu.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnregresar_pedidosActionPerformed
 
     private void btnimprimir_pedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimprimir_pedidosActionPerformed

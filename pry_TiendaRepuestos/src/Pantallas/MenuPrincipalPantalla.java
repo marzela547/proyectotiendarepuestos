@@ -144,6 +144,11 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
         jPanel10.setBackground(new java.awt.Color(43, 47, 61));
 
         btnclientes.setBackground(new java.awt.Color(70, 104, 116));
+        btnclientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnclientesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -332,6 +337,12 @@ public class MenuPrincipalPantalla extends javax.swing.JFrame {
         pedidos.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnpedidosActionPerformed
+
+    private void btnclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclientesActionPerformed
+        ClientesPantalla pantalla = new ClientesPantalla();
+        pantalla.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnclientesActionPerformed
 
     /**
      * @param args the command line arguments
