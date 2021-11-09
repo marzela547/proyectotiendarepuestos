@@ -218,7 +218,7 @@ public class OpcionesProductos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnlistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlistarActionPerformed
-        HistorialVentaPantalla pantalla = new HistorialVentaPantalla();
+        ProductoPantalla pantalla = new ProductoPantalla();
         pantalla.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnlistarActionPerformed

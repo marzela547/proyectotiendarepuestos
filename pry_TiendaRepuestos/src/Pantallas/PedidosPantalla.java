@@ -407,6 +407,7 @@ public class PedidosPantalla extends javax.swing.JFrame {
 
     private void btnbuscarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarproductoActionPerformed
         ProductosPantalla pro = new ProductosPantalla();
+        CachePedidos.getPedcodigo();
         pro.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnbuscarproductoActionPerformed

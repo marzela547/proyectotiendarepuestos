@@ -23,7 +23,7 @@ public class DetallePedidosPantalla extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         CachePedidos cache = new CachePedidos();
-        ProductoControlador.Llenartablaproducto(tabla_detalle, "detalle", cache.getPedcodigo());
+        ProductoControlador.Llenartablaproductos(tabla_detalle, "detalle", cache.getPedcodigo());
     }
 
     /**

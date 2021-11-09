@@ -67,10 +67,10 @@ public class PedidosControlador {
             modelo.addRow
             (new Object[]
                 {
-                    productos.get(i).getProdcodigo(), 
+                    productos.get(i).getProcodigo(), 
                     productos.get(i).getProddescripcion(),
                     productos.get(i).getProdprecventa(),
-                    productos.get(i).getProdestado()
+                    productos.get(i).getEstado()
                     
                 }
             );
