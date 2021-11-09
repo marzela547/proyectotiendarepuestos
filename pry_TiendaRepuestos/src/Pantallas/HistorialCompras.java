@@ -18,6 +18,7 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 
@@ -33,6 +34,7 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileSystemView;
@@ -51,6 +53,7 @@ public class HistorialCompras extends javax.swing.JFrame {
     public HistorialCompras() {
         initComponents();
         setLocationRelativeTo(null);
+        txtIdVenta.setVisible(false);
        Calendar fecha = new GregorianCalendar();
         String anio = Integer.toString(fecha.get(Calendar.YEAR));
         String mes = Integer.toString(fecha.get(Calendar.MONTH));
@@ -239,6 +242,7 @@ public class HistorialCompras extends javax.swing.JFrame {
         }
 
         txtIdVenta.setEditable(false);
+        txtIdVenta.setEnabled(false);
 
         jLabel16.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
@@ -349,11 +353,12 @@ public class HistorialCompras extends javax.swing.JFrame {
         }
 }  
 /******************************************************************/
-     public void pdf(){
+     public void pdf(String dire){
          try{
              FileOutputStream archivo;
-             File file = new File("src/pdf/Detallefactura"+txtIdVenta.getText()+".pdf");
+             File file = new File(dire+txtIdVenta.getText()+".pdf");
              archivo = new FileOutputStream(file);
+             Desktop.getDesktop().open(file);
              Document doc = new Document();
              PdfWriter.getInstance(doc, archivo);
              doc.open();
@@ -544,7 +549,13 @@ public class HistorialCompras extends javax.swing.JFrame {
     }//GEN-LAST:event_DetalleFacturaComponentShown
 
     private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
-        pdf();
+        JFileChooser jfc = new JFileChooser();
+                int opcion = jfc.showSaveDialog(this);
+                if(opcion == JFileChooser.APPROVE_OPTION){
+                    File archi = jfc.getSelectedFile();
+                    String path = archi.toString();
+                    pdf(path);
+                }
     }//GEN-LAST:event_btnPDFActionPerformed
 
     private void btnregresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregresarActionPerformed

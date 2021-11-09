@@ -2,6 +2,7 @@
 package Pantallas;
 
 import Controladores.VentaControlador;
+import Especiales.CrearPDF;
 import Especiales.TextPrompt;
 import Modelos.CacheLogin;
 import com.itextpdf.text.BaseColor;
@@ -36,6 +37,7 @@ import java.util.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 /*import net.sf.jasperreports.engine.JasperCompileManager;
@@ -807,10 +809,18 @@ public class VentasPantalla extends javax.swing.JFrame {
                         try{
                        
                         
-                        pdf();
+                        
                         try {
-                            File path = new File ("src/pdf/factura"+getMaxidVenta()+".pdf");
-                            Desktop.getDesktop().open(path);
+                            JFileChooser jfc = new JFileChooser();
+                            int opcionn = jfc.showSaveDialog(this);
+                            if(opcionn == JFileChooser.APPROVE_OPTION){
+                                File archi = jfc.getSelectedFile();
+                                String path = archi.toString();
+                                pdf(path);
+                                File path2 = new File (path+getMaxidVenta()+".pdf");
+                                Desktop.getDesktop().open(path2);
+                            }
+                            
                        }catch (IOException ex) {
                             ex.printStackTrace();
                        }
@@ -1367,11 +1377,11 @@ public class VentasPantalla extends javax.swing.JFrame {
             txtNfactura.setText("000-000-00-0000"+String.valueOf(getMaxidVenta() + 1));
                         
       }
-     private void pdf()
+     private void pdf(String dire)
      {
          try{
              FileOutputStream archivo;
-             File file = new File("src/pdf/factura"+getMaxidVenta()+".pdf");
+             File file = new File(dire+getMaxidVenta()+".pdf");
              archivo = new FileOutputStream(file);
              Document doc = new Document();
              PdfWriter.getInstance(doc, archivo);
