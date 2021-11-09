@@ -5,6 +5,7 @@
  */
 package Conexiones;
 
+import Modelos.CachePedidos;
 import Modelos.PedidosModelo;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -20,6 +21,38 @@ import javax.swing.JOptionPane;
  * @author marce
  */
 public class PedidosConexion {
+    public static void llamarUltimo(){
+        
+        Connection con = null;
+        Statement stm;
+        ResultSet rss;
+        
+        try
+                {
+                    con = Conexion.getConexion(con);
+                    stm = con.createStatement();
+                    
+                    String query = " SELECT Pedcodigo FROM bdrepuestos.pedidos "
+                     + " order by Pedcodigo DESC limit 1";
+
+                    rss = stm.executeQuery(query);
+                    System.out.println("AQUI VOY XDXD");
+                    while (rss.next()) 
+                    {
+                        PedidosModelo pedido = new PedidosModelo();
+                        System.out.println(rss.getInt("Pedcodigo"));
+                        CachePedidos.setPedcodigo(rss.getInt("Pedcodigo"));
+                    } 
+                    
+                    con.close();
+                } 
+                catch (SQLException e)
+                {
+                    JOptionPane.showMessageDialog(null,e);
+                } 
+       
+					
+    }
      public static ArrayList<PedidosModelo> Listadopedido(String accion) 
     {
         Connection con = null;
@@ -43,10 +76,11 @@ public class PedidosConexion {
                      + " ORDER BY Pedcodigo ASC";
 
                     rss = stm.executeQuery(query);
-
+                    System.out.println("AQUI VOY XDXD");
                     while (rss.next()) 
                     {
                         PedidosModelo pedido = new PedidosModelo();
+                        System.out.println(rss.getInt("Pedcodigo"));
                         pedido.setPedcodigo(rss.getInt("Pedcodigo"));
                         pedido.setPronombre(rss.getString("Pronombre"));
                         pedido.setPedfecha(rss.getString("Pedfecha"));

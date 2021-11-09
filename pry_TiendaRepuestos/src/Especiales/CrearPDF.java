@@ -5,6 +5,7 @@
  */
 package Especiales;
 
+import Conexiones.PedidosConexion;
 import Conexiones.TempConexion;
 import Modelos.CacheLogin;
 import Modelos.CachePedidos;
@@ -24,6 +25,8 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,9 +55,11 @@ public class CrearPDF {
     
     public void crearPDF(){
         try{
-            int num =0;
+            PedidosConexion.llamarUltimo();
             BaseColor myColor = WebColors.getRGBColor("#7da6b5");
-            archivo = new FileOutputStream("src/pdf/ordencompra"+num+".pdf");
+            archivo = new FileOutputStream("src/pdf/ordencompra"+CachePedidos.getPedcodigo()+".pdf");
+            File path = new File("src/pdf/ordencompra"+CachePedidos.getPedcodigo()+".pdf");
+            Desktop.getDesktop().open(path);
             PdfWriter writer= PdfWriter.getInstance(documento, archivo);
             Font fuente = new Font();
             fuente.setSize(28);

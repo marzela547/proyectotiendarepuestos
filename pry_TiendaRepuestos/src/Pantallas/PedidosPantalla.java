@@ -355,7 +355,7 @@ public class PedidosPantalla extends javax.swing.JFrame {
         if(Validaciones.validarSelecciones(txtproveedor_pedidos, cmbTipPago, tabla_pedidos)){
             CachePedidos cache = new CachePedidos();
             PedidosControlador.seleccionPago(cmbTipPago);
-            if(!PedidosControlador.Mantenimientopedidos("insertar", 0, cache.getProcodigo(),Date, 1, "ACT")){
+            if(!PedidosControlador.Mantenimientopedidos("insertar", 0, cache.getProcodigo(),Date, CacheLogin.getEmpCodigo(), "ACT")){
                 CrearPDF pdf = new CrearPDF( Date);
                 pdf.crearPDF();
             }

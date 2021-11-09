@@ -37,6 +37,7 @@ public class PedidosControlador {
         //Estados estados = new Estados();
         ArrayList<PedidosModelo> pedidos = new ArrayList<>();
         pedidos= PedidosConexion.Listadopedido(accion);
+        System.out.println("AQUI ESTO EN TABLA ");
         for (int i = 0; i <pedidos.size(); i++) 
         {
             modelo.addRow

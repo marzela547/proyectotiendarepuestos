@@ -161,13 +161,13 @@ public class OpcionesEmpleados extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnlistarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlistarActionPerformed
-        PedidosListadoPantalla pantalla = new PedidosListadoPantalla();
+        EmpleadosPantalla pantalla = new EmpleadosPantalla();
         pantalla.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnlistarActionPerformed
 
     private void btnpuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpuestosActionPerformed
-        PedidosPantalla pantalla = new PedidosPantalla();
+        PuestosPantalla pantalla = new PuestosPantalla();
         pantalla.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnpuestosActionPerformed

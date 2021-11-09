@@ -3,6 +3,7 @@ package Pantallas;
 
 import Controladores.VentaControlador;
 import Especiales.TextPrompt;
+import Modelos.CacheLogin;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -60,6 +61,7 @@ public class VentasPantalla extends javax.swing.JFrame {
     public VentasPantalla(){
         initComponents();
         this.setLocationRelativeTo(null);
+        txtNomVendedor.setText(CacheLogin.getEmpnombre());
         TextPrompt nombreCliente = new TextPrompt("Nombre del cliente",txtNombreCliente);
         TextPrompt rtn = new TextPrompt("RTN",txtRTN);
         TextPrompt nombreVendedor = new TextPrompt("Nombre del Vendedor",txtNomVendedor);
@@ -683,17 +685,10 @@ public class VentasPantalla extends javax.swing.JFrame {
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtNombreCliente)
                                     .addComponent(txtRTN)
-                                    .addComponent(btn_SeleccinarProducto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtNfactura, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(btn_SeleccinarProducto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(20, 20, 20)
@@ -704,7 +699,16 @@ public class VentasPantalla extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(cmbTipoPago, javax.swing.GroupLayout.Alignment.TRAILING, 0, 219, Short.MAX_VALUE)
-                                            .addComponent(txtNomVendedor, javax.swing.GroupLayout.Alignment.TRAILING))))))))
+                                            .addComponent(txtNomVendedor, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtNfactura, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(370, 370, 370)))))))
                 .addGap(204, 204, 204))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(358, 358, 358)
