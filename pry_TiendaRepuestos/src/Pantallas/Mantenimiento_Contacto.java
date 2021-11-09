@@ -73,7 +73,8 @@ public class Mantenimiento_Contacto extends javax.swing.JFrame {
         btnregresar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(43, 47, 61));
 
@@ -132,7 +133,7 @@ public class Mantenimiento_Contacto extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(230, 230, 230));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Mantenimiento de Contacto");
 
         cmbproveedor_contacto.addActionListener(new java.awt.event.ActionListener() {

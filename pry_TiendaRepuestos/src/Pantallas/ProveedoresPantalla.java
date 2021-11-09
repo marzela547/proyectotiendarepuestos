@@ -48,7 +48,8 @@ public class ProveedoresPantalla extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(43, 47, 61));
         jPanel1.setForeground(new java.awt.Color(43, 47, 61));
@@ -88,15 +89,23 @@ public class ProveedoresPantalla extends javax.swing.JFrame {
             }
         });
         tabla_proveedor.setGridColor(new java.awt.Color(102, 102, 102));
+        tabla_proveedor.getTableHeader().setReorderingAllowed(false);
         tabla_proveedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_proveedorMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabla_proveedor);
+        if (tabla_proveedor.getColumnModel().getColumnCount() > 0) {
+            tabla_proveedor.getColumnModel().getColumn(0).setResizable(false);
+            tabla_proveedor.getColumnModel().getColumn(1).setResizable(false);
+            tabla_proveedor.getColumnModel().getColumn(2).setResizable(false);
+            tabla_proveedor.getColumnModel().getColumn(3).setResizable(false);
+            tabla_proveedor.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(230, 230, 230));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tabla Proveedor");
 
         jButton1.setBackground(new java.awt.Color(70, 104, 116));
@@ -216,7 +225,14 @@ public class ProveedoresPantalla extends javax.swing.JFrame {
         }
         else
         {
-            ProveedorControlador.transferirDatos(tabla_proveedor);
+            int fila;
+        //PedidosModelo proveedor = new PedidosModelo();
+            fila = tabla_proveedor.getSelectedRow();
+            cache.setBandeProveedores(true);
+            cache.setProcodigo((Integer) tabla_proveedor.getValueAt(fila, 0));
+            cache.setPronombre((String) tabla_proveedor.getValueAt(fila, 1));
+            cache.setProdireccion((String) tabla_proveedor.getValueAt(fila, 2));
+            cache.setProtelefono((String) tabla_proveedor.getValueAt(fila, 3));
             PedidosPantalla pedidos = new PedidosPantalla();
             pedidos.setVisible(true);
             dispose();

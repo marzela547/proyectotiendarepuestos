@@ -152,7 +152,8 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
 
         jButton6.setText("jButton3");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(43, 47, 61));
 
@@ -328,8 +329,8 @@ public class Mantenimiento_empeadospantalla extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(230, 230, 230));
+        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Mantenimiento de Empleados");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

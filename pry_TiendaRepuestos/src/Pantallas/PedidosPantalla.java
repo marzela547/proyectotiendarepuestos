@@ -11,9 +11,11 @@ import Especiales.CrearPDF;
 import Especiales.Validaciones;
 import Modelos.CacheLogin;
 import Modelos.CachePedidos;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -81,7 +83,8 @@ public class PedidosPantalla extends javax.swing.JFrame {
         btncancelar_pedidos = new javax.swing.JButton();
         btneliminarprod_pedidos = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(43, 47, 61));
 
@@ -356,8 +359,14 @@ public class PedidosPantalla extends javax.swing.JFrame {
             CachePedidos cache = new CachePedidos();
             PedidosControlador.seleccionPago(cmbTipPago);
             if(!PedidosControlador.Mantenimientopedidos("insertar", 0, cache.getProcodigo(),Date, CacheLogin.getEmpCodigo(), "ACT")){
-                CrearPDF pdf = new CrearPDF( Date);
-                pdf.crearPDF();
+                JFileChooser jfc = new JFileChooser();
+                int opcion = jfc.showSaveDialog(this);
+                if(opcion == JFileChooser.APPROVE_OPTION){
+                    File archi = jfc.getSelectedFile();
+                    String path = archi.toString();
+                    CrearPDF pdf = new CrearPDF( Date);
+                    pdf.crearPDF(path);
+                }
             }
             
             PedidosControlador.Mantenimientotemp("eliminar", txtproducto_pedidos, txtproductodes_pedidos, txtprecio_pedidos, spinnercanti_pedidos);

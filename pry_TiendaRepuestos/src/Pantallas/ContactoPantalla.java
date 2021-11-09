@@ -48,7 +48,8 @@ public class ContactoPantalla extends javax.swing.JFrame {
         btnregresar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(43, 47, 61));
         jPanel1.setForeground(new java.awt.Color(43, 47, 61));
@@ -88,15 +89,24 @@ public class ContactoPantalla extends javax.swing.JFrame {
             }
         });
         tabla_contacto.setGridColor(new java.awt.Color(102, 102, 102));
+        tabla_contacto.getTableHeader().setReorderingAllowed(false);
         tabla_contacto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_contactoMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabla_contacto);
+        if (tabla_contacto.getColumnModel().getColumnCount() > 0) {
+            tabla_contacto.getColumnModel().getColumn(0).setResizable(false);
+            tabla_contacto.getColumnModel().getColumn(1).setResizable(false);
+            tabla_contacto.getColumnModel().getColumn(2).setResizable(false);
+            tabla_contacto.getColumnModel().getColumn(3).setResizable(false);
+            tabla_contacto.getColumnModel().getColumn(4).setResizable(false);
+            tabla_contacto.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(230, 230, 230));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tabla Contactos");
 
         btnregresar.setBackground(new java.awt.Color(70, 104, 116));

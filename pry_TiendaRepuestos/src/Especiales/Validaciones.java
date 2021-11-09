@@ -20,6 +20,12 @@ import javax.swing.JTextField;
  * @author fgodo
  */
 public class Validaciones {
+    public static Boolean validarmayor0float(String n1)
+    {
+        Float N1;
+        N1= Float.parseFloat(n1);
+        if(N1>0){return  true;}else{return  false;}
+    }
     public static Boolean validarCampoVacio(String campo)
     {
         return campo.matches("^\\s*$");

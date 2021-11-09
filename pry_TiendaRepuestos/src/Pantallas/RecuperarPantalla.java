@@ -43,10 +43,12 @@ public class RecuperarPantalla extends javax.swing.JFrame {
         txtcodigo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(43, 47, 61));
 
+        btnenviar.setBackground(new java.awt.Color(70, 104, 116));
         btnenviar.setForeground(new java.awt.Color(255, 255, 255));
         btnenviar.setText("Enviar");
         btnenviar.addActionListener(new java.awt.event.ActionListener() {
@@ -60,6 +62,7 @@ public class RecuperarPantalla extends javax.swing.JFrame {
         errCodigo.setForeground(new java.awt.Color(255, 51, 51));
         errCodigo.setText(" ");
 
+        btnconfir.setBackground(new java.awt.Color(70, 104, 116));
         btnconfir.setForeground(new java.awt.Color(255, 255, 255));
         btnconfir.setText("Aceptar");
         btnconfir.setEnabled(false);
@@ -70,8 +73,6 @@ public class RecuperarPantalla extends javax.swing.JFrame {
         });
 
         txtcodigo.setEditable(false);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\fgodo\\OneDrive\\Documentos\\GitHub\\proyectotiendarepuestos\\pry_TiendaRepuestos\\src\\Imagenes\\LogoPantallamd.PNG")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

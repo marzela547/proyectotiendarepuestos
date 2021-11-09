@@ -171,6 +171,7 @@ public class SarPanta extends javax.swing.JFrame {
         ));
         TablaSAR.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TablaSAR.setOpaque(false);
+        TablaSAR.getTableHeader().setReorderingAllowed(false);
         TablaSAR.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablaSARMouseClicked(evt);
@@ -181,6 +182,7 @@ public class SarPanta extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(43, 47, 61));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED)));
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Fecha limite");
 
@@ -200,6 +202,7 @@ public class SarPanta extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Rango Inicial");
 
@@ -212,6 +215,7 @@ public class SarPanta extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Rango final");
 
@@ -224,6 +228,7 @@ public class SarPanta extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("CAI");
 
@@ -237,6 +242,7 @@ public class SarPanta extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Código");
 
@@ -303,6 +309,7 @@ public class SarPanta extends javax.swing.JFrame {
         );
 
         btnModificar.setBackground(new java.awt.Color(70, 104, 116));
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar.setText("Modificar");
         btnModificar.setEnabled(false);
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -312,6 +319,7 @@ public class SarPanta extends javax.swing.JFrame {
         });
 
         btnModificar1.setBackground(new java.awt.Color(70, 104, 116));
+        btnModificar1.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar1.setText("Regresar");
         btnModificar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -368,13 +376,15 @@ public class SarPanta extends javax.swing.JFrame {
             .addComponent(container, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(43, 47, 61));
 
         txtFecha.setDateFormatString("yyyy-MM-dd");
 
         btnRegistar.setBackground(new java.awt.Color(70, 104, 116));
+        btnRegistar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistar.setText("Registrar");
         btnRegistar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -383,6 +393,7 @@ public class SarPanta extends javax.swing.JFrame {
         });
 
         btnRegistar1.setBackground(new java.awt.Color(70, 104, 116));
+        btnRegistar1.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistar1.setText("Buscar");
         btnRegistar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -391,6 +402,7 @@ public class SarPanta extends javax.swing.JFrame {
         });
 
         btnRegistar2.setBackground(new java.awt.Color(70, 104, 116));
+        btnRegistar2.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistar2.setText("Regresar");
         btnRegistar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

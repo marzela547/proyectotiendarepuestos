@@ -48,7 +48,8 @@ public class PuestosPantalla extends javax.swing.JFrame {
         btnregresar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(43, 47, 61));
 
@@ -77,17 +78,31 @@ public class PuestosPantalla extends javax.swing.JFrame {
             new String [] {
                 "Codigo ", "Descripcion", "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabla_puestos.getTableHeader().setReorderingAllowed(false);
         tabla_puestos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_puestosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabla_puestos);
+        if (tabla_puestos.getColumnModel().getColumnCount() > 0) {
+            tabla_puestos.getColumnModel().getColumn(0).setResizable(false);
+            tabla_puestos.getColumnModel().getColumn(1).setResizable(false);
+            tabla_puestos.getColumnModel().getColumn(2).setResizable(false);
+        }
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(230, 230, 230));
-        jLabel2.setText("Tabla Puestos");
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Listado Puestos");
 
         btnregresar.setBackground(new java.awt.Color(70, 104, 116));
         btnregresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -143,8 +158,9 @@ public class PuestosPantalla extends javax.swing.JFrame {
                     .addComponent(btnagregar_puesto, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(btnregresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnregresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

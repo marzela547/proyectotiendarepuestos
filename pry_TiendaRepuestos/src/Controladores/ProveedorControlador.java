@@ -243,7 +243,7 @@ public class ProveedorControlador {
         return opv;
     }
     public static void transferirDatos(JTable tablaproveedor){
-        int fila;
+       /* int fila;
         //PedidosModelo proveedor = new PedidosModelo();
         CachePedidos cache = new CachePedidos();
         fila = tablaproveedor.getSelectedRow();
@@ -251,7 +251,7 @@ public class ProveedorControlador {
         cache.setProcodigo((Integer) tablaproveedor.getValueAt(fila, 0));
         cache.setPronombre((String) tablaproveedor.getValueAt(fila, 1));
         cache.setProdireccion((String) tablaproveedor.getValueAt(fila, 2));
-        cache.setProtelefono((String) tablaproveedor.getValueAt(fila, 3));
+        cache.setProtelefono((String) tablaproveedor.getValueAt(fila, 3));*/
     }
 }
 

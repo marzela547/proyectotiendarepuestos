@@ -52,6 +52,7 @@ public class OpcionesProductos extends javax.swing.JDialog {
         btnregresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(43, 47, 61));
 
@@ -223,13 +224,13 @@ public class OpcionesProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnlistarActionPerformed
 
     private void btnnuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevaActionPerformed
-        VentasPantalla pantalla = new VentasPantalla();
+        MarcasPantalla pantalla = new MarcasPantalla();
         pantalla.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnnuevaActionPerformed
 
     private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
-        SarPanta pantalla = new SarPanta();
+        TiposPantallas pantalla = new TiposPantallas();
         pantalla.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnaddActionPerformed

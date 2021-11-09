@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -53,12 +54,12 @@ public class CrearPDF {
       
     }
     
-    public void crearPDF(){
+    public void crearPDF(String dire){
         try{
             PedidosConexion.llamarUltimo();
             BaseColor myColor = WebColors.getRGBColor("#7da6b5");
-            archivo = new FileOutputStream("src/pdf/ordencompra"+CachePedidos.getPedcodigo()+".pdf");
-            File path = new File("src/pdf/ordencompra"+CachePedidos.getPedcodigo()+".pdf");
+            archivo = new FileOutputStream(dire+CachePedidos.getPedcodigo()+".pdf");
+            File path = new File(dire+CachePedidos.getPedcodigo()+".pdf");
             Desktop.getDesktop().open(path);
             PdfWriter writer= PdfWriter.getInstance(documento, archivo);
             Font fuente = new Font();
@@ -220,6 +221,5 @@ public class CrearPDF {
             
         }
     }
-    
     
 }

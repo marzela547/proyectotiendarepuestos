@@ -52,7 +52,7 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
 
         jRadioButton1.setText("jRadioButton1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(43, 47, 61));
@@ -93,15 +93,27 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
             }
         });
         tabla_empleados.setGridColor(new java.awt.Color(102, 102, 102));
+        tabla_empleados.getTableHeader().setReorderingAllowed(false);
         tabla_empleados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_empleadosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabla_empleados);
+        if (tabla_empleados.getColumnModel().getColumnCount() > 0) {
+            tabla_empleados.getColumnModel().getColumn(0).setResizable(false);
+            tabla_empleados.getColumnModel().getColumn(1).setResizable(false);
+            tabla_empleados.getColumnModel().getColumn(2).setResizable(false);
+            tabla_empleados.getColumnModel().getColumn(3).setResizable(false);
+            tabla_empleados.getColumnModel().getColumn(4).setResizable(false);
+            tabla_empleados.getColumnModel().getColumn(5).setResizable(false);
+            tabla_empleados.getColumnModel().getColumn(6).setResizable(false);
+            tabla_empleados.getColumnModel().getColumn(7).setResizable(false);
+            tabla_empleados.getColumnModel().getColumn(8).setResizable(false);
+        }
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(230, 230, 230));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tabla Empleados");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -133,11 +145,12 @@ public class EmpleadosPantalla extends javax.swing.JFrame {
                         .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnregresar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1016, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(txtbuscar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 868, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(214, 214, 214)
+                                    .addComponent(txtbuscar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(28, 28, 28)
                                     .addComponent(btnagregar_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(50, Short.MAX_VALUE))
         );

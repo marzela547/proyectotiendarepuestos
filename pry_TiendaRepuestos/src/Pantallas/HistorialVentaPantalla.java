@@ -40,6 +40,7 @@ int codigoventa;
     public HistorialVentaPantalla() {
         initComponents();
         this.setLocationRelativeTo(null);
+        //ControladorGeneral.Filtrotabla(TablaVentasHistorial, txtBuscar);
         ControladorGeneral.setPlaceHolder(txtBuscar);
          cargarVentasHistorial();
          Calendar fecha = new GregorianCalendar();
@@ -108,11 +109,13 @@ int codigoventa;
         jPanel16.setBackground(new java.awt.Color(43, 47, 61));
         jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED)));
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Factura n°");
 
         buscar2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        lbNfactura.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbNfactura.setForeground(new java.awt.Color(255, 255, 255));
         lbNfactura.setText("xxxxxx");
 
@@ -128,14 +131,10 @@ int codigoventa;
                         .addComponent(lupa2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel12)
-                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel16Layout.createSequentialGroup()
-                                .addGap(180, 180, 180)
-                                .addComponent(buscar2))
-                            .addGroup(jPanel16Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lbNfactura)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbNfactura, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscar2)))
                 .addContainerGap())
         );
         jPanel16Layout.setVerticalGroup(
@@ -154,7 +153,8 @@ int codigoventa;
         );
 
         btnOK.setBackground(new java.awt.Color(70, 104, 116));
-        btnOK.setText("OK");
+        btnOK.setForeground(new java.awt.Color(255, 255, 255));
+        btnOK.setText("Agregar");
         btnOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOKActionPerformed(evt);
@@ -168,15 +168,16 @@ int codigoventa;
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel15Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(27, 27, 27))
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(348, 348, 348)
-                .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(519, Short.MAX_VALUE))))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,9 +185,9 @@ int codigoventa;
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btnOK)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout DetalleVentaLayout = new javax.swing.GroupLayout(DetalleVenta.getContentPane());
@@ -202,11 +203,13 @@ int codigoventa;
 
         jPanel15.getAccessibleContext().setAccessibleName("DetalleVenta");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(43, 47, 61));
 
         btnGenerarReporte.setBackground(new java.awt.Color(70, 104, 116));
+        btnGenerarReporte.setForeground(new java.awt.Color(255, 255, 255));
         btnGenerarReporte.setText("Generar reporte");
         btnGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,6 +225,7 @@ int codigoventa;
 
             }
         ));
+        TablaVentasHistorial.getTableHeader().setReorderingAllowed(false);
         TablaVentasHistorial.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablaVentasHistorialMouseClicked(evt);
@@ -230,6 +234,7 @@ int codigoventa;
         jScrollPane4.setViewportView(TablaVentasHistorial);
 
         btnRegresar.setBackground(new java.awt.Color(70, 104, 116));
+        btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,6 +243,7 @@ int codigoventa;
         });
 
         btnGuardar.setBackground(new java.awt.Color(70, 104, 116));
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar cambios");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,6 +252,7 @@ int codigoventa;
         });
 
         cmbEstado.setBackground(new java.awt.Color(70, 104, 116));
+        cmbEstado.setForeground(new java.awt.Color(255, 255, 255));
         cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado de la venta", "Activo", "Inactivo" }));
         cmbEstado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -414,7 +421,7 @@ int codigoventa;
     public static void main(String args[]) {
                try {
            // UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
-         UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+           UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
         } catch (ClassNotFoundException ex) {
             //java.util.logging.Logger.getLogger(ClientesPantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
